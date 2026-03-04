@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarVolt – Clean Energy for a Brighter Future</title>
+  <meta name="description"
+    content="SolarVolt installs premium solar panels and wind turbines for homes and businesses. Calculate your savings, go green, and cut energy bills by up to 90%." />
+  <meta name="keywords"
+    content="solar panels, wind energy, renewable energy installer, solar installation, clean energy" />
+  <meta property="og:title" content="SolarVolt – Clean Energy for a Brighter Future" />
+  <meta property="og:description" content="Premium solar and wind installations. Cut energy bills by up to 90%." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="index.html" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SolarVolt Energy",
+    "description": "Renewable energy installer providing solar panel and wind turbine solutions",
+    "url": "https://solarvolt.com",
+    "telephone": "+1-800-SOLAR-01",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Green Energy Blvd",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "postalCode": "78701"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 30.2672, "longitude": -97.7431 }
+  }
+  </script>
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="assets/css/rtl.css" />
+
+  <!-- Boxicons -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+
+  <style>
+    /* ── Page-specific styles ── */
+    .hero-btn-cta {
+      animation: float-card 4s ease-in-out infinite;
+    }
+
+    .brand-logo-svg {
+      filter: drop-shadow(0 0 8px rgba(14, 166, 107, .4));
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-dark) 100%);
+      padding-block: var(--sp-20);
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/images/solar-residential.png') center/cover no-repeat;
+      opacity: .08;
+    }
+
+    .cta-section h2,
+    .cta-section p {
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-section .btn-ghost {
+      background: rgba(255, 255, 255, .15);
+      color: #fff;
+      border-color: rgba(255, 255, 255, .3);
+    }
+
+    .cta-section .btn-ghost:hover {
+      background: rgba(255, 255, 255, .25);
+    }
+
+    .partners-strip {
+      display: flex;
+      gap: var(--sp-10);
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-block: var(--sp-8);
+      border-block: 1px solid var(--clr-border);
+      filter: grayscale(1);
+      opacity: .45;
+    }
+
+    .partners-strip:hover {
+      opacity: .7;
+    }
+
+    .partner-logo {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--clr-text);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+  <header>
+    <nav class="navbar" id="mainNav" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="SolarVolt Home">
+          <svg class="navbar__logo-icon brand-logo-svg" viewBox="0 0 36 36" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+          </svg>
+          Solar<span>Volt</span>
+        </a>
+
+        <nav class="navbar__nav" aria-label="Site pages">
+          <a href="index.html" class="active">Home</a>
+          <a href="index2.html">Home 2</a>
+          <a href="pages/about.html">About</a>
+          <a href="pages/services.html">Services</a>
+          <a href="pages/blog.html">Blog</a>
+          <a href="pages/contact.html">Contact</a>
+          <a href="pages/dashboard.html">Dashboard</a>
+        </nav>
+
+        <div class="navbar__actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+            <span class="theme-icon-sun" style="display:none; color: #f59e0b;"><i class='bx bx-sun'></i></span>
+          </button>
+          <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL" title="Toggle RTL layout">
+            <span class="rtl-icon">RTL</span>
+          </button>
+          <a href="pages/login.html" class="btn btn-ghost btn-sm">
+            <i class='bx bx-log-in'></i> Login
+          </a>
+          <a href="pages/register.html" class="btn btn-primary btn-sm">
+            <i class='bx bx-user-plus'></i> Sign Up
+          </a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"
+          aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="index.html" class="active">Home</a>
+      <a href="index2.html">Home 2</a>
+      <a href="pages/about.html">About</a>
+      <a href="pages/services.html">Services</a>
+      <a href="pages/blog.html">Blog</a>
+      <a href="pages/contact.html">Contact</a>
+      <div class="mobile-menu-actions">
+        <a href="pages/login.html" class="btn btn-ghost" style="justify-content:center">
+          <i class='bx bx-log-in'></i> Login
+        </a>
+        <a href="pages/register.html" class="btn btn-primary" style="justify-content:center">
+          <i class='bx bx-user-plus'></i> Sign Up Free
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero" aria-label="Hero section">
+    <div class="hero__bg" role="img" aria-label="Solar panels and wind turbines at golden hour"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__particles" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="hero__eyebrow" aria-label="Tag">
+            <i class='bx bx-leaf'></i> #1 Rated Renewable Energy Installer
+          </div>
+          <h1 class="hero__title">
+            Power Your Future With <span class="highlight">Clean Energy</span>
+          </h1>
+          <p class="hero__desc">
+            SolarVolt designs, installs, and maintains premium solar panel and wind turbine systems for homes and
+            businesses. Cut energy bills by up to 90% while protecting the planet.
+          </p>
+          <div class="hero__actions">
+            <a href="#calculator" class="btn btn-primary btn-lg">
+              <i class='bx bx-calculator'></i> Calculate Savings
+            </a>
+            <a href="pages/services.html" class="btn btn-ghost btn-lg"
+              style="color:#fff;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.1)">
+              <i class='bx bx-play-circle'></i> Our Services
+            </a>
+          </div>
+          <div class="hero__stats">
+            <div>
+              <div class="hero__stat-value">15K+</div>
+              <div class="hero__stat-label">Installations</div>
+            </div>
+            <div>
+              <div class="hero__stat-value">90%</div>
+              <div class="hero__stat-label">Bill Reduction</div>
+            </div>
+            <div>
+              <div class="hero__stat-value">25yr</div>
+              <div class="hero__stat-label">Warranty</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__card-wrap">
+            <div class="hero__energy-card">
+              <div style="font-size:.8rem;opacity:.7;margin-bottom:.5rem;">⚡ Live Energy Output</div>
+              <div class="hero__savings-number">5.4 kW</div>
+              <div style="font-size:.8rem;opacity:.65;margin-top:.5rem;">↑ 12% vs yesterday</div>
+            </div>
+            <div class="hero__energy-card">
+              <div style="font-size:.8rem;opacity:.7;margin-bottom:.5rem;">💰 Annual Savings</div>
+              <div class="hero__savings-number">$3,240</div>
+              <div style="font-size:.8rem;opacity:.65;margin-top:.5rem;">🌿 2.1 tons CO₂ saved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PARTNERS STRIP ═══════════════════════ -->
+  <section aria-label="Partners" style="background:var(--clr-surface)">
+    <div class="container">
+      <div class="partners-strip">
+        <span class="partner-logo">SunPower</span>
+        <span class="partner-logo">LG Energy</span>
+        <span class="partner-logo">Tesla</span>
+        <span class="partner-logo">Panasonic</span>
+        <span class="partner-logo">Enphase</span>
+        <span class="partner-logo">SMA Solar</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FEATURES ═════════════════════════════ -->
+  <section class="section" id="features" aria-label="Why choose us">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-label"><i class='bx bx-star'></i> Why SolarVolt</div>
+        <h2>Everything You Need for Clean Energy</h2>
+        <p>From initial consultation to ongoing monitoring, we handle every step of your renewable energy journey.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-animate>
+          <div class="feature-icon"><i class='bx bx-sun'></i></div>
+          <h3>Premium Solar Panels</h3>
+          <p>Industry-leading monocrystalline panels with 22%+ efficiency and 25-year performance warranty.</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon"><i class='bx bx-wind'></i></div>
+          <h3>Wind Turbine Systems</h3>
+          <p>Residential and commercial wind turbines engineered for maximum energy capture at lower wind speeds.</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon"><i class='bx bx-battery'></i></div>
+          <h3>Battery Storage</h3>
+          <p>Store excess energy with our smart battery banks — power your home even during grid outages.</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon"><i class='bx bx-line-chart'></i></div>
+          <h3>Real-Time Monitoring</h3>
+          <p>Track energy production, savings, and CO₂ offset 24/7 via your personalised client dashboard.</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon"><i class='bx bx-shield-check'></i></div>
+          <h3>25-Year Warranty</h3>
+          <p>Comprehensive coverage on panels, inverters, and installation workmanship for total peace of mind.</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon"><i class='bx bx-money'></i></div>
+          <h3>Flexible Financing</h3>
+          <p>Zero down, 0% APR options and solar lease programs to make clean energy accessible to everyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STATS STRIP ══════════════════════════ -->
+  <section class="stats-strip" aria-label="Company stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-number" data-count="15000" data-suffix="+">0</div>
+          <div class="stat-label">Installations Completed</div>
+        </div>
+        <div>
+          <div class="stat-number" data-count="98.4" data-suffix="%">0</div>
+          <div class="stat-label">Customer Satisfaction</div>
+        </div>
+        <div>
+          <div class="stat-number" data-count="42000" data-suffix=" tons">0</div>
+          <div class="stat-label">CO₂ Offset Per Year</div>
+        </div>
+        <div>
+          <div class="stat-number" data-count="25" data-suffix=" yrs">0</div>
+          <div class="stat-label">Industry Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SERVICES PREVIEW ═════════════════════ -->
+  <section class="section" id="services" aria-label="Services">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-label"><i class='bx bx-grid-alt'></i> Services</div>
+        <h2>Solutions for Every Property</h2>
+        <p>Whether you're a homeowner or a commercial operator, we design the perfect renewable energy system for you.
+        </p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card" data-animate>
+          <div class="service-card__img-wrap">
+            <img src="assets/images/solar-residential.png" alt="Residential solar panel installation on home rooftop"
+              class="service-card__img" loading="lazy" />
+          </div>
+          <div class="service-card__body">
+            <div class="badge badge-primary">Most Popular</div>
+            <h3 style="margin-top:.75rem">Residential Solar</h3>
+            <p>Custom rooftop solar systems designed to eliminate your electricity bill with minimal disruption.</p>
+            <div class="service-card__price">From $6,900 <small
+                style="font-size:.75rem;color:var(--clr-text-muted)">after rebates</small></div>
+            <a href="pages/services.html" class="btn btn-primary btn-sm">Learn More <i
+                class='bx bx-right-arrow-alt'></i></a>
+          </div>
+        </article>
+        <article class="service-card" data-animate>
+          <div class="service-card__img-wrap">
+            <img src="assets/images/solar-commercial.png" alt="Large commercial solar array on warehouse rooftop"
+              class="service-card__img" loading="lazy" />
+          </div>
+          <div class="service-card__body">
+            <div class="badge badge-info">Commercial</div>
+            <h3 style="margin-top:.75rem">Commercial Solar</h3>
+            <p>Large-scale installations for warehouses, offices, factories, and agricultural properties.</p>
+            <div class="service-card__price">Custom Quote</div>
+            <a href="pages/services.html" class="btn btn-primary btn-sm">Learn More <i
+                class='bx bx-right-arrow-alt'></i></a>
+          </div>
+        </article>
+        <article class="service-card" data-animate>
+          <div class="service-card__img-wrap">
+            <img src="assets/images/wind-farm.png" alt="Offshore wind turbines in blue ocean at sunset"
+              class="service-card__img" loading="lazy" />
+          </div>
+          <div class="service-card__body">
+            <div class="badge badge-warning">Wind Power</div>
+            <h3 style="margin-top:.75rem">Wind Turbine Installations</h3>
+            <p>Residential and farm-scale wind turbines for properties with consistent wind resources.</p>
+            <div class="service-card__price">From $15,000</div>
+            <a href="pages/services.html" class="btn btn-primary btn-sm">Learn More <i
+                class='bx bx-right-arrow-alt'></i></a>
+          </div>
+        </article>
+      </div>
+      <div class="text-center mt-8"><a href="pages/services.html" class="btn btn-outline">View All Services <i
+            class='bx bx-right-arrow-alt'></i></a></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CALCULATOR ════════════════════════════ -->
+  <section class="section" id="calculator" style="background:var(--clr-bg-alt)" aria-label="Savings calculator">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-label"><i class='bx bx-calculator'></i> Savings Calculator</div>
+        <h2>How Much Can You Save?</h2>
+        <p>Enter your details to get an instant estimate of your annual energy savings with solar or wind power.</p>
+      </div>
+      <div class="calculator" data-animate>
+        <div class="calc-grid">
+          <div>
+            <div class="form-group" style="margin-bottom:1.5rem">
+              <label class="form-label" for="calcBill">Monthly Electric Bill ($)</label>
+              <input type="range" id="calcBill" class="range-slider calc-input" min="50" max="1000" value="200"
+                step="10" aria-label="Monthly bill" />
+              <div
+                style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--clr-text-muted);margin-top:.25rem">
+                <span>$50</span><span class="range-value" id="calcBillVal">$200</span><span>$1,000</span>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:1.5rem">
+              <label class="form-label" for="calcSize">System Size (kW)</label>
+              <input type="range" id="calcSize" class="range-slider calc-input" min="2" max="50" value="10" step="1"
+                aria-label="System size" />
+              <div
+                style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--clr-text-muted);margin-top:.25rem">
+                <span>2 kW</span><span class="range-value" id="calcSizeVal">10 kW</span><span>50 kW</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="calcType">System Type</label>
+              <select id="calcType" class="form-select calc-input" aria-label="System type">
+                <option value="solar">Solar Panels</option>
+                <option value="wind">Wind Turbines</option>
+                <option value="hybrid">Solar + Wind Hybrid</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div class="calc-result">
+              <div style="font-size:.85rem;opacity:.85;margin-bottom:.5rem">Estimated Annual Savings</div>
+              <div class="calc-result__value" id="calcResult">$0</div>
+              <div class="calc-result__label">per year</div>
+              <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <div style="background:rgba(255,255,255,.15);border-radius:.75rem;padding:1rem;text-align:center">
+                  <div style="font-size:1.4rem;font-weight:800" id="calcROI">0%</div>
+                  <div style="font-size:.75rem;opacity:.8;margin-top:.25rem">10yr ROI</div>
+                </div>
+                <div style="background:rgba(255,255,255,.15);border-radius:.75rem;padding:1rem;text-align:center">
+                  <div style="font-size:1.4rem;font-weight:800" id="calcCO2">0</div>
+                  <div style="font-size:.75rem;opacity:.8;margin-top:.25rem">CO₂ Saved</div>
+                </div>
+              </div>
+            </div>
+            <a href="pages/contact.html" class="btn btn-secondary w-full mt-4" style="justify-content:center">
+              <i class='bx bx-envelope'></i> Get Free Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROCESS ══════════════════════════════ -->
+  <section class="section" aria-label="Our process">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-label"><i class='bx bx-map'></i> How It Works</div>
+        <h2>From Consultation to Power-Up</h2>
+        <p>Our streamlined 4-step process gets your system installed and generating power in as little as 3 weeks.</p>
+      </div>
+      <div class="process-steps" data-animate>
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Free Consultation</h3>
+          <p>Our energy expert visits your property, analyses your bills, and designs an optimal system.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Custom Design</h3>
+          <p>We create a tailored system design with 3D modelling and precise energy savings projections.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Professional Install</h3>
+          <p>Certified engineers install your system with minimal disruption, typically in 1–2 days.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Monitor & Enjoy</h3>
+          <p>Access your live energy dashboard and watch your savings grow month after month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TESTIMONIALS ═════════════════════════ -->
+  <section class="section" style="background:var(--clr-bg-alt)" aria-label="Customer testimonials">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-label"><i class='bx bx-comment-check'></i> Testimonials</div>
+        <h2>What Our Clients Say</h2>
+        <p>Join 15,000+ satisfied customers who switched to SolarVolt renewable energy.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Our electricity bill dropped from $340/month to just $18. The ROI has been
+            incredible and the dashboard makes it really easy to track everything."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JM</div>
+            <div>
+              <div class="testimonial-name">James Mercer</div>
+              <div class="testimonial-role">Homeowner, Austin TX</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Installation was done in one day. The crew was professional and tidy. We're now
+            selling excess energy back to the grid and making money!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SR</div>
+            <div>
+              <div class="testimonial-name">Sarah Rodriguez</div>
+              <div class="testimonial-role">Small Business Owner, Phoenix AZ</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The wind turbine + solar hybrid system has been perfect for our farm. We saved
+            over $28,000 last year alone. Highly recommended."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DP</div>
+            <div>
+              <div class="testimonial-name">David Park</div>
+              <div class="testimonial-role">Farm Owner, Kansas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA SECTION ══════════════════════════ -->
+  <section class="cta-section" aria-label="Call to action">
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section-label"
+        style="background:rgba(255,255,255,.15);color:#fff;margin-inline:auto;width:fit-content"><i
+          class='bx bx-rocket'></i> Get Started</div>
+      <h2 style="margin-top:1rem;margin-bottom:1rem">Ready to Make the Switch?</h2>
+      <p style="max-width:540px;margin-inline:auto;margin-bottom:2rem;font-size:1.05rem">Get a free, no-obligation
+        consultation and quote. Our energy experts are ready to design the perfect system for your needs.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="pages/contact.html" class="btn btn-secondary btn-lg"><i class='bx bx-calendar'></i> Book Free
+          Consultation</a>
+        <a href="tel:+18007652670" class="btn btn-ghost btn-lg"><i class='bx bx-phone'></i> Call 1-800-SOLAR-01</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BLOG PREVIEW ═════════════════════════ -->
+  <section class="section" aria-label="Latest news">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-label"><i class='bx bx-news'></i> Blog</div>
+        <h2>Latest Energy Insights</h2>
+        <p>Stay informed with the latest in solar, wind, and clean energy technology.</p>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card" data-animate>
+          <div class="blog-card__img-wrap">
+            <img src="assets/images/solar-residential.png" alt="Rooftop solar panels under blue sky"
+              class="blog-card__img" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Mar 1, 2025</span><span><i
+                  class='bx bx-time'></i> 5 min read</span></div>
+            <h3 class="blog-card__title"><a href="pages/blog.html">2025 Solar Panel Incentives: What's New and How to
+                Claim</a></h3>
+            <p class="blog-card__excerpt">The federal solar tax credit remains at 30% through 2032. Here's everything
+              you need to know about maximising your rebates...</p>
+          </div>
+          <div class="blog-card__footer">
+            <span class="tag tag-primary">Incentives</span>
+            <a href="pages/blog.html" class="btn btn-sm btn-outline">Read More</a>
+          </div>
+        </article>
+        <article class="blog-card" data-animate>
+          <div class="blog-card__img-wrap">
+            <img src="assets/images/wind-farm.png" alt="Wind turbines over the ocean at sunset" class="blog-card__img"
+              loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Feb 20, 2025</span><span><i
+                  class='bx bx-time'></i> 4 min read</span></div>
+            <h3 class="blog-card__title"><a href="pages/blog.html">Wind vs Solar: Which Is Right for Your Property?</a>
+            </h3>
+            <p class="blog-card__excerpt">Choosing between solar panels and wind turbines depends on your location, land
+              area, and energy consumption. Here's a detailed comparison...</p>
+          </div>
+          <div class="blog-card__footer">
+            <span class="tag tag-primary">Comparison</span>
+            <a href="pages/blog.html" class="btn btn-sm btn-outline">Read More</a>
+          </div>
+        </article>
+        <article class="blog-card" data-animate>
+          <div class="blog-card__img-wrap">
+            <img src="assets/images/about-mission.png" alt="Engineer inspecting solar panels in a field"
+              class="blog-card__img" loading="lazy" />
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Feb 10, 2025</span><span><i
+                  class='bx bx-time'></i> 6 min read</span></div>
+            <h3 class="blog-card__title"><a href="pages/blog.html">How Battery Storage Is Changing Home Energy
+                Forever</a></h3>
+            <p class="blog-card__excerpt">Storing solar energy for nighttime use is now more affordable than ever. We
+              break down the latest home battery storage options...</p>
+          </div>
+          <div class="blog-card__footer">
+            <span class="tag tag-primary">Technology</span>
+            <a href="pages/blog.html" class="btn btn-sm btn-outline">Read More</a>
+          </div>
+        </article>
+      </div>
+      <div class="text-center mt-8"><a href="pages/blog.html" class="btn btn-outline">View All Articles <i
+            class='bx bx-right-arrow-alt'></i></a></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ════════════════════════════════ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="navbar__logo" style="margin-bottom:1rem">
+            <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+              <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+              <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+            </svg>
+            Solar<span>Volt</span>
+          </a>
+          <p>Leading renewable energy installer for residential and commercial clients. Powering a cleaner tomorrow,
+            today.</p>
+          <div class="footer__social" aria-label="Social media links">
+            <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+            <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+            <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+            <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+            <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+          </div>
+          <div class="footer__newsletter" aria-label="Newsletter signup">
+            <p style="font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:.5rem">Subscribe for energy tips &amp;
+              offers:</p>
+            <form class="footer__newsletter-form newsletter-form" aria-label="Newsletter form">
+              <input type="email" placeholder="Enter your email" aria-label="Email address" required />
+              <button type="submit" class="btn btn-primary btn-sm" aria-label="Subscribe">Subscribe</button>
+            </form>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Services</h4>
+          <nav class="footer__links" aria-label="Services links">
+            <a href="pages/services.html">Residential Solar</a>
+            <a href="pages/services.html">Commercial Solar</a>
+            <a href="pages/services.html">Wind Turbines</a>
+            <a href="pages/services.html">Battery Storage</a>
+            <a href="pages/services.html">System Maintenance</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer__heading">Company</h4>
+          <nav class="footer__links" aria-label="Company links">
+            <a href="pages/about.html">About Us</a>
+            <a href="pages/blog.html">Blog</a>
+            <a href="pages/contact.html">Contact</a>
+            <a href="pages/dashboard.html">Client Portal</a>
+            <a href="#">Careers</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer__heading">Contact</h4>
+          <div class="footer__links">
+            <a href="tel:+18007652670"><i class='bx bx-phone'></i> 1-800-SOLAR-01</a>
+            <a href="mailto:info@solarvolt.com"><i class='bx bx-envelope'></i> info@solarvolt.com</a>
+            <a href="#"><i class='bx bx-map-pin'></i> 123 Green Energy Blvd, Austin TX</a>
+            <a href="#"><i class='bx bx-time'></i> Mon–Fri 8am–6pm CST</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 SolarVolt Energy. All rights reserved.</span>
+        <nav style="display:flex;gap:1rem;flex-wrap:wrap" aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Sitemap</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" aria-label="Back to top"><i class='bx bx-chevron-up'></i></button>
+
+  <!-- Toast container -->
+  <div id="toastContainer" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+/* ============================================================
+   SOLARVOLT – RTL (Right-to-Left) Support
+   ============================================================ */
+
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Navbar */
+[dir="rtl"] .navbar__inner {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navbar__nav {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navbar__actions {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .mobile-menu a {
+    text-align: right;
+}
+
+/* Hero */
+[dir="rtl"] .hero__content {
+    direction: rtl;
+}
+
+[dir="rtl"] .hero__eyebrow {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero__actions {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero__stats {
+    flex-direction: row-reverse;
+}
+
+/* Buttons */
+[dir="rtl"] .btn {
+    flex-direction: row-reverse;
+}
+
+/* Cards */
+[dir="rtl"] .feature-card::before {
+    transform-origin: right;
+}
+
+[dir="rtl"] .process-step::after {
+    left: -1rem;
+    right: auto;
+    transform: rotate(180deg);
+}
+
+/* Footer */
+[dir="rtl"] .footer__grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .footer__social {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer__links {
+    text-align: right;
+}
+
+[dir="rtl"] .footer__newsletter-form {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer__bottom {
+    flex-direction: row-reverse;
+}
+
+/* Forms */
+[dir="rtl"] .form-group {
+    text-align: right;
+}
+
+[dir="rtl"] .contact-info-item {
+    flex-direction: row-reverse;
+}
+
+/* Dashboard */
+[dir="rtl"] .dash-layout {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dash-sidebar {
+    border-right: none;
+    border-left: 1px solid var(--clr-border);
+}
+
+[dir="rtl"] .dash-topbar {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dash-nav-item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+[dir="rtl"] .dash-stat-card {
+    text-align: right;
+}
+
+[dir="rtl"] .data-table th,
+[dir="rtl"] .data-table td {
+    text-align: right;
+}
+
+[dir="rtl"] .toast {
+    left: var(--sp-6);
+    right: auto;
+    transform: translateX(-110%);
+}
+
+[dir="rtl"] .toast.visible {
+    transform: translateX(0);
+}
+
+[dir="rtl"] .toast {
+    border-left: none;
+    border-right: 4px solid var(--clr-primary);
+}
+
+[dir="rtl"] #scrollTop {
+    left: auto;
+    right: var(--sp-6);
+}

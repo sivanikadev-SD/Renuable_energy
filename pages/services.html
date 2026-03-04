@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services – SolarVolt Energy</title>
+    <meta name="description"
+        content="Explore SolarVolt's solar panel, wind turbine, and battery storage installation services for residential and commercial properties." />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/rtl.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .service-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-10);
+            align-items: center;
+            margin-bottom: var(--sp-16);
+        }
+
+        .service-detail:nth-child(even) {
+            direction: rtl;
+        }
+
+        .service-detail:nth-child(even)>* {
+            direction: ltr;
+        }
+
+        .service-detail__img {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-detail__img img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+        }
+
+        .service-feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-3);
+            margin: var(--sp-5) 0;
+        }
+
+        .service-feature-item {
+            display: flex;
+            gap: var(--sp-3);
+            align-items: flex-start;
+        }
+
+        .service-feature-icon {
+            color: var(--clr-primary);
+            font-size: 1.1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--sp-5);
+        }
+
+        .pricing-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: var(--sp-8);
+            text-align: center;
+            position: relative;
+            transition: all var(--dur-mid) var(--ease);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--clr-primary);
+            box-shadow: 0 0 0 3px rgba(14, 166, 107, .15);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--clr-primary);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 99px;
+        }
+
+        .pricing-price {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--clr-primary);
+            margin: var(--sp-3) 0 var(--sp-2);
+        }
+
+        .pricing-period {
+            font-size: .8rem;
+            color: var(--clr-text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: var(--sp-5) 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-3);
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-2);
+            font-size: .9rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--clr-primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        @media(max-width:768px) {
+            .service-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .service-detail:nth-child(even) {
+                direction: ltr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar" id="mainNav" aria-label="Main navigation">
+            <div class="navbar__inner">
+                <a href="../index.html" class="navbar__logo">
+                    <svg class="navbar__logo-icon" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                        <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                            fill="#0ea66b" />
+                        <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                    </svg>
+                    Solar<span>Volt</span>
+                </a>
+                <nav class="navbar__nav" aria-label="Site pages">
+                    <a href="../index.html">Home</a>
+                    <a href="../index2.html">Home 2</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html" class="active">Services</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </nav>
+                <div class="navbar__actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="color:#f59e0b;">
+                        <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+                        <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
+                    </button>
+                    <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL" title="Toggle RTL layout">
+                        <span class="rtl-icon">RTL</span>
+                    </button>
+                    <a href="login.html" class="btn btn-ghost btn-sm"><i class='bx bx-log-in'></i> Login</a>
+                    <a href="register.html" class="btn btn-primary btn-sm"><i class='bx bx-user-plus'></i> Sign Up</a>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Open menu"
+                    aria-expanded="false"><span></span><span></span><span></span></button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="../index.html">Home</a>
+            <a href="../index2.html">Home 2</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="dashboard.html">Dashboard</a>
+            <div class="mobile-menu-actions">
+                <a href="login.html" class="btn btn-ghost" style="justify-content:center"><i class='bx bx-log-in'></i>
+                    Login</a>
+                <a href="register.html" class="btn btn-primary" style="justify-content:center"><i
+                        class='bx bx-user-plus'></i> Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Services page hero">
+        <div class="container">
+            <div class="section-label"
+                style="margin-inline:auto;width:fit-content;background:rgba(255,255,255,.15);color:#fff"><i
+                    class='bx bx-grid-alt'></i> Our Services</div>
+            <h1 style="margin-top:1rem">Renewable Energy Solutions</h1>
+            <p>Comprehensive solar, wind, and storage systems tailored to your property and energy goals.</p>
+            <div class="breadcrumb"><a href="../index.html">Home</a> <i class='bx bx-chevron-right'></i>
+                <span>Services</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE DETAILS -->
+    <section class="section" aria-label="Service details">
+        <div class="container">
+
+            <!-- Residential Solar -->
+            <div class="service-detail" data-animate>
+                <div>
+                    <div class="section-label"><i class='bx bx-home'></i> Residential</div>
+                    <h2 style="margin-top:.75rem">Home Solar Panel Systems</h2>
+                    <p style="margin-top:.75rem">Our residential solar installations are fully customised to your home's
+                        roof orientation, shading, and energy consumption. We handle everything from permits to final
+                        grid connection.</p>
+                    <div class="service-feature-list">
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Free property assessment &amp;
+                                3D energy modelling</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Premium monocrystalline panels
+                                (22%+ efficiency)</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Microinverter or string
+                                inverter options</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Smart monitoring app
+                                included</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Federal &amp; state rebate
+                                processing assistance</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>25-year panel &amp;
+                                workmanship warranty</span></div>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary">Get Free Quote <i
+                            class='bx bx-right-arrow-alt'></i></a>
+                </div>
+                <div class="service-detail__img">
+                    <img src="../assets/images/solar-residential.png" alt="Residential solar panel installation"
+                        loading="lazy" />
+                </div>
+            </div>
+
+            <!-- Commercial Solar -->
+            <div class="service-detail" data-animate>
+                <div>
+                    <div class="section-label"><i class='bx bx-buildings'></i> Commercial</div>
+                    <h2 style="margin-top:.75rem">Commercial &amp; Industrial Solar</h2>
+                    <p style="margin-top:.75rem">Reduce overheads and carbon footprint with large-scale solar for
+                        warehouses, offices, retail parks, and agricultural operations. Full project management from
+                        design to commissioning.</p>
+                    <div class="service-feature-list">
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Systems from 50kW to
+                                10MW+</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Rooftop, ground-mount, and
+                                carport options</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Power Purchase Agreement (PPA)
+                                available</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Real-time energy management
+                                dashboard</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Grid export &amp; net metering
+                                setup</span></div>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary">Request Proposal <i
+                            class='bx bx-right-arrow-alt'></i></a>
+                </div>
+                <div class="service-detail__img">
+                    <img src="../assets/images/solar-commercial.png" alt="Large commercial solar installation"
+                        loading="lazy" />
+                </div>
+            </div>
+
+            <!-- Wind -->
+            <div class="service-detail" data-animate>
+                <div>
+                    <div class="section-label"><i class='bx bx-wind'></i> Wind Power</div>
+                    <h2 style="margin-top:.75rem">Wind Turbine Installations</h2>
+                    <p style="margin-top:.75rem">Harness wind energy for your farm, estate, or commercial property. Our
+                        turbines are engineered to generate power at lower wind speeds, maximising output in a wide
+                        range of conditions.</p>
+                    <div class="service-feature-list">
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Residential turbines from 2kW
+                                to 15kW</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Commercial turbines from 15kW
+                                to 250kW</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Wind resource assessment
+                                included</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>Hybrid solar+wind systems
+                                available</span></div>
+                        <div class="service-feature-item"><i
+                                class='bx bx-check-circle service-feature-icon'></i><span>20-year turbine performance
+                                warranty</span></div>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary">Learn More <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+                <div class="service-detail__img">
+                    <img src="../assets/images/wind-farm.png" alt="Wind turbines offshore at sunset" loading="lazy" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" style="background:var(--clr-bg-alt)" aria-label="Pricing">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label"><i class='bx bx-dollar'></i> Pricing</div>
+                <h2>Transparent Pricing, No Surprises</h2>
+                <p>All prices include installation, permits, and grid connection. Federal tax credits can reduce your
+                    cost by a further 30%.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card" data-animate>
+                    <div class="badge badge-primary">Starter</div>
+                    <div class="pricing-price">$6,900</div>
+                    <div class="pricing-period">after federal rebates (avg)</div>
+                    <p class="text-muted" style="margin-top:.75rem;font-size:.875rem">Perfect for small homes up to
+                        1,500 sq ft</p>
+                    <ul class="pricing-features">
+                        <li>5kW solar system</li>
+                        <li>12 premium panels</li>
+                        <li>String inverter</li>
+                        <li>Basic monitoring app</li>
+                        <li>25-year warranty</li>
+                        <li>Permit handling</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-full" style="justify-content:center">Get Started</a>
+                </div>
+                <div class="pricing-card featured" data-animate>
+                    <div class="badge badge-primary">Home Pro</div>
+                    <div class="pricing-price">$12,400</div>
+                    <div class="pricing-period">after federal rebates (avg)</div>
+                    <p class="text-muted" style="margin-top:.75rem;font-size:.875rem">Ideal for average family homes
+                        1,500–3,000 sq ft</p>
+                    <ul class="pricing-features">
+                        <li>10kW solar system</li>
+                        <li>24 panels + microinverters</li>
+                        <li>Smart monitoring dashboard</li>
+                        <li>Battery-ready installation</li>
+                        <li>25-year warranty</li>
+                        <li>Dedicated support line</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary w-full" style="justify-content:center">Get Started</a>
+                </div>
+                <div class="pricing-card" data-animate>
+                    <div class="badge badge-warning">Power Plus</div>
+                    <div class="pricing-price">$19,800</div>
+                    <div class="pricing-period">after federal rebates (avg)</div>
+                    <p class="text-muted" style="margin-top:.75rem;font-size:.875rem">Large homes &amp; EV owners 3,000+
+                        sq ft</p>
+                    <ul class="pricing-features">
+                        <li>15kW solar + 10kWh battery</li>
+                        <li>36 ultra-premium panels</li>
+                        <li>Premium smart inverter</li>
+                        <li>Full energy independence</li>
+                        <li>Backup power capability</li>
+                        <li>VIP support &amp; annual inspection</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-full" style="justify-content:center">Get Started</a>
+                </div>
+            </div>
+            <p class="text-center text-muted mt-8" style="font-size:.875rem">All prices are estimates. Final pricing
+                depends on property assessment. <a href="contact.html"
+                    style="color:var(--clr-primary);font-weight:600">Get an exact quote →</a></p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" aria-label="Frequently asked questions">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label"><i class='bx bx-help-circle'></i> FAQ</div>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list" data-animate>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">How long does installation take? <span
+                            class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Most residential systems are installed in 1–2 days. Commercial systems may take 1–4 weeks
+                            depending on size. Grid connection by your utility can add 2–6 weeks.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">Do I need planning permission? <span
+                            class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Most residential solar installations are permitted by right and don't require planning
+                            permission. We handle all permits and utility applications on your behalf.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">What happens on cloudy days? <span
+                            class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Solar panels still generate electricity on cloudy days — typically 10–25% of peak output.
+                            With a battery storage system, you can store energy for use during low-production periods.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">What financing options are available? <span
+                            class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>We offer $0-down solar loans at 0% APR for qualified buyers, solar leases, and Power Purchase
+                            Agreements (PPAs). We also help you claim federal and state tax credits.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">Does the system work during a power outage? <span
+                            class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Grid-tied systems without batteries will shut off during an outage for safety reasons.
+                            Systems with battery storage can provide backup power during outages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../index.html" class="navbar__logo" style="margin-bottom:1rem">
+                        <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+                            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                                fill="#0ea66b" />
+                            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                        </svg>
+                        Solar<span>Volt</span>
+                    </a>
+                    <p>Leading renewable energy installer for residential and commercial clients.</p>
+                    <div class="footer__social">
+                        <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav class="footer__links"><a href="services.html">Residential Solar</a><a
+                            href="services.html">Commercial Solar</a><a href="services.html">Wind Turbines</a><a
+                            href="services.html">Battery Storage</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Company</h4>
+                    <nav class="footer__links"><a href="about.html">About Us</a><a href="blog.html">Blog</a><a
+                            href="contact.html">Contact</a><a href="dashboard.html">Client Portal</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__links"><a href="tel:+18007652670"><i class='bx bx-phone'></i>
+                            1-800-SOLAR-01</a><a href="mailto:info@solarvolt.com"><i class='bx bx-envelope'></i>
+                            info@solarvolt.com</a></div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2025 SolarVolt Energy. All rights reserved.</span>
+                <nav style="display:flex;gap:1rem;flex-wrap:wrap"><a href="#">Privacy</a><a href="#">Terms</a><a
+                        href="#">Sitemap</a></nav>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Back to top"><i class='bx bx-chevron-up'></i></button>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

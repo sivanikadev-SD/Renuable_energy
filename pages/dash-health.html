@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Health – SolarVolt Dashboard</title>
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .health-component {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .health-indicator {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .health-indicator.ok {
+            background: rgba(34, 197, 94, .15);
+            color: #22c55e;
+        }
+
+        .health-indicator.warn {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+
+        .health-indicator.err {
+            background: rgba(239, 68, 68, .15);
+            color: #ef4444;
+        }
+
+        .health-name {
+            font-weight: 700;
+            font-size: .95rem;
+        }
+
+        .health-detail {
+            font-size: .8rem;
+            color: var(--clr-text-muted);
+            margin-top: .2rem;
+        }
+
+        .health-badge {
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .alert-item {
+            display: flex;
+            gap: .75rem;
+            padding: .75rem 0;
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        .alert-item:last-child {
+            border-bottom: none;
+        }
+
+        .alert-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dash-overlay" id="dashOverlay" aria-hidden="true"></div>
+    <div class="dash-layout">
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="dash-sidebar__brand"><svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg><span class="dash-sidebar__brand-text">Solar<span>Volt</span></span></div>
+            <nav class="dash-nav">
+                <div class="dash-nav-label">Overview</div>
+                <a href="dashboard.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-tachometer'></i></span><span class="dash-nav-text">Dashboard</span></a>
+                <a href="dash-analytics.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-line-chart'></i></span><span class="dash-nav-text">Energy Analytics</span></a>
+                <div class="dash-nav-label">My System</div>
+                <a href="dash-solar.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-sun'></i></span><span class="dash-nav-text">Solar Panels</span></a>
+                <a href="dash-wind.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-wind'></i></span><span class="dash-nav-text">Wind Turbines</span></a>
+                <a href="dash-battery.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-battery'></i></span><span class="dash-nav-text">Battery Storage</span></a>
+                <a href="dash-health.html" class="dash-nav-item active" aria-current="page"><span
+                        class="dash-nav-icon"><i class='bx bx-cog'></i></span><span class="dash-nav-text">System
+                        Health</span><span class="dash-nav-badge">2</span></a>
+                <div class="dash-nav-label">Account</div>
+                <a href="dash-billing.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-receipt'></i></span><span class="dash-nav-text">Billing &amp;
+                        Reports</span></a>
+                <a href="dash-notifications.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-bell'></i></span><span class="dash-nav-text">Notifications</span><span
+                        class="dash-nav-badge">5</span></a>
+                <a href="dash-profile.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-user'></i></span><span class="dash-nav-text">Profile Settings</span></a>
+            </nav>
+            <div class="dash-sidebar__footer">
+                <div class="dash-user">
+                    <div class="dash-user__avatar">JM</div>
+                    <div class="dash-user__info">
+                        <div class="dash-user__name">James Mercer</div>
+                        <div class="dash-user__role">Residential Plan</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="dash-nav-item logout-btn" style="margin-top:.5rem"><span
+                        class="dash-nav-icon"><i class='bx bx-log-out'></i></span><span
+                        class="dash-nav-text">Logout</span></a>
+            </div>
+        </aside>
+        <main class="dash-main" id="dashMain">
+            <header class="dash-topbar">
+                <div class="dash-topbar__left">
+                    <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i
+                            class='bx bx-menu'></i></button>
+                    <div>
+                        <div class="dash-page-title">System Health</div>
+                        <div style="font-size:.75rem;color:var(--clr-text-muted)">2 active alerts</div>
+                    </div>
+                </div>
+                <div class="dash-topbar__right">
+                    <button class="notif-btn" aria-label="Notifications"><i class='bx bx-bell'></i><span
+                            class="notif-badge"></span></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span
+                            class="theme-icon-moon"><i class='bx bx-moon'></i></span><span class="theme-icon-sun"
+                            style="display:none"><i class='bx bx-sun'></i></span></button>
+                    <div class="dash-user" style="background:transparent;padding:0">
+                        <div class="dash-user__avatar" style="width:32px;height:32px;font-size:.75rem">JM</div>
+                    </div>
+                </div>
+            </header>
+            <div class="dash-content">
+                <div class="dash-stats-grid" style="margin-bottom:1.5rem">
+                    <div class="dash-stat-card success">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">5</div>
+                                <div class="dash-stat-label">Components OK</div>
+                            </div>
+                            <div class="dash-stat-icon success"><i class='bx bx-check-shield'></i></div>
+                        </div>
+                    </div>
+                    <div class="dash-stat-card warning">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">2</div>
+                                <div class="dash-stat-label">Warnings</div>
+                            </div>
+                            <div class="dash-stat-icon warning"><i class='bx bx-error'></i></div>
+                        </div>
+                    </div>
+                    <div class="dash-stat-card info">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">98.7%</div>
+                                <div class="dash-stat-label">Overall Uptime (30d)</div>
+                            </div>
+                            <div class="dash-stat-icon info"><i class='bx bx-time'></i></div>
+                        </div>
+                    </div>
+                    <div class="dash-stat-card primary">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">Mar 15</div>
+                                <div class="dash-stat-label">Next Service</div>
+                            </div>
+                            <div class="dash-stat-icon primary"><i class='bx bx-calendar'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-row" style="margin-bottom:1.5rem">
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div class="dash-card__title">Component Status</div><button
+                                class="btn btn-sm btn-primary"><i class='bx bx-refresh'></i> Run Diagnostics</button>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:.75rem;margin-top:1rem">
+                            <div class="health-component">
+                                <div class="health-indicator ok"><i class='bx bx-check'></i></div>
+                                <div>
+                                    <div class="health-name">Solar Inverter</div>
+                                    <div class="health-detail">SMA Sunny Boy 10.0 – Running normally @42°C</div>
+                                </div><span class="health-badge badge badge-primary">OK</span>
+                            </div>
+                            <div class="health-component">
+                                <div class="health-indicator ok"><i class='bx bx-check'></i></div>
+                                <div>
+                                    <div class="health-name">Solar Array (23/24 panels)</div>
+                                    <div class="health-detail">23 panels optimal, 1 panel needs cleaning</div>
+                                </div><span class="health-badge badge badge-primary">OK</span>
+                            </div>
+                            <div class="health-component">
+                                <div class="health-indicator warn"><i class='bx bx-error'></i></div>
+                                <div>
+                                    <div class="health-name">Panel A-07</div>
+                                    <div class="health-detail">Output 31% below average – scheduled cleaning recommended
+                                    </div>
+                                </div><span class="health-badge badge badge-warning">⚠ Warning</span>
+                            </div>
+                            <div class="health-component">
+                                <div class="health-indicator ok"><i class='bx bx-check'></i></div>
+                                <div>
+                                    <div class="health-name">Battery System</div>
+                                    <div class="health-detail">Tesla Powerwall – 78% charge, 96.1% health</div>
+                                </div><span class="health-badge badge badge-primary">OK</span>
+                            </div>
+                            <div class="health-component">
+                                <div class="health-indicator ok"><i class='bx bx-check'></i></div>
+                                <div>
+                                    <div class="health-name">Wind Turbine W-01</div>
+                                    <div class="health-detail">Running at 76% capacity, wind 18 km/h</div>
+                                </div><span class="health-badge badge badge-primary">OK</span>
+                            </div>
+                            <div class="health-component">
+                                <div class="health-indicator ok"><i class='bx bx-check'></i></div>
+                                <div>
+                                    <div class="health-name">Wind Turbine W-02</div>
+                                    <div class="health-detail">Running at 52% capacity, RPM 118</div>
+                                </div><span class="health-badge badge badge-primary">OK</span>
+                            </div>
+                            <div class="health-component">
+                                <div class="health-indicator warn"><i class='bx bx-error'></i></div>
+                                <div>
+                                    <div class="health-name">Grid Connection</div>
+                                    <div class="health-detail">Micro-disconnection detected Mar 2 at 2:18am
+                                        (auto-resolved)</div>
+                                </div><span class="health-badge badge badge-warning">⚠ Resolved</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div class="dash-card__title">Active Alerts</div>
+                        </div>
+                        <div>
+                            <div class="alert-item">
+                                <div class="alert-icon" style="background:rgba(245,158,11,.15);color:#f59e0b"><i
+                                        class='bx bx-brush'></i></div>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">Panel A-07 needs cleaning</div>
+                                    <div style="font-size:.8rem;color:var(--clr-text-muted)">Output 31% below expected.
+                                        Last cleaned: Oct 2024.</div><button class="btn btn-sm btn-primary"
+                                        style="margin-top:.5rem"><i class='bx bx-calendar-check'></i> Schedule
+                                        Now</button>
+                                </div>
+                            </div>
+                            <div class="alert-item">
+                                <div class="alert-icon" style="background:rgba(59,130,246,.15);color:var(--clr-accent)">
+                                    <i class='bx bx-info-circle'></i></div>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">Grid micro-disconnection logged</div>
+                                    <div style="font-size:.8rem;color:var(--clr-text-muted)">Mar 2 at 2:18am – duration
+                                        4s. Auto resolved. No action needed.</div><button class="btn btn-sm btn-ghost"
+                                        style="margin-top:.5rem">View Log</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:1.5rem">
+                            <div class="dash-card__title" style="margin-bottom:.75rem">Maintenance History</div>
+                            <div class="table-wrapper">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Oct 15, 2024</td>
+                                            <td>Panel cleaning</td>
+                                            <td><span class="badge badge-primary">Done</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aug 3, 2024</td>
+                                            <td>Inverter check</td>
+                                            <td><span class="badge badge-primary">Done</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mar 20, 2024</td>
+                                            <td>Full system install</td>
+                                            <td><span class="badge badge-primary">Done</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mar 15, 2025</td>
+                                            <td>Annual inspection</td>
+                                            <td><span class="badge badge-warning">Upcoming</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            const s = document.getElementById('dashSidebar'), o = document.getElementById('dashOverlay');
+            if (window.innerWidth > 1024) s.classList.toggle('collapsed');
+            else { s.classList.toggle('mobile-open'); o.classList.toggle('visible'); }
+        });
+        document.getElementById('dashOverlay').addEventListener('click', () => {
+            document.getElementById('dashSidebar').classList.remove('mobile-open');
+            document.getElementById('dashOverlay').classList.remove('visible');
+        });
+    </script>
+</body>
+
+</html>

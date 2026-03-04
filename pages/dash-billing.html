@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billing & Reports – SolarVolt Dashboard</title>
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .invoice-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: .75rem 0;
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        .invoice-row:last-child {
+            border-bottom: none;
+        }
+
+        .invoice-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            background: rgba(14, 166, 107, .1);
+            color: var(--clr-primary);
+        }
+
+        .invoice-amount {
+            margin-left: auto;
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dash-overlay" id="dashOverlay" aria-hidden="true"></div>
+    <div class="dash-layout">
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="dash-sidebar__brand"><svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg><span class="dash-sidebar__brand-text">Solar<span>Volt</span></span></div>
+            <nav class="dash-nav">
+                <div class="dash-nav-label">Overview</div>
+                <a href="dashboard.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-tachometer'></i></span><span class="dash-nav-text">Dashboard</span></a>
+                <a href="dash-analytics.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-line-chart'></i></span><span class="dash-nav-text">Energy Analytics</span></a>
+                <div class="dash-nav-label">My System</div>
+                <a href="dash-solar.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-sun'></i></span><span class="dash-nav-text">Solar Panels</span></a>
+                <a href="dash-wind.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-wind'></i></span><span class="dash-nav-text">Wind Turbines</span></a>
+                <a href="dash-battery.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-battery'></i></span><span class="dash-nav-text">Battery Storage</span></a>
+                <a href="dash-health.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-cog'></i></span><span class="dash-nav-text">System Health</span><span
+                        class="dash-nav-badge">2</span></a>
+                <div class="dash-nav-label">Account</div>
+                <a href="dash-billing.html" class="dash-nav-item active" aria-current="page"><span
+                        class="dash-nav-icon"><i class='bx bx-receipt'></i></span><span class="dash-nav-text">Billing
+                        &amp; Reports</span></a>
+                <a href="dash-notifications.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-bell'></i></span><span class="dash-nav-text">Notifications</span><span
+                        class="dash-nav-badge">5</span></a>
+                <a href="dash-profile.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-user'></i></span><span class="dash-nav-text">Profile Settings</span></a>
+            </nav>
+            <div class="dash-sidebar__footer">
+                <div class="dash-user">
+                    <div class="dash-user__avatar">JM</div>
+                    <div class="dash-user__info">
+                        <div class="dash-user__name">James Mercer</div>
+                        <div class="dash-user__role">Residential Plan</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="dash-nav-item logout-btn" style="margin-top:.5rem"><span
+                        class="dash-nav-icon"><i class='bx bx-log-out'></i></span><span
+                        class="dash-nav-text">Logout</span></a>
+            </div>
+        </aside>
+        <main class="dash-main" id="dashMain">
+            <header class="dash-topbar">
+                <div class="dash-topbar__left">
+                    <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i
+                            class='bx bx-menu'></i></button>
+                    <div>
+                        <div class="dash-page-title">Billing &amp; Reports</div>
+                        <div style="font-size:.75rem;color:var(--clr-text-muted)">Next payment: Apr 1, 2025</div>
+                    </div>
+                </div>
+                <div class="dash-topbar__right">
+                    <button class="notif-btn" aria-label="Notifications"><i class='bx bx-bell'></i><span
+                            class="notif-badge"></span></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span
+                            class="theme-icon-moon"><i class='bx bx-moon'></i></span><span class="theme-icon-sun"
+                            style="display:none"><i class='bx bx-sun'></i></span></button>
+                    <div class="dash-user" style="background:transparent;padding:0">
+                        <div class="dash-user__avatar" style="width:32px;height:32px;font-size:.75rem">JM</div>
+                    </div>
+                </div>
+            </header>
+            <div class="dash-content">
+                <div class="dash-stats-grid" style="margin-bottom:1.5rem">
+                    <div class="dash-stat-card primary">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">$3,240</div>
+                                <div class="dash-stat-label">Total Savings (YTD)</div>
+                            </div>
+                            <div class="dash-stat-icon primary"><i class='bx bx-dollar-circle'></i></div>
+                        </div>
+                        <div class="dash-stat-change up">↑ 8% vs last year</div>
+                    </div>
+                    <div class="dash-stat-card success">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">$271</div>
+                                <div class="dash-stat-label">Last Month Savings</div>
+                            </div>
+                            <div class="dash-stat-icon success"><i class='bx bx-trending-up'></i></div>
+                        </div>
+                        <div class="dash-stat-change up">February 2025</div>
+                    </div>
+                    <div class="dash-stat-card warning">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">$129</div>
+                                <div class="dash-stat-label">Grid Credit Earned</div>
+                            </div>
+                            <div class="dash-stat-icon warning"><i class='bx bx-bolt-circle'></i></div>
+                        </div>
+                        <div class="dash-stat-change">Exported 186 kWh</div>
+                    </div>
+                    <div class="dash-stat-card info">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">$89/mo</div>
+                                <div class="dash-stat-label">Loan Repayment</div>
+                            </div>
+                            <div class="dash-stat-icon info"><i class='bx bx-credit-card'></i></div>
+                        </div>
+                        <div class="dash-stat-change">14.2 yr remaining</div>
+                    </div>
+                </div>
+
+                <div class="dash-row" style="margin-bottom:1.5rem">
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div class="dash-card__title">Invoice History</div><button class="btn btn-sm btn-outline"><i
+                                    class='bx bx-download'></i> Export All</button>
+                        </div>
+                        <div style="margin-top:.75rem">
+                            <div class="invoice-row">
+                                <div class="invoice-icon"><i class='bx bx-file'></i></div>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">February 2025 Statement</div>
+                                    <div style="font-size:.75rem;color:var(--clr-text-muted)">Generated Mar 1, 2025
+                                    </div>
+                                </div>
+                                <div class="invoice-amount" style="color:var(--clr-primary)">-$271 saved</div><button
+                                    class="btn btn-sm btn-ghost" style="margin-left:.5rem"><i
+                                        class='bx bx-download'></i> PDF</button>
+                            </div>
+                            <div class="invoice-row">
+                                <div class="invoice-icon"><i class='bx bx-file'></i></div>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">January 2025 Statement</div>
+                                    <div style="font-size:.75rem;color:var(--clr-text-muted)">Generated Feb 1, 2025
+                                    </div>
+                                </div>
+                                <div class="invoice-amount" style="color:var(--clr-primary)">-$244 saved</div><button
+                                    class="btn btn-sm btn-ghost" style="margin-left:.5rem"><i
+                                        class='bx bx-download'></i> PDF</button>
+                            </div>
+                            <div class="invoice-row">
+                                <div class="invoice-icon"><i class='bx bx-file'></i></div>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">December 2024 Statement</div>
+                                    <div style="font-size:.75rem;color:var(--clr-text-muted)">Generated Jan 1, 2025
+                                    </div>
+                                </div>
+                                <div class="invoice-amount" style="color:var(--clr-primary)">-$210 saved</div><button
+                                    class="btn btn-sm btn-ghost" style="margin-left:.5rem"><i
+                                        class='bx bx-download'></i> PDF</button>
+                            </div>
+                            <div class="invoice-row">
+                                <div class="invoice-icon"><i class='bx bx-receipt'></i></div>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">Loan Repayment – March 2025</div>
+                                    <div style="font-size:.75rem;color:var(--clr-text-muted)">Due Apr 1 · Auto-pay
+                                        enabled</div>
+                                </div>
+                                <div class="invoice-amount" style="color:var(--clr-secondary)">$89.00</div><span
+                                    class="badge badge-primary" style="margin-left:.5rem">Auto</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div class="dash-card__title">Download Reports</div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:.75rem;margin-top:.75rem">
+                            <div
+                                style="background:var(--clr-bg-alt);border-radius:var(--radius-md);padding:1rem;display:flex;align-items:center;gap:1rem">
+                                <i class='bx bx-file-pdf' style="font-size:1.5rem;color:#ef4444"></i>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">Annual Energy Report 2024</div>
+                                    <div style="font-size:.75rem;color:var(--clr-text-muted)">Full year summary,
+                                        savings, CO₂</div>
+                                </div><button class="btn btn-sm btn-outline" style="margin-left:auto"><i
+                                        class='bx bx-download'></i></button>
+                            </div>
+                            <div
+                                style="background:var(--clr-bg-alt);border-radius:var(--radius-md);padding:1rem;display:flex;align-items:center;gap:1rem">
+                                <i class='bx bx-spreadsheet' style="font-size:1.5rem;color:#22c55e"></i>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">Raw Data Export (CSV)</div>
+                                    <div style="font-size:.75rem;color:var(--clr-text-muted)">Hourly production data –
+                                        all time</div>
+                                </div><button class="btn btn-sm btn-outline" style="margin-left:auto"><i
+                                        class='bx bx-download'></i></button>
+                            </div>
+                            <div
+                                style="background:var(--clr-bg-alt);border-radius:var(--radius-md);padding:1rem;display:flex;align-items:center;gap:1rem">
+                                <i class='bx bx-file-blank' style="font-size:1.5rem;color:var(--clr-accent)"></i>
+                                <div>
+                                    <div style="font-weight:600;font-size:.9rem">Tax Credit Documentation</div>
+                                    <div style="font-size:.75rem;color:var(--clr-text-muted)">IRS Form 5695 data package
+                                    </div>
+                                </div><button class="btn btn-sm btn-outline" style="margin-left:auto"><i
+                                        class='bx bx-download'></i></button>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-top:1.5rem;background:linear-gradient(135deg,var(--clr-primary),var(--clr-primary-dark));border-radius:var(--radius-md);padding:1.25rem;color:#fff">
+                            <div style="font-weight:700;margin-bottom:.25rem">Payback Tracker</div>
+                            <div style="font-size:.85rem;opacity:.85;margin-bottom:.75rem">System cost: $19,800 · Saved
+                                so far: $3,240</div>
+                            <div class="progress-bar" style="background:rgba(255,255,255,.2)">
+                                <div style="height:100%;width:16.4%;background:#fff;border-radius:99px;"></div>
+                            </div>
+                            <div style="font-size:.8rem;opacity:.8;margin-top:.5rem">16.4% paid back · Est. full
+                                payback: 2031</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            const s = document.getElementById('dashSidebar'), o = document.getElementById('dashOverlay');
+            if (window.innerWidth > 1024) s.classList.toggle('collapsed');
+            else { s.classList.toggle('mobile-open'); o.classList.toggle('visible'); }
+        });
+        document.getElementById('dashOverlay').addEventListener('click', () => {
+            document.getElementById('dashSidebar').classList.remove('mobile-open');
+            document.getElementById('dashOverlay').classList.remove('visible');
+        });
+    </script>
+</body>
+
+</html>

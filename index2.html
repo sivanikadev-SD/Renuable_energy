@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SolarVolt Energy – Home 2 | Clean Energy Future</title>
+    <meta name="description"
+        content="Alternative homepage for SolarVolt Energy. Experience clean, renewable solar and wind power with cutting-edge design and premium installation services." />
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="assets/css/rtl.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        /* ── HOME 2 UNIQUE STYLES ── */
+        :root {
+            --h2-bg: #060e14;
+            --h2-card: #0ea66cb0;
+            --h2-border: rgba(10, 8, 32, 0.658);
+        }
+
+        [data-theme="dark"] {
+            --h2-bg: #060e14;
+            --h2-card: rgba(10, 8, 32, 0.466);
+            --h2-border: rgba(10, 8, 32, 0.658);
+        }
+
+        /* Force dark theme on this page */
+        html {
+            background: var(--h2-bg);
+        }
+
+        /* Full-screen split hero */
+        .h2-hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .h2-hero__left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 7rem 4rem 5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .h2-hero__right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .h2-hero__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .h2-hero__right::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--h2-bg) 0%, transparent 40%);
+        }
+
+        .h2-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(14, 166, 107, .15);
+            border: 1px solid rgba(14, 166, 107, .3);
+            color: #0ea66b;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: .4rem 1rem;
+            border-radius: 99px;
+            width: fit-content;
+            margin-bottom: 1.5rem;
+        }
+
+        .h2-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.0;
+            color: var(--clr-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .h2-title .accent {
+            color: #0ea66b;
+        }
+
+        .h2-title .accent2 {
+            color: #f59e0b;
+        }
+
+        .h2-subtitle {
+            font-size: 1.1rem;
+            color: var(--clr-text-primary);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .h2-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .h2-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: linear-gradient(135deg, #0ea66b, #059c62);
+            color: #fff;
+            padding: .9rem 2rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: .95rem;
+            transition: all .2s;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .h2-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(14, 166, 107, .4);
+        }
+
+        .h2-btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(14, 166, 107, .15);
+            border: 1px solid rgba(14, 166, 107, .3);
+            color: #0ea66b;
+            padding: .9rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: .95rem;
+            background: transparent;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .h2-btn-ghost:hover {
+            border-color: #0ea66b;
+            color: #0ea66b;
+            background: rgba(14, 166, 107, .08);
+        }
+
+        .h2-stats {
+            display: flex;
+            gap: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .h2-stat-val {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .h2-stat-label {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            margin-top: .2rem;
+        }
+
+        /* Scrolling logo strip */
+        .h2-marquee-wrap {
+            overflow: hidden;
+            padding: 1.5rem 0;
+            background: var(--h2-card);
+            border-top: 1px solid var(--h2-border);
+            border-bottom: 1px solid var(--h2-border);
+        }
+
+        .h2-marquee {
+            display: flex;
+            gap: 3rem;
+            animation: marquee 18s linear infinite;
+            white-space: nowrap;
+        }
+
+        .h2-marquee span {
+            color: var(--clr-text-primary);
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* Services bento grid */
+        .h2-bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 1.25rem;
+        }
+
+        .h2-bento-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: 20px;
+            padding: 1.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: all .25s;
+        }
+
+        .h2-bento-card:hover {
+            border-color: rgba(14, 166, 107, .4);
+            background: rgba(14, 166, 107, .06);
+            transform: translateY(-4px);
+        }
+
+        .h2-bento-card.large {
+            grid-column: span 2;
+        }
+
+        .h2-bento-card.tall {
+            grid-row: span 2;
+        }
+
+        .h2-bento-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .h2-bento-title {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--clr-text-primary);
+            margin-bottom: .5rem;
+        }
+
+        .h2-bento-desc {
+            font-size: .875rem;
+            color: var(--clr-text-muted);
+            line-height: 1.6;
+        }
+
+        .h2-bento-card .card-glow {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(14, 166, 107, .15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .h2-bento-num {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(14, 166, 108, 0.37);
+            position: absolute;
+            top: 1rem;
+            right: 1.25rem;
+            line-height: 1;
+        }
+
+        /* Process steps */
+        .h2-process {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            counter-reset: step;
+        }
+
+        .h2-step {
+            position: relative;
+            padding-top: 1rem;
+            counter-increment: step;
+        }
+
+        .h2-step::before {
+            content: counter(step, decimal-leading-zero);
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(14, 166, 107, .15);
+            display: block;
+            line-height: 1;
+            margin-bottom: .75rem;
+        }
+
+        .h2-step-title {
+            font-weight: 700;
+            color: var(--clr-text-primary);
+            font-size: 1rem;
+            margin-bottom: .5rem;
+        }
+
+        .h2-step-desc {
+            font-size: .85rem;
+            color: var(--clr-text-muted);
+            line-height: 1.6;
+        }
+
+        .h2-step-line {
+            position: absolute;
+            top: 3.5rem;
+            right: -50%;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(14, 166, 107, .4), transparent);
+        }
+
+        .h2-step:last-child .h2-step-line {
+            display: none;
+        }
+
+        /* CTA section */
+        .h2-cta-section {
+            background: linear-gradient(135deg, #0a3d24, #0e2d40);
+            border-radius: 24px;
+            padding: 5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .h2-cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% -20%, rgba(14, 166, 107, .25), transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Testimonial cards */
+        .h2-testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .h2-testi-card {
+            background: var(--h2-card);
+            border: 1px solid var(--h2-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .h2-testi-stars {
+            color: #f59e0b;
+            font-size: .9rem;
+            margin-bottom: .75rem;
+        }
+
+        .h2-testi-text {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .h2-testi-author {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .h2-testi-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea66b, #059c62);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .85rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        /* Section utility */
+        .h2-section {
+            padding: 6rem 0;
+        }
+
+        .h2-section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            color: #0ea66b;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .h2-section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            color: var(--clr-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .h2-section-sub {
+            font-size: 1rem;
+            color: var(--clr-text-muted);
+            max-width: 580px;
+            line-height: 1.7;
+        }
+
+        /* Navbar */
+        .h2-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 1.25rem 0;
+            transition: all .3s;
+        }
+
+        .h2-nav.scrolled {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            padding: .75rem 0;
+            border-bottom: 1px solid var(--h2-border);
+        }
+
+        .h2-nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .h2-nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .h2-nav-logo span {
+            color: #0ea66b;
+        }
+
+        .h2-nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-left: 2rem;
+        }
+
+        .h2-nav-links a {
+            color: var(--clr-text-primary);
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 500;
+            transition: color .2s;
+        }
+
+        .h2-nav-links a:hover {
+            color: var(--clr-primary);
+        }
+
+        .h2-nav-links a.active {
+            color: #0ea66b;
+        }
+
+        .h2-nav-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Responsive */
+        @media(max-width:1024px) {
+            .h2-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .h2-hero__right {
+                display: none;
+            }
+
+            .h2-hero__left {
+                padding: 9rem 2rem 4rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .h2-subtitle {
+                text-align: center;
+            }
+
+            .h2-stats {
+                justify-content: center;
+            }
+
+            .h2-bento {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .h2-bento-card.large {
+                grid-column: span 2;
+            }
+
+            .h2-process {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:640px) {
+            .h2-bento {
+                grid-template-columns: 1fr;
+            }
+
+            .h2-bento-card.large {
+                grid-column: span 1;
+            }
+
+            .h2-process {
+                grid-template-columns: 1fr;
+            }
+
+            .h2-cta-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .h2-nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══ NAVBAR ══════════════════════════════════════ -->
+    <nav class="h2-nav" id="h2Nav" aria-label="Main navigation">
+        <div class="h2-nav-inner">
+            <a href="index2.html" class="h2-nav-logo" style="color: var(--clr-text-primary);">
+                <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg>
+                Solar<span>Volt</span>
+            </a>
+            <div class="h2-nav-links">
+                <a href="index.html">Home</a>
+                <a href="index2.html" class="active">Home 2</a>
+                <a href="pages/about.html">About</a>
+                <a href="pages/services.html">Services</a>
+                <a href="pages/blog.html">Blog</a>
+                <a href="pages/contact.html">Contact</a>
+                <a href="pages/dashboard.html">Dashboard</a>
+            </div>
+            <div class="h2-nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"
+                    style="color:#f59e0b;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)">
+                    <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+                    <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
+                </button>
+                <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL"
+                    style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--clr-text-primary);">
+                    <span class="rtl-icon">RTL</span>
+                </button>
+                <a href="pages/login.html" class="h2-btn-ghost"
+                    style="padding:.6rem 1.2rem;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem">
+                    <i class='bx bx-log-in'></i> Login
+                </a>
+                <a href="pages/register.html" class="h2-btn-primary" style="padding:.6rem 1.2rem;font-size:.875rem">
+                    <i class='bx bx-user-plus'></i> Sign Up
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ══ HERO ════════════════════════════════════════ -->
+    <section class="h2-hero" aria-label="Hero section">
+        <div class="h2-hero__left">
+            <div class="h2-eyebrow"><i class='bx bx-leaf'></i> Certified Green Installer 2025</div>
+            <h1 class="h2-title">
+                Power Your<br>
+                World With<br>
+                <span class="accent">Clean</span>
+                <span class="accent2">Energy</span>
+            </h1>
+            <p class="h2-subtitle">Next-generation solar &amp; wind installations. Save thousands, reduce emissions, and
+                take control of your energy future — backed by a 25-year guarantee.</p>
+            <div class="h2-cta">
+                <a href="pages/contact.html" class="h2-btn-primary"><i class='bx bx-zap'></i> Get Free Quote</a>
+                <a href="pages/services.html" class="h2-btn-ghost" onclick="openServices()" style="cursor: pointer;"><i
+                        class='bx bx-play-circle'></i> See How It
+                    Works</a>
+            </div>
+            <div class="h2-stats">
+                <div>
+                    <div class="h2-stat-val" data-count="4200" data-suffix="+">0+</div>
+                    <div class="h2-stat-label">Systems Installed</div>
+                </div>
+                <div>
+                    <div class="h2-stat-val" data-count="98" data-suffix="%">0%</div>
+                    <div class="h2-stat-label">Customer Satisfaction</div>
+                </div>
+                <div>
+                    <div class="h2-stat-val" data-count="25" data-suffix="yr">0yr</div>
+                    <div class="h2-stat-label">Warranty</div>
+                </div>
+            </div>
+        </div>
+        <div class="h2-hero__right" aria-hidden="true">
+            <img src="assets/images/hero-bg.png" alt="Solar installation" class="h2-hero__img" />
+        </div>
+    </section>
+
+    <!-- ══ MARQUEE ═════════════════════════════════════ -->
+    <div class="h2-marquee-wrap" aria-hidden="true">
+        <div class="h2-marquee">
+            <span>★ SunPower Certified</span><span>★ Tesla Powerwall</span><span>★ Enphase Partner</span><span>★ SMA
+                Installer</span><span>★ CEC Accredited</span><span>★ Bergey Wind</span><span>★ NABCEP
+                Certified</span><span>★ Google Reviews 4.9★</span>
+            <span>★ SunPower Certified</span><span>★ Tesla Powerwall</span><span>★ Enphase Partner</span><span>★ SMA
+                Installer</span><span>★ CEC Accredited</span><span>★ Bergey Wind</span><span>★ NABCEP
+                Certified</span><span>★ Google Reviews 4.9★</span>
+        </div>
+    </div>
+
+    <!-- ══ BENTO GRID (Services) ═══════════════════════ -->
+    <section class="h2-section" aria-label="Our services">
+        <div class="container">
+            <div style="margin-bottom:3rem">
+                <div class="h2-section-label"><i class='bx bx-grid-alt'></i> What We Offer</div>
+                <h2 class="h2-section-title">Everything You Need<br>In One Place</h2>
+                <p class="h2-section-sub">Comprehensive renewable energy solutions — from first consultation to ongoing
+                    monitoring — all under one roof.</p>
+            </div>
+            <div class="h2-bento" data-animate>
+                <div class="h2-bento-card large">
+                    <div class="card-glow"></div>
+                    <div class="h2-bento-num">01</div>
+                    <div class="h2-bento-icon">☀️</div>
+                    <div class="h2-bento-title">Residential Solar</div>
+                    <div class="h2-bento-desc">Custom solar systems for homes of all sizes. Monocrystalline panels,
+                        smart inverters, and 25-year performance warranties — installed in just 1–2 days.</div>
+                    <a href="pages/services.html"
+                        style="display:inline-flex;align-items:center;gap:.4rem;color:#0ea66b;font-size:.85rem;font-weight:700;margin-top:1.25rem;text-decoration:none">Learn
+                        more <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+                <div class="h2-bento-card">
+                    <div class="h2-bento-num">02</div>
+                    <div class="h2-bento-icon">🏢</div>
+                    <div class="h2-bento-title">Commercial Solar</div>
+                    <div class="h2-bento-desc">50kW to 10MW+ systems for businesses, warehouses, and industrial
+                        properties with PPA options.</div>
+                </div>
+                <div class="h2-bento-card">
+                    <div class="h2-bento-num">03</div>
+                    <div class="h2-bento-icon">💨</div>
+                    <div class="h2-bento-title">Wind Turbines</div>
+                    <div class="h2-bento-desc">Residential and commercial wind installations from 2kW to 250kW, with
+                        hybrid solar+wind systems available.</div>
+                </div>
+                <div class="h2-bento-card">
+                    <div class="h2-bento-num">04</div>
+                    <div class="h2-bento-icon">🔋</div>
+                    <div class="h2-bento-title">Battery Storage</div>
+                    <div class="h2-bento-desc">Tesla Powerwall &amp; LG RESU installations for backup power and energy
+                        independence during outages.</div>
+                </div>
+                <div class="h2-bento-card">
+                    <div class="h2-bento-num">05</div>
+                    <div class="h2-bento-icon">📊</div>
+                    <div class="h2-bento-title">Smart Monitoring</div>
+                    <div class="h2-bento-desc">Real-time production tracking via your personal dashboard. Live output,
+                        savings, and system health 24/7.</div>
+                </div>
+                <div class="h2-bento-card">
+                    <div class="h2-bento-num">06</div>
+                    <div class="h2-bento-icon">📋</div>
+                    <div class="h2-bento-title">Permits &amp; Rebates</div>
+                    <div class="h2-bento-desc">We handle all permit applications, utility approvals, and federal tax
+                        credit documentation for you.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PROCESS ═════════════════════════════════════ -->
+    <section class="h2-section"
+        style="background:rgba(255,255,255,.02);border-top:1px solid var(--h2-border);border-bottom:1px solid var(--h2-border)">
+        <div class="container">
+            <div style="margin-bottom:3.5rem;text-align:center">
+                <div class="h2-section-label" style="justify-content:center"><i class='bx bx-cog'></i> How It Works
+                </div>
+                <h2 class="h2-section-title" style="text-align:center">From Inquiry to Powering Up<br>in 4 Simple Steps
+                </h2>
+            </div>
+            <div class="h2-process" data-animate>
+                <div class="h2-step">
+                    <div class="h2-step-line"></div>
+                    <div class="h2-step-title">Free Consultation</div>
+                    <div class="h2-step-desc">Book a no-obligation site assessment. Our certified advisors analyse your
+                        roof, usage, and goals.</div>
+                </div>
+                <div class="h2-step">
+                    <div class="h2-step-line"></div>
+                    <div class="h2-step-title">Custom Design</div>
+                    <div class="h2-step-desc">We create a 3D-modelled system design, detailed savings forecast, and
+                        transparent price proposal.</div>
+                </div>
+                <div class="h2-step">
+                    <div class="h2-step-line"></div>
+                    <div class="h2-step-title">Swift Installation</div>
+                    <div class="h2-step-desc">Our NABCEP-certified team installs your system in 1–2 days. We handle all
+                        permits and inspections.</div>
+                </div>
+                <div class="h2-step">
+                    <div class="h2-step-title">Monitor &amp; Enjoy</div>
+                    <div class="h2-step-desc">Log in to your dashboard and watch the clean energy — and savings — flow
+                        in from day one.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ TESTIMONIALS ════════════════════════════════ -->
+    <section class="h2-section">
+        <div class="container">
+            <div style="margin-bottom:3rem">
+                <div class="h2-section-label"><i class='bx bx-star'></i> Client Stories</div>
+                <h2 class="h2-section-title">4,200+ Happy Energy<br>Independence Stories</h2>
+            </div>
+            <div class="h2-testi-grid" data-animate>
+                <div class="h2-testi-card">
+                    <div class="h2-testi-stars">★★★★★</div>
+                    <div class="h2-testi-text">"SolarVolt completely transformed our energy bills. We went from
+                        $280/month to practically zero in six months. The team was professional, fast, and the dashboard
+                        is incredible."</div>
+                    <div class="h2-testi-author">
+                        <div class="h2-testi-avatar">SM</div>
+                        <div>
+                            <div style="color:#fff;font-weight:700;font-size:.9rem">Sarah Mitchell</div>
+                            <div style="color:rgba(255,255,255,.4);font-size:.78rem">Homeowner · Austin, TX</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="h2-testi-card">
+                    <div class="h2-testi-stars">★★★★★</div>
+                    <div class="h2-testi-text">"We had a 200kW commercial array installed last year. Our energy costs
+                        dropped 68%. The ROI has exceeded our projections every single month since."</div>
+                    <div class="h2-testi-author">
+                        <div class="h2-testi-avatar">DK</div>
+                        <div>
+                            <div style="color:#fff;font-weight:700;font-size:.9rem">David Kim</div>
+                            <div style="color:rgba(255,255,255,.4);font-size:.78rem">Operations Director · Dallas, TX
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="h2-testi-card">
+                    <div class="h2-testi-stars">★★★★★</div>
+                    <div class="h2-testi-text">"The wind+solar hybrid system on our farm is a game changer. We've been
+                        grid-independent for 8 months. SolarVolt handled everything, permits included."</div>
+                    <div class="h2-testi-author">
+                        <div class="h2-testi-avatar">RP</div>
+                        <div>
+                            <div style="color:#fff;font-weight:700;font-size:.9rem">Rachel Patel</div>
+                            <div style="color:rgba(255,255,255,.4);font-size:.78rem">Farm Owner · San Antonio, TX</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA ══════════════════════════════════════════ -->
+    <section class="h2-section" style="padding-top:0">
+        <div class="container">
+            <div class="h2-cta-section" data-animate>
+                <div class="h2-section-label" style="justify-content:center;margin-bottom:1.5rem"><i
+                        class='bx bx-zap'></i> Ready to Start?</div>
+                <h2 class="h2-section-title" style="text-align:center;margin-bottom:1rem">Get Your Free
+                    Energy<br>Assessment Today</h2>
+                <p style="color:rgba(255,255,255,.6);margin-bottom:2.5rem;max-width:480px;margin-inline:auto">No
+                    obligation. No pushy sales. Just a clear, honest analysis of your savings potential.</p>
+                <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+                    <a href="pages/contact.html" class="h2-btn-primary" style="font-size:1rem;padding:1rem 2.5rem"><i
+                            class='bx bx-envelope'></i> Book Free Consultation</a>
+                    <a href="tel:+18007652670" class="h2-btn-ghost"><i class='bx bx-phone'></i> Call 1-800-SOLAR-01</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FOOTER ══════════════════════════════════════ -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="navbar__logo" style="margin-bottom:1rem">
+                        <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+                            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                                fill="#0ea66b" />
+                            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                        </svg>
+                        Solar<span>Volt</span>
+                    </a>
+                    <p>Leading renewable energy installer for residential and commercial clients. Powering a cleaner
+                        tomorrow,
+                        today.</p>
+                    <div class="footer__social" aria-label="Social media links">
+                        <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                        <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+                    </div>
+                    <div class="footer__newsletter" aria-label="Newsletter signup">
+                        <p style="font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:.5rem">Subscribe for energy
+                            tips &amp;
+                            offers:</p>
+                        <form class="footer__newsletter-form newsletter-form" aria-label="Newsletter form">
+                            <input type="email" placeholder="Enter your email" aria-label="Email address" required />
+                            <button type="submit" class="btn btn-primary btn-sm"
+                                aria-label="Subscribe">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav class="footer__links" aria-label="Services links">
+                        <a href="pages/services.html">Residential Solar</a>
+                        <a href="pages/services.html">Commercial Solar</a>
+                        <a href="pages/services.html">Wind Turbines</a>
+                        <a href="pages/services.html">Battery Storage</a>
+                        <a href="pages/services.html">System Maintenance</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Company</h4>
+                    <nav class="footer__links" aria-label="Company links">
+                        <a href="pages/about.html">About Us</a>
+                        <a href="pages/blog.html">Blog</a>
+                        <a href="pages/contact.html">Contact</a>
+                        <a href="pages/dashboard.html">Client Portal</a>
+                        <a href="#">Careers</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__links">
+                        <a href="tel:+18007652670"><i class='bx bx-phone'></i> 1-800-SOLAR-01</a>
+                        <a href="mailto:info@solarvolt.com"><i class='bx bx-envelope'></i> info@solarvolt.com</a>
+                        <a href="#"><i class='bx bx-map-pin'></i> 123 Green Energy Blvd, Austin TX</a>
+                        <a href="#"><i class='bx bx-time'></i> Mon–Fri 8am–6pm CST</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2025 SolarVolt Energy. All rights reserved.</span>
+                <nav style="display:flex;gap:1rem;flex-wrap:wrap" aria-label="Legal links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Sitemap</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Back to top"><i class='bx bx-chevron-up'></i></button>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('h2Nav').classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
+        // Counter animation (reuse Counter module)
+        Counter.init();
+        // Animate elements
+        Animate.init();
+    </script>
+</body>
+
+</html>

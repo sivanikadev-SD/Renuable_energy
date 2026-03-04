@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Energy Analytics – SolarVolt Dashboard</title>
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .analytics-kpi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kpi-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+        }
+
+        .kpi-value {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--clr-primary);
+        }
+
+        .kpi-label {
+            font-size: .8rem;
+            color: var(--clr-text-muted);
+            margin-top: .25rem;
+        }
+
+        .kpi-trend {
+            font-size: .75rem;
+            margin-top: .5rem;
+            font-weight: 600;
+        }
+
+        .kpi-trend.up {
+            color: #22c55e;
+        }
+
+        .kpi-trend.down {
+            color: #ef4444;
+        }
+
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 4px;
+            margin-top: 1rem;
+        }
+
+        .heatmap-cell {
+            height: 28px;
+            border-radius: 4px;
+            background: var(--clr-bg-alt);
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+
+        .heatmap-cell:hover {
+            opacity: .7;
+        }
+
+        .heatmap-cell.l0 {
+            background: var(--clr-bg-alt);
+        }
+
+        .heatmap-cell.l1 {
+            background: rgba(14, 166, 107, .2);
+        }
+
+        .heatmap-cell.l2 {
+            background: rgba(14, 166, 107, .45);
+        }
+
+        .heatmap-cell.l3 {
+            background: rgba(14, 166, 107, .7);
+        }
+
+        .heatmap-cell.l4 {
+            background: rgba(14, 166, 107, .95);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dash-overlay" id="dashOverlay" aria-hidden="true"></div>
+    <div class="dash-layout">
+        <!-- SIDEBAR (same across all dash pages) -->
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="dash-sidebar__brand">
+                <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg>
+                <span class="dash-sidebar__brand-text">Solar<span>Volt</span></span>
+            </div>
+            <nav class="dash-nav">
+                <div class="dash-nav-label">Overview</div>
+                <a href="dashboard.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-tachometer'></i></span><span class="dash-nav-text">Dashboard</span></a>
+                <a href="dash-analytics.html" class="dash-nav-item active" aria-current="page"><span
+                        class="dash-nav-icon"><i class='bx bx-line-chart'></i></span><span class="dash-nav-text">Energy
+                        Analytics</span></a>
+                <div class="dash-nav-label">My System</div>
+                <a href="dash-solar.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-sun'></i></span><span class="dash-nav-text">Solar Panels</span></a>
+                <a href="dash-wind.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-wind'></i></span><span class="dash-nav-text">Wind Turbines</span></a>
+                <a href="dash-battery.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-battery'></i></span><span class="dash-nav-text">Battery Storage</span></a>
+                <a href="dash-health.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-cog'></i></span><span class="dash-nav-text">System Health</span><span
+                        class="dash-nav-badge">2</span></a>
+                <div class="dash-nav-label">Account</div>
+                <a href="dash-billing.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-receipt'></i></span><span class="dash-nav-text">Billing &amp;
+                        Reports</span></a>
+                <a href="dash-notifications.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-bell'></i></span><span class="dash-nav-text">Notifications</span><span
+                        class="dash-nav-badge">5</span></a>
+                <a href="dash-profile.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-user'></i></span><span class="dash-nav-text">Profile Settings</span></a>
+            </nav>
+            <div class="dash-sidebar__footer">
+                <div class="dash-user">
+                    <div class="dash-user__avatar">JM</div>
+                    <div class="dash-user__info">
+                        <div class="dash-user__name">James Mercer</div>
+                        <div class="dash-user__role">Residential Plan</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="dash-nav-item logout-btn" style="margin-top:.5rem"><span
+                        class="dash-nav-icon"><i class='bx bx-log-out'></i></span><span
+                        class="dash-nav-text">Logout</span></a>
+            </div>
+        </aside>
+
+        <main class="dash-main" id="dashMain">
+            <header class="dash-topbar">
+                <div class="dash-topbar__left">
+                    <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i
+                            class='bx bx-menu'></i></button>
+                    <div>
+                        <div class="dash-page-title">Energy Analytics</div>
+                        <div style="font-size:.75rem;color:var(--clr-text-muted)">Detailed production &amp; consumption
+                            analysis</div>
+                    </div>
+                </div>
+                <div class="dash-topbar__right">
+                    <form class="dash-search" role="search"><i class='bx bx-search'
+                            style="color:var(--clr-text-light)"></i><input type="search" placeholder="Search…" /></form>
+                    <button class="notif-btn" aria-label="Notifications"><i class='bx bx-bell'></i><span
+                            class="notif-badge"></span></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span
+                            class="theme-icon-moon"><i class='bx bx-moon'></i></span><span class="theme-icon-sun"
+                            style="display:none"><i class='bx bx-sun'></i></span></button>
+                    <div class="dash-user" style="background:transparent;padding:0">
+                        <div class="dash-user__avatar" style="width:32px;height:32px;font-size:.75rem">JM</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dash-content">
+                <!-- Controls -->
+                <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem">
+                    <select class="form-select" style="width:auto;padding:.4rem 1rem;font-size:.85rem">
+                        <option>Last 30 days</option>
+                        <option>Last 90 days</option>
+                        <option>This year</option>
+                        <option>All time</option>
+                    </select>
+                    <select class="form-select" style="width:auto;padding:.4rem 1rem;font-size:.85rem">
+                        <option>All Sources</option>
+                        <option>Solar Only</option>
+                        <option>Wind Only</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" style="margin-left:auto"><i class='bx bx-download'></i>
+                        Export CSV</button>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="analytics-kpi">
+                    <div class="kpi-card">
+                        <div class="kpi-value">1,247 kWh</div>
+                        <div class="kpi-label">Total Generated (30d)</div>
+                        <div class="kpi-trend up">↑ 14% vs prev. period</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">$312</div>
+                        <div class="kpi-label">Monthly Savings</div>
+                        <div class="kpi-trend up">↑ 8% vs prev. period</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">186 kWh</div>
+                        <div class="kpi-label">Exported to Grid</div>
+                        <div class="kpi-trend up">↑ 22% vs prev. period</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">0.48 t</div>
+                        <div class="kpi-label">CO₂ Avoided (30d)</div>
+                        <div class="kpi-trend up">↑ 11% vs prev. period</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">38.2 kWh</div>
+                        <div class="kpi-label">Avg Daily Output</div>
+                        <div class="kpi-trend down">↓ 3% vs prev. period</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">6.2h</div>
+                        <div class="kpi-label">Avg Sun Hours / Day</div>
+                        <div class="kpi-trend up">↑ Seasonal</div>
+                    </div>
+                </div>
+
+                <!-- Charts row -->
+                <div class="dash-row" style="margin-bottom:1.5rem">
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div>
+                                <div class="dash-card__title">Daily Production (Last 30 Days)</div>
+                                <div style="font-size:.8rem;color:var(--clr-text-muted)">kWh per day</div>
+                            </div>
+                        </div>
+                        <div id="dailyChart"></div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div>
+                                <div class="dash-card__title">Hourly Heatmap</div>
+                                <div style="font-size:.8rem;color:var(--clr-text-muted)">Output intensity by month &amp;
+                                    hour</div>
+                            </div>
+                        </div>
+                        <div
+                            style="font-size:.75rem;color:var(--clr-text-muted);margin-bottom:.5rem;display:flex;justify-content:space-between">
+                            <span>Jan</span><span>Jun</span><span>Dec</span></div>
+                        <div class="heatmap-grid" id="heatmap"></div>
+                        <div
+                            style="display:flex;align-items:center;gap:.5rem;margin-top:.75rem;font-size:.75rem;color:var(--clr-text-muted)">
+                            <span>Low</span>
+                            <div style="display:flex;gap:3px">
+                                <div style="width:14px;height:14px;border-radius:3px;background:var(--clr-bg-alt)">
+                                </div>
+                                <div style="width:14px;height:14px;border-radius:3px;background:rgba(14,166,107,.2)">
+                                </div>
+                                <div style="width:14px;height:14px;border-radius:3px;background:rgba(14,166,107,.45)">
+                                </div>
+                                <div style="width:14px;height:14px;border-radius:3px;background:rgba(14,166,107,.7)">
+                                </div>
+                                <div style="width:14px;height:14px;border-radius:3px;background:rgba(14,166,107,.95)">
+                                </div>
+                            </div>
+                            <span>High</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="dash-card">
+                    <div class="dash-card__header">
+                        <div class="dash-card__title">Month-over-Month Breakdown</div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table" aria-label="Month over month energy comparison">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Generated (kWh)</th>
+                                    <th>Consumed (kWh)</th>
+                                    <th>Exported (kWh)</th>
+                                    <th>Savings ($)</th>
+                                    <th>Efficiency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>March 2025</td>
+                                    <td>1,247</td>
+                                    <td>1,061</td>
+                                    <td>186</td>
+                                    <td>$312</td>
+                                    <td>
+                                        <div class="progress-bar" style="min-width:80px">
+                                            <div class="progress-fill" style="width:94%"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>February 2025</td>
+                                    <td>1,089</td>
+                                    <td>954</td>
+                                    <td>135</td>
+                                    <td>$271</td>
+                                    <td>
+                                        <div class="progress-bar" style="min-width:80px">
+                                            <div class="progress-fill" style="width:88%"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>January 2025</td>
+                                    <td>978</td>
+                                    <td>901</td>
+                                    <td>77</td>
+                                    <td>$244</td>
+                                    <td>
+                                        <div class="progress-bar" style="min-width:80px">
+                                            <div class="progress-fill" style="width:79%"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>December 2024</td>
+                                    <td>842</td>
+                                    <td>920</td>
+                                    <td>0</td>
+                                    <td>$210</td>
+                                    <td>
+                                        <div class="progress-bar" style="min-width:80px">
+                                            <div class="progress-fill" style="width:68%"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            const s = document.getElementById('dashSidebar'), o = document.getElementById('dashOverlay');
+            if (window.innerWidth > 1024) { s.classList.toggle('collapsed'); }
+            else { s.classList.toggle('mobile-open'); o.classList.toggle('visible'); }
+        });
+        document.getElementById('dashOverlay').addEventListener('click', () => {
+            document.getElementById('dashSidebar').classList.remove('mobile-open');
+            document.getElementById('dashOverlay').classList.remove('visible');
+        });
+
+        // Daily chart
+        const daily = [28, 35, 42, 31, 38, 45, 22, 19, 41, 44, 38, 33, 29, 36, 43, 48, 41, 37, 30, 25, 39, 44, 47, 43, 36, 31, 34, 40, 45, 42];
+        const dc = document.getElementById('dailyChart');
+        dc.style.display = 'flex'; dc.style.alignItems = 'flex-end'; dc.style.gap = '3px'; dc.style.height = '140px'; dc.style.paddingTop = '8px';
+        const max = Math.max(...daily);
+        daily.forEach(v => {
+            const b = document.createElement('div');
+            b.style.cssText = `flex:1;background:linear-gradient(to top,var(--clr-primary),rgba(14,166,107,.4));border-radius:3px 3px 0 0;height:${(v / max * 100)}%;transition:opacity .2s;cursor:pointer;`;
+            b.title = v + ' kWh';
+            b.addEventListener('mouseenter', () => b.style.opacity = '.7');
+            b.addEventListener('mouseleave', () => b.style.opacity = '1');
+            dc.appendChild(b);
+        });
+
+        // Heatmap
+        const levels = [0, 1, 1, 2, 3, 4, 4, 3, 2, 1, 1, 0];
+        const hm = document.getElementById('heatmap');
+        levels.forEach(l => {
+            const c = document.createElement('div');
+            c.className = `heatmap-cell l${l}`;
+            c.title = ['No data', 'Low', 'Below avg', 'Above avg', 'Peak'][l];
+            hm.appendChild(c);
+        });
+    </script>
+</body>
+
+</html>

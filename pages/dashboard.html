@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Dashboard – SolarVolt Energy</title>
+    <meta name="description"
+        content="Monitor your solar and wind energy production, savings, and system health in real-time." />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/rtl.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+</head>
+
+<body>
+
+    <div class="dash-overlay" id="dashOverlay" aria-hidden="true"></div>
+
+    <div class="dash-layout">
+
+        <!-- ══════════════ SIDEBAR ══════════════ -->
+        <aside class="dash-sidebar" id="dashSidebar" aria-label="Dashboard navigation">
+            <div class="dash-sidebar__brand">
+                <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg>
+                <span class="dash-sidebar__brand-text">Solar<span>Volt</span></span>
+            </div>
+
+            <nav class="dash-nav" aria-label="Dashboard sections">
+                <div class="dash-nav-label">Overview</div>
+                <a href="dashboard.html" class="dash-nav-item active" aria-current="page">
+                    <span class="dash-nav-icon"><i class='bx bx-tachometer'></i></span>
+                    <span class="dash-nav-text">Dashboard</span>
+                </a>
+                <a href="dash-analytics.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-line-chart'></i></span>
+                    <span class="dash-nav-text">Energy Analytics</span>
+                </a>
+
+                <div class="dash-nav-label">My System</div>
+                <a href="dash-solar.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-sun'></i></span>
+                    <span class="dash-nav-text">Solar Panels</span>
+                </a>
+                <a href="dash-wind.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-wind'></i></span>
+                    <span class="dash-nav-text">Wind Turbines</span>
+                </a>
+                <a href="dash-battery.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-battery'></i></span>
+                    <span class="dash-nav-text">Battery Storage</span>
+                </a>
+                <a href="dash-health.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-cog'></i></span>
+                    <span class="dash-nav-text">System Health</span>
+                    <span class="dash-nav-badge">2</span>
+                </a>
+
+                <div class="dash-nav-label">Account</div>
+                <a href="dash-billing.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-receipt'></i></span>
+                    <span class="dash-nav-text">Billing &amp; Reports</span>
+                </a>
+                <a href="dash-notifications.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-bell'></i></span>
+                    <span class="dash-nav-text">Notifications</span>
+                    <span class="dash-nav-badge">5</span>
+                </a>
+                <a href="dash-profile.html" class="dash-nav-item">
+                    <span class="dash-nav-icon"><i class='bx bx-user'></i></span>
+                    <span class="dash-nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="dash-sidebar__footer">
+                <div class="dash-user">
+                    <div class="dash-user__avatar">JM</div>
+                    <div class="dash-user__info">
+                        <div class="dash-user__name">James Mercer</div>
+                        <div class="dash-user__role">Residential Plan</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="dash-nav-item logout-btn" style="margin-top:.5rem">
+                    <span class="dash-nav-icon"><i class='bx bx-log-out'></i></span>
+                    <span class="dash-nav-text">Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ══════════════ MAIN ══════════════════ -->
+        <main class="dash-main" id="dashMain">
+
+            <!-- Topbar -->
+            <header class="dash-topbar">
+                <div class="dash-topbar__left">
+                    <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"
+                        aria-expanded="true">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <div>
+                        <div class="dash-page-title"><span id="dashGreeting">Good morning</span>, James! 👋</div>
+                        <div style="font-size:.75rem;color:var(--clr-text-muted)" id="liveTime">--:--:--</div>
+                    </div>
+                </div>
+                <div class="dash-topbar__right">
+                    <form class="dash-search" role="search" aria-label="Dashboard search">
+                        <i class='bx bx-search' style="color:var(--clr-text-light)"></i>
+                        <input type="search" placeholder="Search…" aria-label="Search dashboard" />
+                    </form>
+                    <button class="notif-btn" aria-label="Notifications (5 unread)" style="color: #f59e0b;">
+                        <i class='bx bx-bell'></i>
+                        <span class="notif-badge" aria-label="5 notifications"></span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="color: #f59e0b;">
+                        <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+                        <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
+                    </button>
+                    <div class="dash-user" style="background:transparent;padding:0;gap:.5rem">
+                        <div class="dash-user__avatar" style="width:32px;height:32px;font-size:.75rem">JM</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="dash-content">
+
+                <!-- ── Stat Cards ── -->
+                <div class="dash-stats-grid">
+                    <div class="dash-stat-card primary">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value" id="liveOutput">5.4 kW</div>
+                                <div class="dash-stat-label">Live Output</div>
+                            </div>
+                            <div class="dash-stat-icon primary"><i class='bx bx-bolt-circle'></i></div>
+                        </div>
+                        <div class="dash-stat-change up"><i class='bx bx-trending-up'></i> +12% vs yesterday</div>
+                        <div id="miniChart1" style="margin-top:.75rem"></div>
+                    </div>
+                    <div class="dash-stat-card warning">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">$3,240</div>
+                                <div class="dash-stat-label">Annual Savings</div>
+                            </div>
+                            <div class="dash-stat-icon warning"><i class='bx bx-dollar-circle'></i></div>
+                        </div>
+                        <div class="dash-stat-change up"><i class='bx bx-trending-up'></i> +8% vs last year</div>
+                        <div id="miniChart2" style="margin-top:.75rem"></div>
+                    </div>
+                    <div class="dash-stat-card info">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">2.1 t</div>
+                                <div class="dash-stat-label">CO₂ Offset</div>
+                            </div>
+                            <div class="dash-stat-icon info"><i class='bx bx-leaf'></i></div>
+                        </div>
+                        <div class="dash-stat-change up"><i class='bx bx-trending-up'></i> This year</div>
+                        <div id="miniChart3" style="margin-top:.75rem"></div>
+                    </div>
+                    <div class="dash-stat-card success">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">98.7%</div>
+                                <div class="dash-stat-label">System Efficiency</div>
+                            </div>
+                            <div class="dash-stat-icon success"><i class='bx bx-check-shield'></i></div>
+                        </div>
+                        <div class="dash-stat-change up"><i class='bx bx-trending-up'></i> Excellent</div>
+                        <div id="miniChart4" style="margin-top:.75rem"></div>
+                    </div>
+                </div>
+
+                <!-- ── Charts Row ── -->
+                <div class="dash-row" style="margin-bottom:var(--sp-4)">
+                    <!-- Production Chart -->
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div>
+                                <div class="dash-card__title">Monthly Energy Production</div>
+                                <div style="font-size:.8rem;color:var(--clr-text-muted)">kWh generated per month (2025)
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+                                <div class="energy-live">
+                                    <div class="live-dot"></div>Live
+                                </div>
+                                <select class="form-select" style="padding:.3rem .75rem;font-size:.8rem;width:auto"
+                                    aria-label="Chart period">
+                                    <option>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="productionChart"></div>
+                    </div>
+
+                    <!-- System Status -->
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div class="dash-card__title">System Health</div>
+                            <span class="badge badge-primary">All Good</span>
+                        </div>
+                        <div class="system-status">
+                            <div class="status-item">
+                                <div class="status-label"><span>Solar Array</span><span>94%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-width="94%" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label"><span>Battery Charge</span><span>78%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-width="78%" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label"><span>Inverter Load</span><span>62%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-width="62%" style="width:0%" class="warning"></div>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label"><span>Grid Export</span><span>45%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-width="45%" style="width:0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Readings -->
+                        <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                            <div
+                                style="background:var(--clr-bg-alt);border-radius:var(--radius-md);padding:.75rem;text-align:center">
+                                <div
+                                    style="font-size:.7rem;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:.08em">
+                                    Temp</div>
+                                <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-secondary)"
+                                    id="liveTemp">28°C</div>
+                            </div>
+                            <div
+                                style="background:var(--clr-bg-alt);border-radius:var(--radius-md);padding:.75rem;text-align:center">
+                                <div
+                                    style="font-size:.7rem;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:.08em">
+                                    Grid Feed</div>
+                                <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--clr-primary)"
+                                    id="liveGrid">1.2 kW</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Revenue + Donut Row ── -->
+                <div class="dash-row" style="margin-bottom:var(--sp-4)">
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div>
+                                <div class="dash-card__title">Monthly Savings ($)</div>
+                                <div style="font-size:.8rem;color:var(--clr-text-muted)">Comparison vs grid cost</div>
+                            </div>
+                        </div>
+                        <div id="revenueChart"></div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card__header">
+                            <div class="dash-card__title">Energy Mix</div>
+                        </div>
+                        <div class="donut-placeholder">
+                            <div class="donut-hole">
+                                <div class="value">62%</div>
+                                <div class="label">Solar</div>
+                            </div>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background:var(--clr-primary)"></div><span>Solar
+                                    (62%)</span><span style="margin-left:auto;font-weight:600">744 kWh</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background:var(--clr-secondary)"></div><span>Wind
+                                    (21%)</span><span style="margin-left:auto;font-weight:600">252 kWh</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background:var(--clr-accent)"></div><span>Grid
+                                    (17%)</span><span style="margin-left:auto;font-weight:600">204 kWh</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Recent Events Table ── -->
+                <div class="dash-card">
+                    <div class="dash-card__header">
+                        <div class="dash-card__title">System Events &amp; Alerts</div>
+                        <button class="btn btn-ghost btn-sm"><i class='bx bx-filter'></i> Filter</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table" aria-label="System events table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date &amp; Time</th>
+                                    <th scope="col">Event</th>
+                                    <th scope="col">Component</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mar 3, 2025 09:14</td>
+                                    <td>Peak output achieved</td>
+                                    <td>Solar Array</td>
+                                    <td><span class="badge badge-primary">✓ Normal</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mar 3, 2025 07:32</td>
+                                    <td>Battery fully charged</td>
+                                    <td>Battery Bank</td>
+                                    <td><span class="badge badge-primary">✓ Normal</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mar 2, 2025 15:48</td>
+                                    <td>Grid export started</td>
+                                    <td>Inverter</td>
+                                    <td><span class="badge badge-info">ℹ Info</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mar 2, 2025 11:20</td>
+                                    <td>Panel cleaning reminder</td>
+                                    <td>Panel #A-07</td>
+                                    <td><span class="badge badge-warning">⚠ Maintenance</span></td>
+                                    <td><button class="btn btn-sm btn-primary">Schedule</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mar 1, 2025 18:05</td>
+                                    <td>Low light mode activated</td>
+                                    <td>Solar Array</td>
+                                    <td><span class="badge badge-primary">✓ Normal</span></td>
+                                    <td><button class="btn btn-sm btn-ghost">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div><!-- /dash-content -->
+        </main>
+    </div><!-- /dash-layout -->
+
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script>
+        // Wire sidebar toggle to dashboard.js Sidebar module
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            const sidebar = document.getElementById('dashSidebar');
+            const overlay = document.getElementById('dashOverlay');
+            if (window.innerWidth > 1024) {
+                sidebar.classList.toggle('collapsed');
+            } else {
+                sidebar.classList.toggle('mobile-open');
+                overlay.classList.toggle('visible');
+            }
+        });
+        document.getElementById('dashOverlay').addEventListener('click', () => {
+            document.getElementById('dashSidebar').classList.remove('mobile-open');
+            document.getElementById('dashOverlay').classList.remove('visible');
+        });
+    </script>
+</body>
+
+</html>

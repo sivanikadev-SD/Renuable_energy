@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us – SolarVolt Energy</title>
+    <meta name="description"
+        content="Learn about SolarVolt's 25-year mission to accelerate the clean energy transition. Meet our expert team and discover our values." />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/rtl.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-10);
+            align-items: center;
+        }
+
+        .mission-img {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mission-img img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--sp-5);
+        }
+
+        .value-card {
+            text-align: center;
+            padding: var(--sp-7);
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            transition: all var(--dur-mid) var(--ease);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--sp-4);
+        }
+
+        .milestones {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 700px;
+            margin-inline: auto;
+        }
+
+        .milestone {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: var(--sp-5);
+            padding: var(--sp-5) 0;
+            border-bottom: 1px solid var(--clr-border);
+            align-items: start;
+        }
+
+        .milestone:last-child {
+            border-bottom: none;
+        }
+
+        .milestone-year {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--clr-primary);
+        }
+
+        @media (max-width:768px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .milestone {
+                grid-template-columns: 80px 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar" id="mainNav" aria-label="Main navigation">
+            <div class="navbar__inner">
+                <a href="../index.html" class="navbar__logo">
+                    <svg class="navbar__logo-icon" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                        <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                            fill="#0ea66b" />
+                        <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                    </svg>
+                    Solar<span>Volt</span>
+                </a>
+                <nav class="navbar__nav" aria-label="Site pages">
+                    <a href="../index.html">Home</a>
+                    <a href="../index2.html">Home 2</a>
+                    <a href="about.html" class="active">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </nav>
+                <div class="navbar__actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="color:#f59e0b;">
+                        <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+                        <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
+                    </button>
+                    <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL" title="Toggle RTL layout">
+                        <span class="rtl-icon">RTL</span>
+                    </button>
+                    <a href="login.html" class="btn btn-ghost btn-sm"><i class='bx bx-log-in'></i> Login</a>
+                    <a href="register.html" class="btn btn-primary btn-sm"><i class='bx bx-user-plus'></i> Sign Up</a>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="../index.html">Home</a>
+            <a href="../index2.html">Home 2</a>
+            <a href="about.html" class="active">About</a>
+            <a href="services.html">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="dashboard.html">Dashboard</a>
+            <div class="mobile-menu-actions">
+                <a href="login.html" class="btn btn-ghost" style="justify-content:center"><i class='bx bx-log-in'></i>
+                    Login</a>
+                <a href="register.html" class="btn btn-primary" style="justify-content:center"><i
+                        class='bx bx-user-plus'></i> Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="About page hero">
+        <div class="container">
+            <div class="section-label"
+                style="margin-inline:auto;width:fit-content;background:rgba(255,255,255,.15);color:#fff"><i
+                    class='bx bx-buildings'></i> About SolarVolt</div>
+            <h1 style="margin-top:1rem">Our Story &amp; Mission</h1>
+            <p>25 years of powering cleaner communities across North America.</p>
+            <div class="breadcrumb"><a href="../index.html">Home</a> <i class='bx bx-chevron-right'></i>
+                <span>About</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section" aria-label="Mission section">
+        <div class="container">
+            <div class="mission-grid">
+                <div data-animate>
+                    <div class="section-label"><i class='bx bx-target-lock'></i> Our Mission</div>
+                    <h2 style="margin-top:.75rem;margin-bottom:1rem">Accelerating the<br>Clean Energy Transition</h2>
+                    <p style="margin-bottom:1.5rem">Founded in 2000, SolarVolt has grown from a small family business
+                        installing rooftop solar panels to one of North America's most trusted renewable energy
+                        companies, with over 15,000 completed installations across 38 states.</p>
+                    <p style="margin-bottom:1.5rem">Our mission is simple: make clean, affordable renewable energy
+                        accessible to every homeowner and business, while delivering exceptional customer service and
+                        industry-leading warranties.</p>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem">
+                        <div
+                            style="padding:1.25rem;background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center">
+                            <div style="font-family:var(--font-heading);font-size:2rem;font-weight:800;color:var(--clr-primary)"
+                                data-count="15000" data-suffix="+">0</div>
+                            <div
+                                style="font-size:.8rem;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:.08em">
+                                Installations</div>
+                        </div>
+                        <div
+                            style="padding:1.25rem;background:var(--clr-bg-alt);border-radius:var(--radius-md);text-align:center">
+                            <div style="font-family:var(--font-heading);font-size:2rem;font-weight:800;color:var(--clr-primary)"
+                                data-count="38">0</div>
+                            <div
+                                style="font-size:.8rem;color:var(--clr-text-muted);text-transform:uppercase;letter-spacing:.08em">
+                                States Served</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mission-img" data-animate>
+                    <img src="../assets/images/about-mission.png" alt="SolarVolt engineer inspecting solar panels"
+                        loading="lazy" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section" style="background:var(--clr-bg-alt)" aria-label="Our values">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label"><i class='bx bx-heart'></i> Our Values</div>
+                <h2>What We Stand For</h2>
+                <p>Our core values guide every installation, every customer interaction, and every business decision we
+                    make.</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card" data-animate>
+                    <div class="value-icon">🌍</div>
+                    <h3>Planet First</h3>
+                    <p>Every decision we make considers its environmental impact. We're committed to net-zero operations
+                        by 2026.</p>
+                </div>
+                <div class="value-card" data-animate>
+                    <div class="value-icon">⚡</div>
+                    <h3>Quality Excellence</h3>
+                    <p>We only install the highest-rated components backed by manufacturer and our own 25-year warranty.
+                    </p>
+                </div>
+                <div class="value-card" data-animate>
+                    <div class="value-icon">🤝</div>
+                    <h3>Customer First</h3>
+                    <p>98.4% customer satisfaction rate. We treat every client like our most important one, because they
+                        are.</p>
+                </div>
+                <div class="value-card" data-animate>
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>We continuously invest in R&D to bring cutting-edge solar, wind, and storage solutions to our
+                        customers first.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section" aria-label="Our team">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label"><i class='bx bx-group'></i> Our Team</div>
+                <h2>Meet Our Leadership</h2>
+                <p>A passionate team of engineers, energy experts, and sustainability advocates.</p>
+            </div>
+            <div class="team-grid">
+                <article class="team-card card" data-animate>
+                    <img src="../assets/images/team.png" alt="CEO of SolarVolt Energy" class="team-card__photo"
+                        loading="lazy" />
+                    <h3 class="team-card__name">Michael Chen</h3>
+                    <div class="team-card__role">CEO &amp; Co-Founder</div>
+                    <p class="team-card__bio">25 years in renewable energy. Former NASA engineer turned clean energy
+                        pioneer.</p>
+                    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.75rem">
+                        <a href="#" class="footer__social" aria-label="LinkedIn"
+                            style="display:inline-flex;width:32px;height:32px;background:var(--clr-bg-alt);border:1px solid var(--clr-border);border-radius:6px;align-items:center;justify-content:center"><i
+                                class='bx bxl-linkedin'></i></a>
+                        <a href="#" aria-label="Twitter"
+                            style="display:inline-flex;width:32px;height:32px;background:var(--clr-bg-alt);border:1px solid var(--clr-border);border-radius:6px;align-items:center;justify-content:center"><i
+                                class='bx bxl-twitter'></i></a>
+                    </div>
+                </article>
+                <article class="team-card card" data-animate>
+                    <div class="team-card__photo"
+                        style="background:var(--clr-primary-light);display:flex;align-items:center;justify-content:center;font-size:2.5rem">
+                        👩‍🔬</div>
+                    <h3 class="team-card__name">Dr. Aisha Patel</h3>
+                    <div class="team-card__role">Chief Technology Officer</div>
+                    <p class="team-card__bio">PhD in Electrical Engineering. Leading our next-gen battery and smart-grid
+                        research division.</p>
+                    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.75rem">
+                        <a href="#" aria-label="LinkedIn"
+                            style="display:inline-flex;width:32px;height:32px;background:var(--clr-bg-alt);border:1px solid var(--clr-border);border-radius:6px;align-items:center;justify-content:center"><i
+                                class='bx bxl-linkedin'></i></a>
+                    </div>
+                </article>
+                <article class="team-card card" data-animate>
+                    <div class="team-card__photo"
+                        style="background:var(--clr-bg-alt);display:flex;align-items:center;justify-content:center;font-size:2.5rem">
+                        👨‍💼</div>
+                    <h3 class="team-card__name">James Torres</h3>
+                    <div class="team-card__role">Head of Installations</div>
+                    <p class="team-card__bio">Certified master electrician with 18 years of solar and wind installation
+                        experience.</p>
+                    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.75rem">
+                        <a href="#" aria-label="LinkedIn"
+                            style="display:inline-flex;width:32px;height:32px;background:var(--clr-bg-alt);border:1px solid var(--clr-border);border-radius:6px;align-items:center;justify-content:center"><i
+                                class='bx bxl-linkedin'></i></a>
+                    </div>
+                </article>
+                <article class="team-card card" data-animate>
+                    <div class="team-card__photo"
+                        style="background:var(--clr-primary-light);display:flex;align-items:center;justify-content:center;font-size:2.5rem">
+                        👩‍💼</div>
+                    <h3 class="team-card__name">Rachel Kim</h3>
+                    <div class="team-card__role">VP Customer Success</div>
+                    <p class="team-card__bio">Leads our award-winning customer support team. Obsessed with delivering
+                        5-star service every time.</p>
+                    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.75rem">
+                        <a href="#" aria-label="LinkedIn"
+                            style="display:inline-flex;width:32px;height:32px;background:var(--clr-bg-alt);border:1px solid var(--clr-border);border-radius:6px;align-items:center;justify-content:center"><i
+                                class='bx bxl-linkedin'></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- MILESTONES -->
+    <section class="section" style="background:var(--clr-bg-alt)" aria-label="Company milestones">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label"><i class='bx bx-history'></i> Our Journey</div>
+                <h2>25 Years of Innovation</h2>
+                <p>Key milestones that shaped SolarVolt into the industry leader it is today.</p>
+            </div>
+            <div class="milestones" data-animate>
+                <div class="milestone">
+                    <div class="milestone-year">2000</div>
+                    <div>
+                        <h4>Founded</h4>
+                        <p>Michael Chen and co-founder Lisa Wang launch SolarVolt in Austin, TX with 3 employees.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2005</div>
+                    <div>
+                        <h4>500 Installations</h4>
+                        <p>Reached our 500th installation milestone and expanded to 6 southern states.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2010</div>
+                    <div>
+                        <h4>Wind Division Launched</h4>
+                        <p>Added residential and commercial wind turbine installations to our service portfolio.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2015</div>
+                    <div>
+                        <h4>Battery Storage Integration</h4>
+                        <p>First to offer integrated solar + battery storage systems in Texas with smart home
+                            compatibility.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2020</div>
+                    <div>
+                        <h4>10,000 Installations</h4>
+                        <p>Celebrated 10,000 installations and launched our real-time client monitoring dashboard.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2025</div>
+                    <div>
+                        <h4>15,000+ &amp; 38 States</h4>
+                        <p>Now serving 38 states with 350 certified engineers and 42,000 tons of CO₂ offset annually.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../index.html" class="navbar__logo" style="margin-bottom:1rem">
+                        <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+                            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                                fill="#0ea66b" />
+                            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                        </svg>
+                        Solar<span>Volt</span>
+                    </a>
+                    <p>Leading renewable energy installer for residential and commercial clients.</p>
+                    <div class="footer__social">
+                        <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav class="footer__links"><a href="services.html">Residential Solar</a><a
+                            href="services.html">Commercial Solar</a><a href="services.html">Wind Turbines</a><a
+                            href="services.html">Battery Storage</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Company</h4>
+                    <nav class="footer__links"><a href="about.html">About Us</a><a href="blog.html">Blog</a><a
+                            href="contact.html">Contact</a><a href="dashboard.html">Client Portal</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__links">
+                        <a href="tel:+18007652670"><i class='bx bx-phone'></i> 1-800-SOLAR-01</a>
+                        <a href="mailto:info@solarvolt.com"><i class='bx bx-envelope'></i> info@solarvolt.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2025 SolarVolt Energy. All rights reserved.</span>
+                <nav style="display:flex;gap:1rem;flex-wrap:wrap"><a href="#">Privacy</a><a href="#">Terms</a><a
+                        href="#">Sitemap</a></nav>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Back to top"><i class='bx bx-chevron-up'></i></button>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

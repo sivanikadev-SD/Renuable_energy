@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon – SolarVolt Energy</title>
+    <meta name="description"
+        content="Something exciting is coming from SolarVolt. Sign up to be notified when we launch." />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .coming-soon-bg {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0a1628 0%, #071a10 50%, #0a1628 100%);
+        }
+
+        .coming-soon-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/images/hero-bg.png') center/cover no-repeat;
+            opacity: .15;
+        }
+
+        .coming-soon-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: var(--sp-8);
+            max-width: 640px;
+        }
+
+        .logo-big {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: var(--sp-6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+        }
+
+        .logo-big span {
+            color: var(--clr-primary);
+        }
+
+        .coming-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(14, 166, 107, .15);
+            border: 1px solid rgba(14, 166, 107, .3);
+            color: var(--clr-primary);
+            padding: .4rem 1rem;
+            border-radius: 99px;
+            font-size: .85rem;
+            font-weight: 700;
+            margin-bottom: var(--sp-5);
+        }
+
+        .countdown {
+            display: flex;
+            gap: var(--sp-5);
+            justify-content: center;
+            margin: var(--sp-8) 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: var(--radius-lg);
+            padding: var(--sp-5) var(--sp-6);
+            backdrop-filter: blur(10px);
+            min-width: 80px;
+        }
+
+        .countdown-value {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: .7rem;
+            color: rgba(255, 255, 255, .55);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: .5rem;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: .75rem;
+            max-width: 420px;
+            margin-inline: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .notify-form input {
+            flex: 1;
+            min-width: 220px;
+            padding: .75rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 99px;
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            font-size: .9rem;
+            outline: none;
+        }
+
+        .notify-form input::placeholder {
+            color: rgba(255, 255, 255, .45);
+        }
+
+        .notify-form input:focus {
+            border-color: var(--clr-primary);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: var(--sp-8);
+        }
+
+        .social-row a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .75);
+            font-size: 1rem;
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            background: var(--clr-primary);
+            color: #fff;
+        }
+
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="coming-soon-bg"></div>
+    <div id="particles" aria-hidden="true"></div>
+
+    <main class="coming-soon-content">
+        <div class="logo-big">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+            </svg>
+            Solar<span>Volt</span>
+        </div>
+
+        <div class="coming-badge"><i class='bx bx-rocket'></i> Something Big Is Coming</div>
+        <h1 style="color:#fff;margin-bottom:.75rem">Launching Soon</h1>
+        <p style="color:rgba(255,255,255,.65);line-height:1.8;font-size:1.05rem;margin-bottom:var(--sp-6)">
+            We're putting the finishing touches on something that will revolutionise how you monitor and optimise your
+            renewable energy system.
+        </p>
+
+        <!-- Countdown -->
+        <div class="countdown" aria-label="Countdown to launch">
+            <div class="countdown-item">
+                <div class="countdown-value" id="cdDays">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="cdHours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="cdMins">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="cdSecs">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <!-- Notify Form -->
+        <form class="notify-form newsletter-form" aria-label="Launch notification signup">
+            <input type="email" placeholder="Enter your email" aria-label="Email for launch notification" required />
+            <button type="submit" class="btn btn-primary" aria-label="Notify me at launch"><i class='bx bx-bell'></i>
+                Notify Me</button>
+        </form>
+
+        <p style="font-size:.8rem;color:rgba(255,255,255,.35);margin-top:1rem">No spam, ever. Unsubscribe anytime.</p>
+
+        <div class="social-row" aria-label="Follow SolarVolt on social media">
+            <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+            <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+            <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+            <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        </div>
+
+        <div style="margin-top:2rem">
+            <a href="../index.html" style="color:rgba(255,255,255,.4);font-size:.8rem;text-decoration:underline">← Back
+                to homepage</a>
+        </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Countdown to a launch date
+        const launchDate = new Date('2025-06-01T00:00:00');
+        function updateCountdown() {
+            const now = new Date();
+            const diff = launchDate - now;
+            if (diff <= 0) { document.querySelector('.countdown').innerHTML = '<p style="color:#fff;font-size:1.2rem">🎉 We\'ve Launched!</p>'; return; }
+            const d = Math.floor(diff / 864e5);
+            const h = Math.floor((diff % 864e5) / 36e5);
+            const m = Math.floor((diff % 36e5) / 6e4);
+            const s = Math.floor((diff % 6e4) / 1e3);
+            document.getElementById('cdDays').textContent = String(d).padStart(2, '0');
+            document.getElementById('cdHours').textContent = String(h).padStart(2, '0');
+            document.getElementById('cdMins').textContent = String(m).padStart(2, '0');
+            document.getElementById('cdSecs').textContent = String(s).padStart(2, '0');
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Sparkles
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 18; i++) {
+            const p = document.createElement('div');
+            const sz = Math.random() * 5 + 2;
+            p.className = 'sparkle';
+            p.style.cssText = `width:${sz}px;height:${sz}px;background:${Math.random() > .5 ? '#0ea66b' : '#f59e0b'};left:${Math.random() * 100}%;top:${Math.random() * 100}%;opacity:${Math.random() * .2 + .05};animation-duration:${Math.random() * 18 + 12}s;animation-delay:${Math.random() * -10}s;`;
+            container.appendChild(p);
+        }
+    </script>
+</body>
+
+</html>

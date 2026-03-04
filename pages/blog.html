@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog – SolarVolt Energy</title>
+    <meta name="description"
+        content="Solar and wind energy tips, news, incentives, and guides from the SolarVolt team." />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/rtl.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: var(--sp-8);
+            align-items: start;
+        }
+
+        .blog-main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--sp-5);
+        }
+
+        .sidebar-widget {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: var(--sp-5);
+            margin-bottom: var(--sp-5);
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1rem;
+            margin-bottom: var(--sp-4);
+        }
+
+        .sidebar-cat {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--sp-2) 0;
+            border-bottom: 1px solid var(--clr-border);
+            font-size: .875rem;
+        }
+
+        .sidebar-cat:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-recent {
+            display: flex;
+            gap: var(--sp-3);
+            padding: var(--sp-3) 0;
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        .sidebar-recent:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-recent img {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .sidebar-recent-title {
+            font-size: .825rem;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-bottom: .25rem;
+        }
+
+        .sidebar-recent-date {
+            font-size: .75rem;
+            color: var(--clr-text-light);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: var(--sp-3);
+            flex-wrap: wrap;
+            margin-bottom: var(--sp-6);
+        }
+
+        .filter-btn {
+            padding: .4rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: .85rem;
+            font-weight: 500;
+            border: 1px solid var(--clr-border);
+            background: var(--clr-surface);
+            color: var(--clr-text-muted);
+            cursor: pointer;
+            transition: all var(--dur-fast);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--clr-primary);
+            color: #fff;
+            border-color: var(--clr-primary);
+        }
+
+        .blog-card--featured {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .blog-card--featured .blog-card__img-wrap {
+            height: 100%;
+            min-height: 280px;
+        }
+
+        .blog-card--featured .blog-card__body {
+            padding: var(--sp-8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .blog-card--featured .blog-card__title {
+            font-size: 1.35rem;
+        }
+
+        @media(max-width:1024px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:640px) {
+            .blog-card--featured {
+                grid-column: span 1;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar" id="mainNav" aria-label="Main navigation">
+            <div class="navbar__inner">
+                <a href="../index.html" class="navbar__logo">
+                    <svg class="navbar__logo-icon" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                        <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                            fill="#0ea66b" />
+                        <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                    </svg>
+                    Solar<span>Volt</span>
+                </a>
+                <nav class="navbar__nav" aria-label="Site pages">
+                    <a href="../index.html">Home</a>
+                    <a href="../index2.html">Home 2</a>
+                    <a href="about.html">About</a><a href="services.html">Services</a>
+                    <a href="blog.html" class="active">Blog</a><a href="contact.html">Contact</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </nav>
+                <div class="navbar__actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="color:#f59e0b;">
+                        <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+                        <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
+                    </button>
+                    <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL" title="Toggle RTL layout">
+                        <span class="rtl-icon">RTL</span>
+                    </button>
+                    <a href="login.html" class="btn btn-ghost btn-sm"><i class='bx bx-log-in'></i> Login</a>
+                    <a href="register.html" class="btn btn-primary btn-sm"><i class='bx bx-user-plus'></i> Sign Up</a>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Open menu"
+                    aria-expanded="false"><span></span><span></span><span></span></button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="../index.html">Home</a>
+            <a href="../index2.html">Home 2</a>
+            <a href="about.html">About</a><a href="services.html">Services</a><a href="blog.html"
+                class="active">Blog</a><a href="contact.html">Contact</a>
+            <a href="dashboard.html">Dashboard</a>
+            <div class="mobile-menu-actions">
+                <a href="login.html" class="btn btn-ghost" style="justify-content:center"><i class='bx bx-log-in'></i>
+                    Login</a>
+                <a href="register.html" class="btn btn-primary" style="justify-content:center"><i
+                        class='bx bx-user-plus'></i> Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Blog hero">
+        <div class="container">
+            <div class="section-label"
+                style="margin-inline:auto;width:fit-content;background:rgba(255,255,255,.15);color:#fff"><i
+                    class='bx bx-news'></i> Blog &amp; Insights</div>
+            <h1 style="margin-top:1rem">Energy Knowledge Hub</h1>
+            <p>Solar tips, wind energy news, technology guides, and savings strategies.</p>
+            <div class="breadcrumb"><a href="../index.html">Home</a> <i class='bx bx-chevron-right'></i>
+                <span>Blog</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG CONTENT -->
+    <section class="section" aria-label="Blog articles">
+        <div class="container">
+            <!-- Filter Bar -->
+            <div class="filter-bar" role="group" aria-label="Filter posts by category">
+                <button class="filter-btn active" data-filter="all">All Posts</button>
+                <button class="filter-btn" data-filter="solar">Solar</button>
+                <button class="filter-btn" data-filter="wind">Wind</button>
+                <button class="filter-btn" data-filter="savings">Savings</button>
+                <button class="filter-btn" data-filter="technology">Technology</button>
+                <button class="filter-btn" data-filter="incentives">Incentives</button>
+            </div>
+
+            <div class="blog-layout">
+                <!-- Main Posts -->
+                <main>
+                    <div class="blog-main-grid">
+                        <!-- Featured Post -->
+                        <article class="blog-card blog-card--featured" data-animate>
+                            <div class="blog-card__img-wrap">
+                                <img src="../assets/images/solar-residential.png" alt="Solar panels on a sunny day"
+                                    class="blog-card__img" loading="lazy" />
+                            </div>
+                            <div class="blog-card__body">
+                                <span class="tag tag-primary" style="margin-bottom:.75rem">Featured</span>
+                                <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Mar 1,
+                                        2025</span><span><i class='bx bx-time'></i> 8 min read</span></div>
+                                <h2 class="blog-card__title" style="font-size:1.4rem;margin-top:.5rem"><a href="#">2025
+                                        Solar Panel Incentives: The Complete Guide to Federal &amp; State Tax
+                                        Credits</a></h2>
+                                <p class="blog-card__excerpt">The federal solar investment tax credit (ITC) remains at
+                                    30% for residential and commercial systems installed through 2032. Here's your
+                                    complete guide to every incentive available in 2025, including state programs,
+                                    utility rebates, and SRECs.</p>
+                                <a href="#" class="btn btn-primary btn-sm"
+                                    style="margin-top:1.25rem;width:fit-content">Read Full Article <i
+                                        class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </article>
+
+                        <!-- Post 2 -->
+                        <article class="blog-card" data-animate>
+                            <div class="blog-card__img-wrap">
+                                <img src="../assets/images/wind-farm.png" alt="Wind turbines at sea"
+                                    class="blog-card__img" loading="lazy" />
+                            </div>
+                            <div class="blog-card__body">
+                                <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Feb 20,
+                                        2025</span><span><i class='bx bx-time'></i> 5 min</span></div>
+                                <h3 class="blog-card__title"><a href="#">Wind vs Solar: Which Is Right for Your
+                                        Property?</a></h3>
+                                <p class="blog-card__excerpt">A detailed comparison of wind and solar energy systems,
+                                    covering ROI, maintenance requirements, and suitability by location.</p>
+                            </div>
+                            <div class="blog-card__footer"><span class="tag">Wind</span><a href="#"
+                                    class="btn btn-sm btn-outline">Read More</a></div>
+                        </article>
+
+                        <!-- Post 3 -->
+                        <article class="blog-card" data-animate>
+                            <div class="blog-card__img-wrap">
+                                <img src="../assets/images/about-mission.png" alt="Engineer with solar panels"
+                                    class="blog-card__img" loading="lazy" />
+                            </div>
+                            <div class="blog-card__body">
+                                <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Feb 10,
+                                        2025</span><span><i class='bx bx-time'></i> 6 min</span></div>
+                                <h3 class="blog-card__title"><a href="#">How Battery Storage Is Changing Home Energy
+                                        Forever</a></h3>
+                                <p class="blog-card__excerpt">Home battery storage costs have dropped 80% in 5 years.
+                                    Here's why now is the perfect time to add storage to your solar system.</p>
+                            </div>
+                            <div class="blog-card__footer"><span class="tag">Technology</span><a href="#"
+                                    class="btn btn-sm btn-outline">Read More</a></div>
+                        </article>
+
+                        <!-- Post 4 -->
+                        <article class="blog-card" data-animate>
+                            <div class="blog-card__img-wrap">
+                                <img src="../assets/images/solar-commercial.png" alt="Commercial solar installation"
+                                    class="blog-card__img" loading="lazy" />
+                            </div>
+                            <div class="blog-card__body">
+                                <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Jan 28,
+                                        2025</span><span><i class='bx bx-time'></i> 4 min</span></div>
+                                <h3 class="blog-card__title"><a href="#">5 Reasons Businesses Are Going Solar in
+                                        2025</a></h3>
+                                <p class="blog-card__excerpt">From energy cost reduction to ESG reporting requirements,
+                                    commercial solar has never made more financial sense.</p>
+                            </div>
+                            <div class="blog-card__footer"><span class="tag">Solar</span><a href="#"
+                                    class="btn btn-sm btn-outline">Read More</a></div>
+                        </article>
+
+                        <!-- Post 5 -->
+                        <article class="blog-card" data-animate>
+                            <div class="blog-card__img-wrap"
+                                style="background:linear-gradient(135deg,#0e2d1f,#0a1628);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                🌿</div>
+                            <div class="blog-card__body">
+                                <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Jan 15,
+                                        2025</span><span><i class='bx bx-time'></i> 3 min</span></div>
+                                <h3 class="blog-card__title"><a href="#">Understanding Your Carbon Footprint &amp; How
+                                        Solar Helps</a></h3>
+                                <p class="blog-card__excerpt">A 6kW solar system offsets approximately 4 tons of CO₂
+                                    annually — equivalent to planting 100 trees. Here's the full breakdown.</p>
+                            </div>
+                            <div class="blog-card__footer"><span class="tag">Savings</span><a href="#"
+                                    class="btn btn-sm btn-outline">Read More</a></div>
+                        </article>
+
+                        <!-- Post 6 -->
+                        <article class="blog-card" data-animate>
+                            <div class="blog-card__img-wrap"
+                                style="background:linear-gradient(135deg,#1e2535,#0a0f1a);display:flex;align-items:center;justify-content:center;font-size:3rem">
+                                ⚡</div>
+                            <div class="blog-card__body">
+                                <div class="blog-card__meta"><span><i class='bx bx-calendar'></i> Jan 5,
+                                        2025</span><span><i class='bx bx-time'></i> 7 min</span></div>
+                                <h3 class="blog-card__title"><a href="#">Solar Panel Efficiency Guide: Monocrystalline
+                                        vs Polycrystalline vs Thin-Film</a></h3>
+                                <p class="blog-card__excerpt">Not all solar panels are equal. We break down the pros and
+                                    cons of each technology to help you choose the right one.</p>
+                            </div>
+                            <div class="blog-card__footer"><span class="tag">Technology</span><a href="#"
+                                    class="btn btn-sm btn-outline">Read More</a></div>
+                        </article>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav style="display:flex;justify-content:center;gap:.5rem;margin-top:2.5rem"
+                        aria-label="Blog pagination">
+                        <button class="btn btn-ghost btn-sm" aria-label="Previous page" disabled>‹ Prev</button>
+                        <button class="btn btn-primary btn-sm" aria-current="page">1</button>
+                        <button class="btn btn-ghost btn-sm">2</button>
+                        <button class="btn btn-ghost btn-sm">3</button>
+                        <button class="btn btn-ghost btn-sm" aria-label="Next page">Next ›</button>
+                    </nav>
+                </main>
+
+                <!-- Sidebar -->
+                <aside>
+                    <!-- Search -->
+                    <div class="sidebar-widget">
+                        <h3>Search</h3>
+                        <form role="search" aria-label="Search blog">
+                            <div class="dash-search" style="min-width:unset">
+                                <i class='bx bx-search' style="color:var(--clr-text-light)"></i>
+                                <input type="search" placeholder="Search articles..." aria-label="Search blog posts" />
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-widget">
+                        <h3>Categories</h3>
+                        <div class="sidebar-cat"><span>Solar Energy</span><span class="badge badge-primary">18</span>
+                        </div>
+                        <div class="sidebar-cat"><span>Wind Energy</span><span class="badge badge-primary">9</span>
+                        </div>
+                        <div class="sidebar-cat"><span>Technology</span><span class="badge badge-primary">12</span>
+                        </div>
+                        <div class="sidebar-cat"><span>Incentives</span><span class="badge badge-primary">7</span></div>
+                        <div class="sidebar-cat"><span>Savings Guide</span><span class="badge badge-primary">11</span>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts -->
+                    <div class="sidebar-widget">
+                        <h3>Recent Posts</h3>
+                        <div class="sidebar-recent">
+                            <img src="../assets/images/solar-residential.png" alt="Recent post thumbnail"
+                                loading="lazy" />
+                            <div>
+                                <div class="sidebar-recent-title"><a href="#">2025 Solar Incentives Guide</a></div>
+                                <div class="sidebar-recent-date">Mar 1, 2025</div>
+                            </div>
+                        </div>
+                        <div class="sidebar-recent">
+                            <img src="../assets/images/wind-farm.png" alt="Recent post thumbnail" loading="lazy" />
+                            <div>
+                                <div class="sidebar-recent-title"><a href="#">Wind vs Solar Comparison</a></div>
+                                <div class="sidebar-recent-date">Feb 20, 2025</div>
+                            </div>
+                        </div>
+                        <div class="sidebar-recent">
+                            <img src="../assets/images/about-mission.png" alt="Recent post thumbnail" loading="lazy" />
+                            <div>
+                                <div class="sidebar-recent-title"><a href="#">Battery Storage Revolution</a></div>
+                                <div class="sidebar-recent-date">Feb 10, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="sidebar-widget"
+                        style="background:linear-gradient(135deg,var(--clr-primary),var(--clr-primary-dark));border:none;color:#fff">
+                        <h3 style="color:#fff">Get Energy Tips</h3>
+                        <p style="color:rgba(255,255,255,.8);font-size:.85rem;margin-bottom:1rem">Weekly solar &amp;
+                            wind insights, savings tips, and incentive alerts.</p>
+                        <form class="newsletter-form" style="display:flex;flex-direction:column;gap:.5rem"
+                            aria-label="Newsletter signup">
+                            <input type="email" placeholder="Your email address" aria-label="Email address" required
+                                style="border-radius:var(--radius-md);padding:.6rem 1rem;border:none;font-size:.875rem" />
+                            <button type="submit" class="btn"
+                                style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);justify-content:center">Subscribe</button>
+                        </form>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="sidebar-widget">
+                        <h3>Popular Tags</h3>
+                        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem">
+                            <span class="tag">Solar Panels</span><span class="tag">Wind Energy</span><span
+                                class="tag">Battery Storage</span>
+                            <span class="tag tag-primary">Tax Credits</span><span class="tag">Net Metering</span><span
+                                class="tag">ROI</span>
+                            <span class="tag">Residential</span><span class="tag">Commercial</span><span
+                                class="tag">Monitoring</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../index.html" class="navbar__logo" style="margin-bottom:1rem"><svg width="30" height="30"
+                            viewBox="0 0 36 36" fill="none">
+                            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+                            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                                fill="#0ea66b" />
+                            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                        </svg>Solar<span>Volt</span></a>
+                    <p>Leading renewable energy installer for residential and commercial clients.</p>
+                    <div class="footer__social"><a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a><a
+                            href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a><a href="#"
+                            aria-label="Instagram"><i class='bx bxl-instagram'></i></a><a href="#"
+                            aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a></div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav class="footer__links"><a href="services.html">Residential Solar</a><a
+                            href="services.html">Commercial Solar</a><a href="services.html">Wind Turbines</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Company</h4>
+                    <nav class="footer__links"><a href="about.html">About Us</a><a href="blog.html">Blog</a><a
+                            href="contact.html">Contact</a><a href="dashboard.html">Client Portal</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__links"><a href="tel:+18007652670"><i class='bx bx-phone'></i>
+                            1-800-SOLAR-01</a><a href="mailto:info@solarvolt.com"><i class='bx bx-envelope'></i>
+                            info@solarvolt.com</a></div>
+                </div>
+            </div>
+            <div class="footer__bottom"><span>© 2025 SolarVolt Energy. All rights reserved.</span>
+                <nav style="display:flex;gap:1rem;flex-wrap:wrap"><a href="#">Privacy</a><a href="#">Terms</a><a
+                        href="#">Sitemap</a></nav>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Back to top"><i class='bx bx-chevron-up'></i></button>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

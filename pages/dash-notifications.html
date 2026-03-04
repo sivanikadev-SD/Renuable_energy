@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notifications – SolarVolt Dashboard</title>
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .notif-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            transition: background .15s;
+            cursor: pointer
+        }
+
+        .notif-item:hover {
+            background: var(--clr-bg-alt)
+        }
+
+        .notif-item.unread {
+            background: rgba(14, 166, 107, .04);
+            border-left: 3px solid var(--clr-primary)
+        }
+
+        .notif-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0
+        }
+
+        .notif-time {
+            font-size: .7rem;
+            color: var(--clr-text-muted);
+            margin-top: .25rem
+        }
+
+        .notif-title {
+            font-weight: 600;
+            font-size: .9rem
+        }
+
+        .notif-body {
+            font-size: .8rem;
+            color: var(--clr-text-muted);
+            margin-top: .2rem
+        }
+
+        .cat-btn {
+            padding: .3rem .9rem;
+            border-radius: var(--radius-full);
+            font-size: .8rem;
+            border: 1px solid var(--clr-border);
+            background: var(--clr-surface);
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .cat-btn.active {
+            background: var(--clr-primary);
+            color: #fff;
+            border-color: var(--clr-primary)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dash-overlay" id="dashOverlay" aria-hidden="true"></div>
+    <div class="dash-layout">
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="dash-sidebar__brand"><svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg><span class="dash-sidebar__brand-text">Solar<span>Volt</span></span></div>
+            <nav class="dash-nav">
+                <div class="dash-nav-label">Overview</div>
+                <a href="dashboard.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-tachometer'></i></span><span class="dash-nav-text">Dashboard</span></a>
+                <a href="dash-analytics.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-line-chart'></i></span><span class="dash-nav-text">Energy Analytics</span></a>
+                <div class="dash-nav-label">My System</div>
+                <a href="dash-solar.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-sun'></i></span><span class="dash-nav-text">Solar Panels</span></a>
+                <a href="dash-wind.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-wind'></i></span><span class="dash-nav-text">Wind Turbines</span></a>
+                <a href="dash-battery.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-battery'></i></span><span class="dash-nav-text">Battery Storage</span></a>
+                <a href="dash-health.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-cog'></i></span><span class="dash-nav-text">System Health</span><span
+                        class="dash-nav-badge">2</span></a>
+                <div class="dash-nav-label">Account</div>
+                <a href="dash-billing.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-receipt'></i></span><span class="dash-nav-text">Billing &amp;
+                        Reports</span></a>
+                <a href="dash-notifications.html" class="dash-nav-item active" aria-current="page"><span
+                        class="dash-nav-icon"><i class='bx bx-bell'></i></span><span
+                        class="dash-nav-text">Notifications</span></a>
+                <a href="dash-profile.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-user'></i></span><span class="dash-nav-text">Profile Settings</span></a>
+            </nav>
+            <div class="dash-sidebar__footer">
+                <div class="dash-user">
+                    <div class="dash-user__avatar">JM</div>
+                    <div class="dash-user__info">
+                        <div class="dash-user__name">James Mercer</div>
+                        <div class="dash-user__role">Residential Plan</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="dash-nav-item logout-btn" style="margin-top:.5rem"><span
+                        class="dash-nav-icon"><i class='bx bx-log-out'></i></span><span
+                        class="dash-nav-text">Logout</span></a>
+            </div>
+        </aside>
+        <main class="dash-main" id="dashMain">
+            <header class="dash-topbar">
+                <div class="dash-topbar__left">
+                    <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i
+                            class='bx bx-menu'></i></button>
+                    <div>
+                        <div class="dash-page-title">Notifications</div>
+                        <div style="font-size:.75rem;color:var(--clr-text-muted)">5 unread</div>
+                    </div>
+                </div>
+                <div class="dash-topbar__right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span
+                            class="theme-icon-moon"><i class='bx bx-moon'></i></span><span class="theme-icon-sun"
+                            style="display:none"><i class='bx bx-sun'></i></span></button>
+                    <div class="dash-user" style="background:transparent;padding:0">
+                        <div class="dash-user__avatar" style="width:32px;height:32px;font-size:.75rem">JM</div>
+                    </div>
+                </div>
+            </header>
+            <div class="dash-content">
+                <div class="dash-card">
+                    <div class="dash-card__header">
+                        <div class="dash-card__title">All Notifications</div>
+                        <div style="display:flex;gap:.5rem">
+                            <button class="btn btn-sm btn-ghost" id="markAllRead"><i class='bx bx-check-double'></i>
+                                Mark all read</button>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;margin-bottom:.75rem">
+                        <button class="cat-btn active">All (8)</button>
+                        <button class="cat-btn">Alerts (2)</button>
+                        <button class="cat-btn">System (3)</button>
+                        <button class="cat-btn">Billing (2)</button>
+                    </div>
+                    <div>
+                        <div class="notif-item unread">
+                            <div class="notif-avatar" style="background:rgba(245,158,11,.15);color:#f59e0b"><i
+                                    class='bx bx-brush'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">Panel A-07 needs cleaning</div>
+                                <div class="notif-body">Output is 31% below average. Schedule a cleaning to restore
+                                    performance.</div>
+                                <div class="notif-time">Today, 9:14am · Alert</div>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-avatar" style="background:rgba(59,130,246,.15);color:var(--clr-accent)"><i
+                                    class='bx bx-info-circle'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">Grid micro-disconnection resolved</div>
+                                <div class="notif-body">A 4-second grid disconnection occurred at 2:18am on Mar 2.
+                                    Auto-resolved.</div>
+                                <div class="notif-time">Mar 2, 2025 · System</div>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-avatar" style="background:rgba(14,166,107,.15);color:var(--clr-primary)">
+                                <i class='bx bx-bolt-circle'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">New daily production record! 🎉</div>
+                                <div class="notif-body">Your system produced 52.4 kWh yesterday – a new personal record.
+                                </div>
+                                <div class="notif-time">Mar 1, 2025 · System</div>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-avatar" style="background:rgba(14,166,107,.15);color:var(--clr-primary)">
+                                <i class='bx bx-receipt'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">February statement is ready</div>
+                                <div class="notif-body">You saved $271 in February. Download your report from Billing.
+                                </div>
+                                <div class="notif-time">Mar 1, 2025 · Billing</div>
+                            </div>
+                        </div>
+                        <div class="notif-item unread">
+                            <div class="notif-avatar" style="background:rgba(139,92,246,.15);color:#8b5cf6"><i
+                                    class='bx bx-calendar'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">Annual service reminder</div>
+                                <div class="notif-body">Your annual system inspection is scheduled for March 15.</div>
+                                <div class="notif-time">Feb 28, 2025 · Reminder</div>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-avatar" style="background:rgba(14,166,107,.1);color:var(--clr-primary)"><i
+                                    class='bx bx-dollar-circle'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">Grid export credit earned – $129</div>
+                                <div class="notif-body">You exported 186 kWh in February and earned a utility credit.
+                                </div>
+                                <div class="notif-time">Feb 28, 2025 · Billing</div>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-avatar" style="background:var(--clr-bg-alt);color:var(--clr-text-muted)">
+                                <i class='bx bx-package'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">Firmware update applied</div>
+                                <div class="notif-body">Enphase IQ8 updated to v7.2.1. No service interruption.</div>
+                                <div class="notif-time">Feb 20, 2025 · Update</div>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-avatar" style="background:var(--clr-bg-alt);color:var(--clr-text-muted)">
+                                <i class='bx bx-check-circle'></i></div>
+                            <div style="flex:1">
+                                <div class="notif-title">System installation complete</div>
+                                <div class="notif-body">Your SolarVolt system is live! Welcome to clean energy.</div>
+                                <div class="notif-time">Mar 20, 2024 · System</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', () => { const s = document.getElementById('dashSidebar'), o = document.getElementById('dashOverlay'); if (window.innerWidth > 1024) s.classList.toggle('collapsed'); else { s.classList.toggle('mobile-open'); o.classList.toggle('visible'); } });
+        document.getElementById('dashOverlay').addEventListener('click', () => { document.getElementById('dashSidebar').classList.remove('mobile-open'); document.getElementById('dashOverlay').classList.remove('visible'); });
+        document.getElementById('markAllRead').addEventListener('click', () => { document.querySelectorAll('.notif-item.unread').forEach(n => n.classList.remove('unread')); Toast.show('All notifications marked as read.', 'success'); });
+        document.querySelectorAll('.cat-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }); });
+    </script>
+</body>
+
+</html>

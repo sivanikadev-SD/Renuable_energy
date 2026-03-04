@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wind Turbines – SolarVolt Dashboard</title>
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .turbine-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+            transition: all .2s;
+        }
+
+        .turbine-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .turbine-icon {
+            font-size: 3.5rem;
+            animation: turbineSpin 3s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes turbineSpin {
+            from {
+                transform: rotate(0)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .turbine-card.offline .turbine-icon {
+            animation: none;
+            opacity: .5;
+        }
+
+        .wind-speed-dial {
+            width: 120px;
+            height: 60px;
+            border-radius: 60px 60px 0 0;
+            background: conic-gradient(from 180deg, #ef4444 0%, #f59e0b 33%, #22c55e 66%, #3b82f6 100%);
+            margin: auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dash-overlay" id="dashOverlay" aria-hidden="true"></div>
+    <div class="dash-layout">
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="dash-sidebar__brand"><svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg><span class="dash-sidebar__brand-text">Solar<span>Volt</span></span></div>
+            <nav class="dash-nav">
+                <div class="dash-nav-label">Overview</div>
+                <a href="dashboard.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-tachometer'></i></span><span class="dash-nav-text">Dashboard</span></a>
+                <a href="dash-analytics.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-line-chart'></i></span><span class="dash-nav-text">Energy Analytics</span></a>
+                <div class="dash-nav-label">My System</div>
+                <a href="dash-solar.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-sun'></i></span><span class="dash-nav-text">Solar Panels</span></a>
+                <a href="dash-wind.html" class="dash-nav-item active" aria-current="page"><span class="dash-nav-icon"><i
+                            class='bx bx-wind'></i></span><span class="dash-nav-text">Wind Turbines</span></a>
+                <a href="dash-battery.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-battery'></i></span><span class="dash-nav-text">Battery Storage</span></a>
+                <a href="dash-health.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-cog'></i></span><span class="dash-nav-text">System Health</span><span
+                        class="dash-nav-badge">2</span></a>
+                <div class="dash-nav-label">Account</div>
+                <a href="dash-billing.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-receipt'></i></span><span class="dash-nav-text">Billing &amp;
+                        Reports</span></a>
+                <a href="dash-notifications.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-bell'></i></span><span class="dash-nav-text">Notifications</span><span
+                        class="dash-nav-badge">5</span></a>
+                <a href="dash-profile.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-user'></i></span><span class="dash-nav-text">Profile Settings</span></a>
+            </nav>
+            <div class="dash-sidebar__footer">
+                <div class="dash-user">
+                    <div class="dash-user__avatar">JM</div>
+                    <div class="dash-user__info">
+                        <div class="dash-user__name">James Mercer</div>
+                        <div class="dash-user__role">Residential Plan</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="dash-nav-item logout-btn" style="margin-top:.5rem"><span
+                        class="dash-nav-icon"><i class='bx bx-log-out'></i></span><span
+                        class="dash-nav-text">Logout</span></a>
+            </div>
+        </aside>
+        <main class="dash-main" id="dashMain">
+            <header class="dash-topbar">
+                <div class="dash-topbar__left">
+                    <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i
+                            class='bx bx-menu'></i></button>
+                    <div>
+                        <div class="dash-page-title">Wind Turbines</div>
+                        <div style="font-size:.75rem;color:var(--clr-text-muted)">2 turbines – 4kW residential array
+                        </div>
+                    </div>
+                </div>
+                <div class="dash-topbar__right">
+                    <button class="notif-btn" aria-label="Notifications"><i class='bx bx-bell'></i><span
+                            class="notif-badge"></span></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span
+                            class="theme-icon-moon"><i class='bx bx-moon'></i></span><span class="theme-icon-sun"
+                            style="display:none"><i class='bx bx-sun'></i></span></button>
+                    <div class="dash-user" style="background:transparent;padding:0">
+                        <div class="dash-user__avatar" style="width:32px;height:32px;font-size:.75rem">JM</div>
+                    </div>
+                </div>
+            </header>
+            <div class="dash-content">
+                <div class="dash-stats-grid" style="margin-bottom:1.5rem">
+                    <div class="dash-stat-card primary">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">3.2 kW</div>
+                                <div class="dash-stat-label">Current Output</div>
+                            </div>
+                            <div class="dash-stat-icon primary"><i class='bx bx-wind'></i></div>
+                        </div>
+                        <div class="dash-stat-change up">↑ Wind 18 km/h</div>
+                    </div>
+                    <div class="dash-stat-card success">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">89%</div>
+                                <div class="dash-stat-label">Turbine Efficiency</div>
+                            </div>
+                            <div class="dash-stat-icon success"><i class='bx bx-check-shield'></i></div>
+                        </div>
+                        <div class="dash-stat-change up">Good</div>
+                    </div>
+                    <div class="dash-stat-card info">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">21.4 kWh</div>
+                                <div class="dash-stat-label">Generated Today</div>
+                            </div>
+                            <div class="dash-stat-icon info"><i class='bx bx-bolt-circle'></i></div>
+                        </div>
+                        <div class="dash-stat-change up">+9% vs avg</div>
+                    </div>
+                    <div class="dash-stat-card warning">
+                        <div class="dash-stat-header">
+                            <div>
+                                <div class="dash-stat-value">18 km/h</div>
+                                <div class="dash-stat-label">Wind Speed</div>
+                            </div>
+                            <div class="dash-stat-icon warning"><i class='bx bx-cloud-wind'></i></div>
+                        </div>
+                        <div class="dash-stat-change">Gusts to 24 km/h</div>
+                    </div>
+                </div>
+
+                <div
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem">
+                    <div class="turbine-card data-animate">
+                        <span class="turbine-icon" title="Turbine spinning">🌀</span>
+                        <div>
+                            <div style="font-weight:700;font-size:1rem">Turbine W-01</div>
+                            <div style="font-size:.8rem;color:var(--clr-text-muted)">Bergey Excel 6 – 6kW</div>
+                        </div>
+                        <div style="width:100%">
+                            <div class="status-item">
+                                <div class="status-label"><span>Output</span><span>1.9 kW</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width:0%" data-width="76%"></div>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label"><span>RPM</span><span>142</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width:0%" data-width="57%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="badge badge-primary">Online</span>
+                    </div>
+                    <div class="turbine-card data-animate">
+                        <span class="turbine-icon" title="Turbine spinning">🌀</span>
+                        <div>
+                            <div style="font-weight:700;font-size:1rem">Turbine W-02</div>
+                            <div style="font-size:.8rem;color:var(--clr-text-muted)">Bergey Excel 6 – 6kW</div>
+                        </div>
+                        <div style="width:100%">
+                            <div class="status-item">
+                                <div class="status-label"><span>Output</span><span>1.3 kW</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width:0%" data-width="52%"></div>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label"><span>RPM</span><span>118</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width:0%" data-width="47%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="badge badge-primary">Online</span>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card__title" style="margin-bottom:1rem">Wind Forecast (7 days)</div>
+                        <div id="windChart"
+                            style="display:flex;align-items:flex-end;gap:4px;height:100px;padding-top:8px"></div>
+                        <div
+                            style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--clr-text-muted);margin-top:.25rem">
+                            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            const s = document.getElementById('dashSidebar'), o = document.getElementById('dashOverlay');
+            if (window.innerWidth > 1024) s.classList.toggle('collapsed');
+            else { s.classList.toggle('mobile-open'); o.classList.toggle('visible'); }
+        });
+        document.getElementById('dashOverlay').addEventListener('click', () => {
+            document.getElementById('dashSidebar').classList.remove('mobile-open');
+            document.getElementById('dashOverlay').classList.remove('visible');
+        });
+        // Wind chart
+        const wc = document.getElementById('windChart');
+        [18, 22, 15, 28, 24, 19, 21].forEach(v => {
+            const b = document.createElement('div');
+            b.style.cssText = `flex:1;background:linear-gradient(to top,var(--clr-accent),rgba(59,130,246,.3));border-radius:3px 3px 0 0;height:${v / 30 * 100}%;`;
+            b.title = v + ' km/h';
+            wc.appendChild(b);
+        });
+    </script>
+</body>
+
+</html>

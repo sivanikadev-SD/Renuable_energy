@@ -1,0 +1,103 @@
+/* ============================================================
+   SOLARVOLT – Dark Mode Overrides
+   ============================================================ */
+
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #050a14 0%, #071a10 50%, #050a14 100%);
+}
+
+[data-theme="dark"] .hero__bg {
+    opacity: .25;
+}
+
+[data-theme="dark"] .page-hero {
+    background: linear-gradient(135deg, #050a14 0%, #071a10 100%);
+}
+
+[data-theme="dark"] .stats-strip {
+    background: linear-gradient(135deg, #0b8a58, #0ea66b);
+}
+
+[data-theme="dark"] .feature-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+}
+
+[data-theme="dark"] .service-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+}
+
+[data-theme="dark"] .calc-result {
+    background: linear-gradient(135deg, #0b8a58, #0ea66b);
+}
+
+[data-theme="dark"] .blog-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+}
+
+[data-theme="dark"] .contact-info-icon {
+    background: rgba(14, 166, 107, .15);
+}
+
+[data-theme="dark"] .map-embed {
+    background: #1e2535;
+    color: var(--clr-text-muted);
+}
+
+[data-theme="dark"] .faq-item {
+    background: var(--clr-surface);
+}
+
+[data-theme="dark"] .team-card__photo {
+    border-color: rgba(14, 166, 107, .3);
+}
+
+[data-theme="dark"] .footer__newsletter-form button {
+    background: var(--clr-primary);
+}
+
+[data-theme="dark"] code {
+    background: rgba(14, 166, 107, .1);
+    color: var(--clr-primary);
+}
+
+[data-theme="dark"] .badge-primary {
+    background: rgba(14, 166, 107, .18);
+}
+
+/* Dashboard dark overrides */
+[data-theme="dark"] .dash-sidebar {
+    background: #111827;
+    border-color: #1f2937;
+}
+
+[data-theme="dark"] .dash-topbar {
+    background: rgba(17, 24, 39, .92);
+    border-color: #1f2937;
+}
+
+[data-theme="dark"] .dash-card {
+    background: #1e2535;
+    border-color: #2d3748;
+}
+
+[data-theme="dark"] .dash-stat-card {
+    background: #1e2535;
+    border-color: #2d3748;
+}
+
+[data-theme="dark"] .data-table th {
+    background: #111827;
+    border-color: #2d3748;
+}
+
+[data-theme="dark"] .data-table td {
+    border-color: #2d3748;
+}
+
+[data-theme="dark"] .data-table tr:hover td {
+    background: rgba(14, 166, 107, .05);
+}
+
+[data-theme="dark"] .chart-placeholder {
+    background: #111827;
+}

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us – SolarVolt Energy</title>
+    <meta name="description"
+        content="Get in touch with SolarVolt for a free consultation, quote, or customer support. Phone, email, and office details." />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/rtl.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .contact-form-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-xl);
+            padding: var(--sp-8);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-4);
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+            border-radius: var(--radius-xl);
+            padding: var(--sp-8);
+            color: #fff;
+        }
+
+        .contact-info-card .contact-info-icon {
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+        .contact-info-card .contact-info-label {
+            color: rgba(255, 255, 255, .7);
+        }
+
+        .contact-info-card .contact-info-value {
+            color: #fff;
+        }
+
+        .map-placeholder {
+            background: var(--clr-bg-alt);
+            border-radius: var(--radius-lg);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            border: 2px dashed var(--clr-border);
+            margin-top: var(--sp-5);
+        }
+
+        @media(max-width:640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar" id="mainNav" aria-label="Main navigation">
+            <div class="navbar__inner">
+                <a href="../index.html" class="navbar__logo">
+                    <svg class="navbar__logo-icon" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                        <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                            fill="#0ea66b" />
+                        <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                    </svg>
+                    Solar<span>Volt</span>
+                </a>
+                <nav class="navbar__nav" aria-label="Site pages">
+                    <a href="../index.html">Home</a>
+                    <a href="../index2.html">Home 2</a>
+                    <a href="about.html">About</a><a href="services.html">Services</a><a href="blog.html">Blog</a><a
+                        href="contact.html" class="active">Contact</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </nav>
+                <div class="navbar__actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="color: #f59e0b;">
+                        <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+                        <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
+                    </button>
+                    <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL" title="Toggle RTL layout">
+                        <span class="rtl-icon">RTL</span>
+                    </button>
+                    <a href="login.html" class="btn btn-ghost btn-sm"><i class='bx bx-log-in'></i> Login</a>
+                    <a href="register.html" class="btn btn-primary btn-sm"><i class='bx bx-user-plus'></i> Sign Up</a>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Open menu"
+                    aria-expanded="false"><span></span><span></span><span></span></button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="../index.html">Home</a>
+            <a href="../index2.html">Home 2</a>
+            <a href="about.html">About</a><a href="services.html">Services</a><a href="blog.html">Blog</a><a
+                href="contact.html" class="active">Contact</a>
+            <a href="dashboard.html">Dashboard</a>
+            <div class="mobile-menu-actions">
+                <a href="login.html" class="btn btn-ghost" style="justify-content:center"><i class='bx bx-log-in'></i>
+                    Login</a>
+                <a href="register.html" class="btn btn-primary" style="justify-content:center"><i
+                        class='bx bx-user-plus'></i> Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Contact page hero">
+        <div class="container">
+            <div class="section-label"
+                style="margin-inline:auto;width:fit-content;background:rgba(255,255,255,.15);color:#fff"><i
+                    class='bx bx-envelope'></i> Contact Us</div>
+            <h1 style="margin-top:1rem">Let's Start Your Energy Journey</h1>
+            <p>Get a free, no-obligation consultation and quote from our energy experts.</p>
+            <div class="breadcrumb"><a href="../index.html">Home</a> <i class='bx bx-chevron-right'></i>
+                <span>Contact</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section" aria-label="Contact form and details">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Contact Info -->
+                <div>
+                    <div class="contact-info-card" data-animate>
+                        <h2 style="color:#fff;margin-bottom:.5rem">Get In Touch</h2>
+                        <p style="color:rgba(255,255,255,.8);margin-bottom:1.5rem">Our team typically responds within 2
+                            business hours. For urgent matters, please call us directly.</p>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class='bx bx-phone'></i></div>
+                            <div>
+                                <div class="contact-info-label">Phone</div>
+                                <div class="contact-info-value"><a href="tel:+18007652670"
+                                        style="color:#fff">1-800-SOLAR-01</a></div>
+                                <div style="font-size:.8rem;color:rgba(255,255,255,.65);margin-top:.25rem">Mon–Fri
+                                    8am–6pm CST</div>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class='bx bx-envelope'></i></div>
+                            <div>
+                                <div class="contact-info-label">Email</div>
+                                <div class="contact-info-value"><a href="mailto:info@solarvolt.com"
+                                        style="color:#fff">info@solarvolt.com</a></div>
+                                <div style="font-size:.8rem;color:rgba(255,255,255,.65);margin-top:.25rem">Typical
+                                    response: 2 hours</div>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class='bx bx-map-pin'></i></div>
+                            <div>
+                                <div class="contact-info-label">Head Office</div>
+                                <div class="contact-info-value">123 Green Energy Blvd</div>
+                                <div style="font-size:.8rem;color:rgba(255,255,255,.65);margin-top:.25rem">Austin, TX
+                                    78701</div>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class='bx bx-time'></i></div>
+                            <div>
+                                <div class="contact-info-label">Business Hours</div>
+                                <div class="contact-info-value">Mon – Fri: 8am – 6pm</div>
+                                <div style="font-size:.8rem;color:rgba(255,255,255,.65);margin-top:.25rem">Sat: 9am –
+                                    2pm CST</div>
+                            </div>
+                        </div>
+
+                        <!-- Social -->
+                        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.2)">
+                            <div style="font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:.75rem">Follow us:
+                            </div>
+                            <div style="display:flex;gap:.75rem">
+                                <a href="#" aria-label="Facebook"
+                                    style="width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s"
+                                    onmouseover="this.style.background='rgba(255,255,255,.25)'"
+                                    onmouseout="this.style.background='rgba(255,255,255,.15)'"><i
+                                        class='bx bxl-facebook'></i></a>
+                                <a href="#" aria-label="Twitter"
+                                    style="width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff"
+                                    onmouseover="this.style.background='rgba(255,255,255,.25)'"
+                                    onmouseout="this.style.background='rgba(255,255,255,.15)'"><i
+                                        class='bx bxl-twitter'></i></a>
+                                <a href="#" aria-label="Instagram"
+                                    style="width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff"
+                                    onmouseover="this.style.background='rgba(255,255,255,.25)'"
+                                    onmouseout="this.style.background='rgba(255,255,255,.15)'"><i
+                                        class='bx bxl-instagram'></i></a>
+                                <a href="#" aria-label="LinkedIn"
+                                    style="width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff"
+                                    onmouseover="this.style.background='rgba(255,255,255,.25)'"
+                                    onmouseout="this.style.background='rgba(255,255,255,.15)'"><i
+                                        class='bx bxl-linkedin'></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Map (OpenStreetMap – no API key required) -->
+                    <div
+                        style="border-radius:var(--radius-lg);overflow:hidden;margin-top:var(--sp-5);box-shadow:var(--shadow-md);position:relative;">
+                        <iframe
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=-97.7658%2C30.2583%2C-97.7158%2C30.2983&amp;layer=mapnik&amp;marker=30.2783%2C-97.7408"
+                            width="100%" height="310" style="border:none;display:block;"
+                            title="SolarVolt HQ – Austin, TX" loading="lazy" allowfullscreen
+                            aria-label="Map showing SolarVolt office location in Austin, Texas">
+                        </iframe>
+                        <a href="https://www.openstreetmap.org/?mlat=30.2783&amp;mlon=-97.7408#map=14/30.2783/-97.7408"
+                            target="_blank" rel="noopener noreferrer"
+                            style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.75rem;font-size:.8rem;color:var(--clr-primary);font-weight:600">
+                            <i class='bx bx-directions'></i> Get Directions via OpenStreetMap
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-card" data-animate>
+                    <h2 style="margin-bottom:.5rem">Send Us a Message</h2>
+                    <p style="margin-bottom:1.5rem;font-size:.9rem">Fill in the form below and we'll get back to you
+                        within 2 hours.</p>
+
+                    <form class="validated-form" id="contactForm" novalidate aria-label="Contact form"
+                        action="https://formspree.io/f/your-form-id" method="POST">
+                        <div class="form-row" style="margin-bottom:var(--sp-4)">
+                            <div class="form-group">
+                                <label class="form-label" for="contactName">Full Name *</label>
+                                <input type="text" id="contactName" name="name" class="form-input"
+                                    placeholder="John Smith" required aria-required="true" autocomplete="name" />
+                                <span class="form-error" role="alert" aria-live="polite"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactEmail">Email Address *</label>
+                                <input type="email" id="contactEmail" name="email" class="form-input"
+                                    placeholder="john@example.com" required aria-required="true" autocomplete="email" />
+                                <span class="form-error" role="alert" aria-live="polite"></span>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-bottom:var(--sp-4)">
+                            <div class="form-group">
+                                <label class="form-label" for="contactPhone">Phone Number</label>
+                                <input type="tel" id="contactPhone" name="phone" class="form-input"
+                                    placeholder="+1 (555) 000-0000" autocomplete="tel" />
+                                <span class="form-error" role="alert" aria-live="polite"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactService">Service Interested In</label>
+                                <select id="contactService" name="service" class="form-select">
+                                    <option value="">Select a service...</option>
+                                    <option>Residential Solar</option>
+                                    <option>Commercial Solar</option>
+                                    <option>Wind Turbine</option>
+                                    <option>Battery Storage</option>
+                                    <option>Maintenance</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:var(--sp-4)">
+                            <label class="form-label" for="contactProperty">Property Type</label>
+                            <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.25rem">
+                                <label
+                                    style="display:flex;align-items:center;gap:.4rem;font-size:.875rem;cursor:pointer"><input
+                                        type="radio" name="property" value="residential" checked /> Residential</label>
+                                <label
+                                    style="display:flex;align-items:center;gap:.4rem;font-size:.875rem;cursor:pointer"><input
+                                        type="radio" name="property" value="commercial" /> Commercial</label>
+                                <label
+                                    style="display:flex;align-items:center;gap:.4rem;font-size:.875rem;cursor:pointer"><input
+                                        type="radio" name="property" value="agricultural" /> Agricultural</label>
+                                <label
+                                    style="display:flex;align-items:center;gap:.4rem;font-size:.875rem;cursor:pointer"><input
+                                        type="radio" name="property" value="industrial" /> Industrial</label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:var(--sp-4)">
+                            <label class="form-label" for="contactMessage">Message *</label>
+                            <textarea id="contactMessage" name="message" class="form-textarea"
+                                placeholder="Tell us about your property, current energy usage, and what you're hoping to achieve..."
+                                required aria-required="true"></textarea>
+                            <span class="form-error" role="alert" aria-live="polite"></span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:var(--sp-5)">
+                            <label
+                                style="display:flex;align-items:flex-start;gap:.5rem;font-size:.875rem;cursor:pointer;line-height:1.5">
+                                <input type="checkbox" id="contactConsent" name="consent" required aria-required="true"
+                                    style="margin-top:2px" />
+                                <span>I agree to the <a href="#" style="color:var(--clr-primary)">Privacy Policy</a> and
+                                    consent to being contacted about SolarVolt services.</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full"
+                            style="justify-content:center;font-size:1rem" id="contactSubmit">
+                            <i class='bx bx-send'></i> Send Message
+                        </button>
+                        <p class="form-hint text-center" style="margin-top:.75rem">🔒 Your data is secure and never sold
+                            to third parties.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="../index.html" class="navbar__logo" style="margin-bottom:1rem"><svg width="30" height="30"
+                            viewBox="0 0 36 36" fill="none">
+                            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+                            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                                fill="#0ea66b" />
+                            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                        </svg>Solar<span>Volt</span></a>
+                    <p>Leading renewable energy installer for residential and commercial clients.</p>
+                    <div class="footer__social"><a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a><a
+                            href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a><a href="#"
+                            aria-label="Instagram"><i class='bx bxl-instagram'></i></a><a href="#"
+                            aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a></div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav class="footer__links"><a href="services.html">Residential Solar</a><a
+                            href="services.html">Commercial Solar</a><a href="services.html">Wind Turbines</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Company</h4>
+                    <nav class="footer__links"><a href="about.html">About Us</a><a href="blog.html">Blog</a><a
+                            href="contact.html">Contact</a><a href="dashboard.html">Client Portal</a></nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__links"><a href="tel:+18007652670"><i class='bx bx-phone'></i>
+                            1-800-SOLAR-01</a><a href="mailto:info@solarvolt.com"><i class='bx bx-envelope'></i>
+                            info@solarvolt.com</a></div>
+                </div>
+            </div>
+            <div class="footer__bottom"><span>© 2025 SolarVolt Energy. All rights reserved.</span>
+                <nav style="display:flex;gap:1rem;flex-wrap:wrap"><a href="#">Privacy</a><a href="#">Terms</a><a
+                        href="#">Sitemap</a></nav>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" aria-label="Back to top"><i class='bx bx-chevron-up'></i></button>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

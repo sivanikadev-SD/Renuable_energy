@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Settings – SolarVolt Dashboard</title>
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <style>
+        .profile-avatar-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem
+        }
+
+        .profile-avatar-lg {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            flex-shrink: 0
+        }
+
+        .settings-section {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.25rem
+        }
+
+        .settings-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .6rem 0;
+            border-bottom: 1px solid var(--clr-border);
+            font-size: .9rem
+        }
+
+        .toggle-row:last-child {
+            border-bottom: none
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            background: var(--clr-border);
+            border-radius: 99px;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .3s
+        }
+
+        input:checked+.slider {
+            background: var(--clr-primary)
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dash-overlay" id="dashOverlay" aria-hidden="true"></div>
+    <div class="dash-layout">
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="dash-sidebar__brand"><svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg><span class="dash-sidebar__brand-text">Solar<span>Volt</span></span></div>
+            <nav class="dash-nav">
+                <div class="dash-nav-label">Overview</div>
+                <a href="dashboard.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-tachometer'></i></span><span class="dash-nav-text">Dashboard</span></a>
+                <a href="dash-analytics.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-line-chart'></i></span><span class="dash-nav-text">Energy Analytics</span></a>
+                <div class="dash-nav-label">My System</div>
+                <a href="dash-solar.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-sun'></i></span><span class="dash-nav-text">Solar Panels</span></a>
+                <a href="dash-wind.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-wind'></i></span><span class="dash-nav-text">Wind Turbines</span></a>
+                <a href="dash-battery.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-battery'></i></span><span class="dash-nav-text">Battery Storage</span></a>
+                <a href="dash-health.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-cog'></i></span><span class="dash-nav-text">System Health</span><span
+                        class="dash-nav-badge">2</span></a>
+                <div class="dash-nav-label">Account</div>
+                <a href="dash-billing.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-receipt'></i></span><span class="dash-nav-text">Billing &amp;
+                        Reports</span></a>
+                <a href="dash-notifications.html" class="dash-nav-item"><span class="dash-nav-icon"><i
+                            class='bx bx-bell'></i></span><span class="dash-nav-text">Notifications</span><span
+                        class="dash-nav-badge">5</span></a>
+                <a href="dash-profile.html" class="dash-nav-item active" aria-current="page"><span
+                        class="dash-nav-icon"><i class='bx bx-user'></i></span><span class="dash-nav-text">Profile
+                        Settings</span></a>
+            </nav>
+            <div class="dash-sidebar__footer">
+                <div class="dash-user">
+                    <div class="dash-user__avatar">JM</div>
+                    <div class="dash-user__info">
+                        <div class="dash-user__name">James Mercer</div>
+                        <div class="dash-user__role">Residential Plan</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="dash-nav-item logout-btn" style="margin-top:.5rem"><span
+                        class="dash-nav-icon"><i class='bx bx-log-out'></i></span><span
+                        class="dash-nav-text">Logout</span></a>
+            </div>
+        </aside>
+        <main class="dash-main" id="dashMain">
+            <header class="dash-topbar">
+                <div class="dash-topbar__left">
+                    <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i
+                            class='bx bx-menu'></i></button>
+                    <div>
+                        <div class="dash-page-title">Profile &amp; Settings</div>
+                    </div>
+                </div>
+                <div class="dash-topbar__right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span
+                            class="theme-icon-moon"><i class='bx bx-moon'></i></span><span class="theme-icon-sun"
+                            style="display:none"><i class='bx bx-sun'></i></span></button>
+                    <div class="dash-user" style="background:transparent;padding:0">
+                        <div class="dash-user__avatar" style="width:32px;height:32px;font-size:.75rem">JM</div>
+                    </div>
+                </div>
+            </header>
+            <div class="dash-content">
+                <div class="dash-row">
+                    <!-- Left: Profile Form -->
+                    <div style="flex:1.5">
+                        <div class="settings-section">
+                            <div class="profile-avatar-wrap">
+                                <div class="profile-avatar-lg">JM</div>
+                                <div>
+                                    <div style="font-weight:700;font-size:1.1rem">James Mercer</div>
+                                    <div style="font-size:.85rem;color:var(--clr-text-muted)">james.mercer@email.com
+                                    </div>
+                                    <div
+                                        style="font-size:.8rem;color:var(--clr-primary);margin-top:.25rem;font-weight:600">
+                                        Residential Plan · Member since Mar 2024</div>
+                                    <button class="btn btn-outline btn-sm" style="margin-top:.75rem"><i
+                                            class='bx bx-camera'></i> Change Photo</button>
+                                </div>
+                            </div>
+                            <h3><i class='bx bx-user'></i> Personal Information</h3>
+                            <div class="form-row" style="margin-bottom:1rem">
+                                <div class="form-group"><label class="form-label" for="pFirstName">First
+                                        Name</label><input id="pFirstName" class="form-input" value="James" /></div>
+                                <div class="form-group"><label class="form-label" for="pLastName">Last
+                                        Name</label><input id="pLastName" class="form-input" value="Mercer" /></div>
+                            </div>
+                            <div class="form-group" style="margin-bottom:1rem"><label class="form-label"
+                                    for="pEmail">Email</label><input id="pEmail" type="email" class="form-input"
+                                    value="james.mercer@email.com" /></div>
+                            <div class="form-group" style="margin-bottom:1rem"><label class="form-label"
+                                    for="pPhone">Phone</label><input id="pPhone" type="tel" class="form-input"
+                                    value="+1 (512) 555-0140" /></div>
+                            <div class="form-group" style="margin-bottom:1.5rem"><label class="form-label"
+                                    for="pAddress">Property Address</label><input id="pAddress" class="form-input"
+                                    value="123 Green Energy Blvd, Austin, TX 78701" /></div>
+                            <button class="btn btn-primary" id="saveProfile"><i class='bx bx-save'></i> Save
+                                Changes</button>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3><i class='bx bx-lock'></i> Security</h3>
+                            <div class="form-group" style="margin-bottom:1rem"><label class="form-label">Current
+                                    Password</label><input type="password" class="form-input" placeholder="••••••••" />
+                            </div>
+                            <div class="form-row" style="margin-bottom:1rem">
+                                <div class="form-group"><label class="form-label">New Password</label><input
+                                        type="password" class="form-input" placeholder="Min. 8 chars" /></div>
+                                <div class="form-group"><label class="form-label">Confirm</label><input type="password"
+                                        class="form-input" placeholder="Repeat" /></div>
+                            </div>
+                            <button class="btn btn-outline btn-sm" id="changePwd"><i class='bx bx-key'></i> Update
+                                Password</button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Preferences -->
+                    <div style="flex:1">
+                        <div class="settings-section">
+                            <h3><i class='bx bx-bell'></i> Notification Preferences</h3>
+                            <div class="toggle-row"><span>Email alerts</span><label class="switch"><input
+                                        type="checkbox" checked><span class="slider"></span></label></div>
+                            <div class="toggle-row"><span>SMS alerts</span><label class="switch"><input
+                                        type="checkbox"><span class="slider"></span></label></div>
+                            <div class="toggle-row"><span>Weekly energy report</span><label class="switch"><input
+                                        type="checkbox" checked><span class="slider"></span></label></div>
+                            <div class="toggle-row"><span>System alerts</span><label class="switch"><input
+                                        type="checkbox" checked><span class="slider"></span></label></div>
+                            <div class="toggle-row"><span>Billing reminders</span><label class="switch"><input
+                                        type="checkbox" checked><span class="slider"></span></label></div>
+                        </div>
+                        <div class="settings-section">
+                            <h3><i class='bx bx-cog'></i> Display Preferences</h3>
+                            <div class="toggle-row"><span>Dark mode</span><label class="switch"><input type="checkbox"
+                                        id="darkToggle"><span class="slider"></span></label></div>
+                            <div class="toggle-row"><span>RTL layout</span><label class="switch"><input type="checkbox"
+                                        id="rtlSwitch"><span class="slider"></span></label></div>
+                            <div class="form-group" style="margin-top:1rem"><label class="form-label">Unit
+                                    preference</label><select class="form-select">
+                                    <option>kWh &amp; $ (imperial)</option>
+                                    <option>kWh &amp; € (metric)</option>
+                                </select></div>
+                            <div class="form-group" style="margin-top:.75rem"><label class="form-label">Date
+                                    format</label><select class="form-select">
+                                    <option>MM/DD/YYYY</option>
+                                    <option>DD/MM/YYYY</option>
+                                    <option>YYYY-MM-DD</option>
+                                </select></div>
+                        </div>
+                        <div class="settings-section" style="border-color:#fca5a5">
+                            <h3 style="color:#ef4444"><i class='bx bx-trash'></i> Danger Zone</h3>
+                            <p style="font-size:.85rem;color:var(--clr-text-muted);margin-bottom:1rem">Deleting your
+                                account is permanent and cannot be undone.</p>
+                            <button class="btn btn-sm"
+                                style="background:#fef2f2;color:#ef4444;border:1px solid #fca5a5"><i
+                                    class='bx bx-trash'></i> Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="toastContainer" role="status" aria-live="polite"></div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', () => { const s = document.getElementById('dashSidebar'), o = document.getElementById('dashOverlay'); if (window.innerWidth > 1024) s.classList.toggle('collapsed'); else { s.classList.toggle('mobile-open'); o.classList.toggle('visible'); } });
+        document.getElementById('dashOverlay').addEventListener('click', () => { document.getElementById('dashSidebar').classList.remove('mobile-open'); document.getElementById('dashOverlay').classList.remove('visible'); });
+        document.getElementById('saveProfile').addEventListener('click', () => Toast.show('Profile saved successfully!', 'success'));
+        document.getElementById('changePwd').addEventListener('click', () => Toast.show('Password updated!', 'success'));
+        // Dark toggle sync
+        const darkTog = document.getElementById('darkToggle');
+        darkTog.checked = document.documentElement.getAttribute('data-theme') === 'dark';
+        darkTog.addEventListener('change', () => Theme.set(darkTog.checked ? 'dark' : 'light'));
+        // RTL toggle sync
+        const rtlSw = document.getElementById('rtlSwitch');
+        rtlSw.checked = document.documentElement.getAttribute('dir') === 'rtl';
+        rtlSw.addEventListener('change', () => RTL.set(rtlSw.checked ? 'rtl' : 'ltr'));
+    </script>
+</body>
+
+</html>
