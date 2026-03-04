@@ -24,11 +24,13 @@
         <!-- ══════════════ SIDEBAR ══════════════ -->
         <aside class="dash-sidebar" id="dashSidebar" aria-label="Dashboard navigation">
             <div class="dash-sidebar__brand">
-                <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
-                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
-                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
-                </svg>
+                <a href="../index.html">
+                    <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                        <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                        <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                        <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                    </svg>
+                </a>
                 <span class="dash-sidebar__brand-text">Solar<span>Volt</span></span>
             </div>
 
@@ -99,7 +101,7 @@
             <header class="dash-topbar">
                 <div class="dash-topbar__left">
                     <button class="dash-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"
-                        aria-expanded="true">
+                        aria-controls="dashSidebar" aria-expanded="false">
                         <i class='bx bx-menu'></i>
                     </button>
                     <div>

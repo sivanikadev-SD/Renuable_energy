@@ -19,13 +19,13 @@
     <style>
         /* ── HOME 2 UNIQUE STYLES ── */
         :root {
-            --h2-bg: #060e14;
+            --h2-bg: #ffffff;
             --h2-card: #0ea66cb0;
             --h2-border: rgba(10, 8, 32, 0.658);
         }
 
         [data-theme="dark"] {
-            --h2-bg: #060e14;
+            --h2-bg: #1e262c;
             --h2-card: rgba(10, 8, 32, 0.466);
             --h2-border: rgba(10, 8, 32, 0.658);
         }
@@ -457,7 +457,7 @@
         }
 
         .h2-nav.scrolled {
-            background: rgba(6, 14, 20, 0.92);
+            background: var(--clr-surface);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             padding: .75rem 0;
@@ -498,7 +498,7 @@
         }
 
         .h2-nav-links a {
-            color: rgba(255, 255, 255, .75);
+            color: var(--clr-text-primary);
             text-decoration: none;
             font-size: .9rem;
             font-weight: 500;
@@ -550,7 +550,7 @@
             display: block;
             width: 20px;
             height: 2px;
-            background: #fff;
+            background: var(--clr-text-muted);
             border-radius: 2px;
             transition: all .3s ease;
         }
@@ -678,8 +678,8 @@
             gap: .75rem;
         }
 
-        /* show hamburger, hide desktop links on mobile */
-        @media(max-width: 768px) {
+        /* show hamburger, hide desktop links on tablet & mobile */
+        @media(max-width: 1024px) {
             .h2-nav-links {
                 display: none;
             }
@@ -703,22 +703,6 @@
             }
         }
 
-        /* tablet: hide some right-side items */
-        @media(min-width: 769px) and (max-width: 1024px) {
-            .h2-nav-links {
-                gap: 1rem;
-                margin-left: .75rem;
-            }
-
-            .h2-nav-links a {
-                font-size: .82rem;
-            }
-
-            .h2-nav-inner {
-                gap: .75rem;
-                padding: 0 1.5rem;
-            }
-        }
 
         /* ── Content Responsive ── */
         @media(max-width:1024px) {
@@ -898,7 +882,7 @@
                     <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
                 </button>
                 <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL"
-                    style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);">
+                    style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--clr-text-primary)">
                     <span class="rtl-icon">RTL</span>
                 </button>
                 <a href="pages/login.html" class="h2-btn-ghost"
@@ -1072,7 +1056,8 @@
             <div style="margin-bottom:3.5rem;text-align:center">
                 <div class="h2-section-label" style="justify-content:center"><i class='bx bx-cog'></i> How It Works
                 </div>
-                <h2 class="h2-section-title" style="text-align:center">From Inquiry to Powering Up<br>in 4 Simple Steps
+                <h2 class="h2-section-title" style="text-align:center; ">From Inquiry to Powering Up<br>in 4 Simple
+                    Steps
                 </h2>
             </div>
             <div class="h2-process" data-animate>

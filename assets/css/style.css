@@ -787,7 +787,7 @@ p {
 /* ── Feature Cards ── */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--sp-6);
 }
 
@@ -875,7 +875,7 @@ p {
 /* ── Services ── */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--sp-6);
 }
 
@@ -1767,6 +1767,26 @@ p {
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
+
+    .navbar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: var(--container);
+        margin-inline: auto;
+        padding-inline: var(--sp-6);
+    }
+
+    .navbar__nav,
+    .navbar__actions .btn {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
     .hero__content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1796,20 +1816,31 @@ p {
     .calc-grid {
         grid-template-columns: 1fr;
     }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
 }
 
 @media (max-width: 640px) {
     .container {
         padding-inline: var(--sp-4);
-    }
-
-    .navbar__nav,
-    .navbar__actions .btn {
-        display: none;
-    }
-
-    .hamburger {
-        display: flex;
     }
 
     .section {
@@ -1838,5 +1869,22 @@ p {
 
     .calculator {
         padding: var(--sp-6);
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .testimonials-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -511,11 +511,17 @@
             border-color: rgba(34, 197, 94, 0.3);
         }
 
-        /* Theme toggle (top-right) */
-        .auth-theme-btn {
+        /* Toggle buttons group (top-right) */
+        .auth-toggles {
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
+            display: flex;
+            gap: .5rem;
+            z-index: 10;
+        }
+
+        .auth-toggle-btn {
             width: 40px;
             height: 40px;
             border-radius: var(--radius-full);
@@ -528,12 +534,17 @@
             transition: all var(--dur-fast) var(--ease);
             cursor: pointer;
             color: var(--clr-text);
-            z-index: 10;
         }
 
-        .auth-theme-btn:hover {
+        .auth-toggle-btn:hover {
             background: var(--clr-primary-light);
             color: var(--clr-primary);
+        }
+
+        .auth-toggle-btn.rtl-btn {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .06em;
         }
 
         /* Floating orbs on panel */
@@ -582,9 +593,8 @@
                 padding-top: 2.5rem;
             }
 
-            .auth-theme-btn {
-                top: 1rem;
-                right: 1rem;
+            .auth-toggles {
+                display: none;
             }
         }
 
@@ -624,10 +634,15 @@
             </svg>
             Solar<span>Volt</span>
         </a>
-        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
-            <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
-            <span class="theme-icon-sun" style="display:none; color: #f59e0b;"><i class='bx bx-sun'></i></span>
-        </button>
+        <div style="display:flex;gap:.5rem;align-items:center">
+            <button class="rtl-toggle" id="rtlToggleMobile" aria-label="Switch to RTL" title="Toggle RTL layout">
+                <span class="rtl-icon">RTL</span>
+            </button>
+            <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+                <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+                <span class="theme-icon-sun" style="display:none; color: #f59e0b;"><i class='bx bx-sun'></i></span>
+            </button>
+        </div>
     </div>
 
     <div class="auth-page">
@@ -701,10 +716,16 @@
         <!-- ═══ RIGHT PANEL (FORM) ═══ -->
         <main class="auth-form-panel">
 
-            <!-- Theme Toggle -->
-            <button class="auth-theme-btn" id="themeToggle" aria-label="Toggle theme">
-                <i class='bx bx-moon' id="themeIcon"></i>
-            </button>
+            <!-- Theme & RTL Toggles -->
+            <div class="auth-toggles">
+                <button class="auth-toggle-btn rtl-btn rtl-toggle" id="rtlToggleDesktop" aria-label="Switch to RTL"
+                    title="Toggle RTL layout">
+                    <span class="rtl-icon">RTL</span>
+                </button>
+                <button class="auth-toggle-btn" id="themeToggleDesktop" aria-label="Toggle theme">
+                    <i class='bx bx-moon' id="themeIcon"></i>
+                </button>
+            </div>
 
             <div class="auth-form-panel__inner">
 
@@ -817,46 +838,40 @@
 
     <script src="../assets/js/main.js"></script>
     <script>
-        /* ── Theme Toggle ── */
-        function initTheme() {
-            const saved = localStorage.getItem('solarvolt-theme') || 'light';
-            document.documentElement.setAttribute('data-theme', saved);
-            updateThemeIcons(saved);
-        }
-
-        function updateThemeIcons(theme) {
+        /* ── Theme Toggle (unified) ── */
+        function updateAllThemeIcons(theme) {
             const isDark = theme === 'dark';
-            // Desktop toggle
+            // Desktop icon
             const themeIcon = document.getElementById('themeIcon');
             if (themeIcon) {
                 themeIcon.className = isDark ? 'bx bx-sun' : 'bx bx-moon';
                 themeIcon.style.color = isDark ? '#f59e0b' : '';
             }
-            // Mobile toggles
+            // Mobile toggle icons
             document.querySelectorAll('.theme-icon-moon').forEach(el => el.style.display = isDark ? 'none' : '');
             document.querySelectorAll('.theme-icon-sun').forEach(el => el.style.display = isDark ? '' : 'none');
         }
 
-        document.getElementById('themeToggle').addEventListener('click', () => {
+        function toggleTheme() {
             const current = document.documentElement.getAttribute('data-theme');
             const next = current === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('solarvolt-theme', next);
-            updateThemeIcons(next);
-        });
-
-        const mobileToggle = document.getElementById('themeToggleMobile');
-        if (mobileToggle) {
-            mobileToggle.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-theme');
-                const next = current === 'dark' ? 'light' : 'dark';
-                document.documentElement.setAttribute('data-theme', next);
-                localStorage.setItem('solarvolt-theme', next);
-                updateThemeIcons(next);
-            });
+            updateAllThemeIcons(next);
         }
 
-        initTheme();
+        // Bind all theme toggle buttons
+        ['themeToggleMobile', 'themeToggleDesktop'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.addEventListener('click', toggleTheme);
+        });
+
+        // Init theme on load
+        (function () {
+            const saved = localStorage.getItem('solarvolt-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+            updateAllThemeIcons(saved);
+        })();
 
         /* ── Password Toggle ── */
         const togglePwBtn = document.getElementById('togglePw');
