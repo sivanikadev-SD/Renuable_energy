@@ -31,8 +31,11 @@
         }
 
         /* Force dark theme on this page */
-        html {
+        html,
+        body {
             background: var(--h2-bg);
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         /* Full-screen split hero */
@@ -442,22 +445,24 @@
             line-height: 1.7;
         }
 
-        /* Navbar */
+        /* ── Navbar ── */
         .h2-nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 999;
-            padding: 1.25rem 0;
+            z-index: 1000;
+            padding: 1.1rem 0;
             transition: all .3s;
         }
 
         .h2-nav.scrolled {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(6, 14, 20, 0.92);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: .75rem 0;
             border-bottom: 1px solid var(--h2-border);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, .3);
         }
 
         .h2-nav-inner {
@@ -466,7 +471,7 @@
             padding: 0 2rem;
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .h2-nav-logo {
@@ -478,6 +483,7 @@
             display: flex;
             align-items: center;
             gap: .5rem;
+            flex-shrink: 0;
         }
 
         .h2-nav-logo span {
@@ -486,34 +492,235 @@
 
         .h2-nav-links {
             display: flex;
-            gap: 2rem;
-            margin-left: 2rem;
+            gap: 1.5rem;
+            margin-left: 1.5rem;
+            align-items: center;
         }
 
         .h2-nav-links a {
-            color: var(--clr-text-primary);
+            color: rgba(255, 255, 255, .75);
             text-decoration: none;
             font-size: .9rem;
             font-weight: 500;
             transition: color .2s;
+            white-space: nowrap;
         }
 
         .h2-nav-links a:hover {
-            color: var(--clr-primary);
+            color: #0ea66b;
         }
 
         .h2-nav-links a.active {
             color: #0ea66b;
+            font-weight: 700;
         }
 
         .h2-nav-right {
             margin-left: auto;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: .75rem;
+            flex-shrink: 0;
         }
 
-        /* Responsive */
+        /* ── Hamburger ── */
+        .h2-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+            cursor: pointer;
+            margin-left: .5rem;
+            flex-shrink: 0;
+            transition: background .2s;
+        }
+
+        .h2-hamburger:hover {
+            background: rgba(14, 166, 107, .2);
+            border-color: rgba(14, 166, 107, .4);
+        }
+
+        .h2-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+
+        .h2-hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .h2-hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .h2-hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ── Mobile Menu ── */
+        .h2-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .h2-mobile-menu.open {
+            pointer-events: all;
+        }
+
+        .h2-mobile-menu__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .5);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .h2-mobile-menu.open .h2-mobile-menu__overlay {
+            opacity: 1;
+        }
+
+        .h2-mobile-menu__panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(320px, 85vw);
+            background: #0a1628;
+            border-left: 1px solid rgba(14, 166, 107, .2);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+            overflow-y: auto;
+        }
+
+        .h2-mobile-menu.open .h2-mobile-menu__panel {
+            transform: translateX(0);
+        }
+
+        .h2-mobile-menu__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(14, 166, 107, .15);
+        }
+
+        .h2-mobile-menu__close {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.1rem;
+            transition: background .2s;
+        }
+
+        .h2-mobile-menu__close:hover {
+            background: rgba(239, 68, 68, .2);
+            border-color: rgba(239, 68, 68, .3);
+        }
+
+        .h2-mobile-menu__nav {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 0;
+            flex: 1;
+        }
+
+        .h2-mobile-menu__nav a {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .875rem 1.5rem;
+            color: rgba(255, 255, 255, .75);
+            text-decoration: none;
+            font-size: .95rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all .2s;
+        }
+
+        .h2-mobile-menu__nav a:hover,
+        .h2-mobile-menu__nav a.active {
+            color: #0ea66b;
+            background: rgba(14, 166, 107, .08);
+            border-left-color: #0ea66b;
+        }
+
+        .h2-mobile-menu__actions {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid rgba(14, 166, 107, .15);
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        /* show hamburger, hide desktop links on mobile */
+        @media(max-width: 768px) {
+            .h2-nav-links {
+                display: none;
+            }
+
+            .h2-hamburger {
+                display: flex;
+            }
+
+            .h2-mobile-menu {
+                display: block;
+            }
+
+            .h2-nav-right .h2-btn-ghost,
+            .h2-nav-right .h2-btn-primary {
+                display: none !important;
+            }
+
+            .h2-nav-inner {
+                padding: 0 1rem;
+                gap: 1rem;
+            }
+        }
+
+        /* tablet: hide some right-side items */
+        @media(min-width: 769px) and (max-width: 1024px) {
+            .h2-nav-links {
+                gap: 1rem;
+                margin-left: .75rem;
+            }
+
+            .h2-nav-links a {
+                font-size: .82rem;
+            }
+
+            .h2-nav-inner {
+                gap: .75rem;
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* ── Content Responsive ── */
         @media(max-width:1024px) {
             .h2-hero {
                 grid-template-columns: 1fr;
@@ -524,7 +731,7 @@
             }
 
             .h2-hero__left {
-                padding: 9rem 2rem 4rem;
+                padding: 8rem 2rem 4rem;
                 text-align: center;
                 align-items: center;
             }
@@ -548,6 +755,58 @@
             .h2-process {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .h2-section {
+                padding: 4rem 0;
+            }
+
+            .h2-cta-section {
+                padding: 3.5rem 2rem;
+            }
+        }
+
+        @media(max-width:768px) {
+            .h2-hero__left {
+                padding: 6.5rem 1.25rem 3rem;
+            }
+
+            .h2-title {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+            }
+
+            .h2-subtitle {
+                font-size: 1rem;
+                max-width: 100%;
+            }
+
+            .h2-cta {
+                gap: .75rem;
+            }
+
+            .h2-stats {
+                gap: 1.25rem;
+            }
+
+            .h2-section {
+                padding: 3.5rem 0;
+            }
+
+            .h2-section-title {
+                font-size: clamp(1.6rem, 5vw, 2.2rem);
+            }
+
+            .h2-testi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .h2-process {
+                grid-template-columns: 1fr;
+            }
+
+            .h2-cta-section {
+                padding: 3rem 1.25rem;
+                border-radius: 16px;
+            }
         }
 
         @media(max-width:640px) {
@@ -559,16 +818,52 @@
                 grid-column: span 1;
             }
 
-            .h2-process {
-                grid-template-columns: 1fr;
+            .h2-hero__left {
+                padding: 5.5rem 1rem 2.5rem;
             }
 
-            .h2-cta-section {
-                padding: 3rem 1.5rem;
+            .h2-stats {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
-            .h2-nav-links {
-                display: none;
+            .h2-stat-val {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media(max-width:480px) {
+            .h2-title {
+                font-size: 1.9rem;
+                line-height: 1.15;
+            }
+
+            .h2-subtitle {
+                font-size: .875rem;
+            }
+
+            .h2-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .h2-cta a {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .h2-cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .footer__grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .h2-nav-inner {
+                padding: 0 .75rem;
+                gap: .5rem;
             }
         }
     </style>
@@ -603,21 +898,64 @@
                     <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
                 </button>
                 <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL"
-                    style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--clr-text-primary);">
+                    style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);">
                     <span class="rtl-icon">RTL</span>
                 </button>
                 <a href="pages/login.html" class="h2-btn-ghost"
-                    style="padding:.6rem 1.2rem;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem">
+                    style="padding:.6rem 1.2rem;font-size:.875rem;text-decoration:none;align-items:center;gap:.4rem">
                     <i class='bx bx-log-in'></i> Login
                 </a>
                 <a href="pages/register.html" class="h2-btn-primary" style="padding:.6rem 1.2rem;font-size:.875rem">
                     <i class='bx bx-user-plus'></i> Sign Up
                 </a>
             </div>
+            <!-- Hamburger -->
+            <button class="h2-hamburger" id="h2Hamburger" aria-label="Open menu" aria-expanded="false"
+                aria-controls="h2MobileMenu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- ══ HERO ════════════════════════════════════════ -->
+    <!-- ══ MOBILE DRAWER MENU ═══════════════════════════ -->
+    <div class="h2-mobile-menu" id="h2MobileMenu" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+        <div class="h2-mobile-menu__overlay" id="h2MenuOverlay"></div>
+        <div class="h2-mobile-menu__panel">
+            <div class="h2-mobile-menu__header">
+                <a href="index2.html" class="h2-nav-logo">
+                    <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
+                        <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                            fill="#0ea66b" />
+                        <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                    </svg>
+                    Solar<span>Volt</span>
+                </a>
+                <button class="h2-mobile-menu__close" id="h2MenuClose" aria-label="Close menu">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+            <nav class="h2-mobile-menu__nav">
+                <a href="index.html"><i class='bx bx-home'></i> Home</a>
+                <a href="index2.html" class="active"><i class='bx bx-home-alt-2'></i> Home 2</a>
+                <a href="pages/about.html"><i class='bx bx-info-circle'></i> About</a>
+                <a href="pages/services.html"><i class='bx bx-grid-alt'></i> Services</a>
+                <a href="pages/blog.html"><i class='bx bx-news'></i> Blog</a>
+                <a href="pages/contact.html"><i class='bx bx-envelope'></i> Contact</a>
+                <a href="pages/dashboard.html"><i class='bx bx-tachometer'></i> Dashboard</a>
+            </nav>
+            <div class="h2-mobile-menu__actions">
+                <a href="pages/login.html" class="h2-btn-ghost"
+                    style="display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1rem;font-size:.9rem;text-decoration:none;border-radius:var(--radius-full)">
+                    <i class='bx bx-log-in'></i> Login
+                </a>
+                <a href="pages/register.html" class="h2-btn-primary"
+                    style="display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1rem;font-size:.9rem;text-decoration:none;border-radius:var(--radius-full)">
+                    <i class='bx bx-user-plus'></i> Sign Up Free
+                </a>
+            </div>
+        </div>
+    </div>
     <section class="h2-hero" aria-label="Hero section">
         <div class="h2-hero__left">
             <div class="h2-eyebrow"><i class='bx bx-leaf'></i> Certified Green Installer 2025</div>
@@ -915,13 +1253,51 @@
     <div id="toastContainer" role="status" aria-live="polite"></div>
     <script src="assets/js/main.js"></script>
     <script>
-        // Navbar scroll effect
+        // ── Navbar scroll effect ──────────────────────────────────────────
         window.addEventListener('scroll', () => {
             document.getElementById('h2Nav').classList.toggle('scrolled', window.scrollY > 40);
         }, { passive: true });
-        // Counter animation (reuse Counter module)
+
+        // ── Hamburger / Mobile Drawer ─────────────────────────────────────
+        const hamburger = document.getElementById('h2Hamburger');
+        const mobileMenu = document.getElementById('h2MobileMenu');
+        const menuClose = document.getElementById('h2MenuClose');
+        const overlay = document.getElementById('h2MenuOverlay');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            hamburger.classList.add('open');
+            hamburger.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+        });
+
+        menuClose.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        // Close when a nav link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // ── Counter animation ─────────────────────────────────────────────
         Counter.init();
-        // Animate elements
+        // ── Animate elements ──────────────────────────────────────────────
         Animate.init();
     </script>
 </body>

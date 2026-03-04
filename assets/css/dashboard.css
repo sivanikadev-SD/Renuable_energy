@@ -674,13 +674,29 @@
 }
 
 /* ── Responsive ── */
+.dash-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 199;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.dash-overlay.visible {
+    display: block;
+}
+
 @media (max-width: 1024px) {
     .dash-sidebar {
         transform: translateX(-100%);
+        box-shadow: none;
     }
 
     .dash-sidebar.mobile-open {
         transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, .25);
     }
 
     .dash-main {
@@ -701,18 +717,6 @@
 
     .dash-search {
         display: none;
-    }
-
-    .dash-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, .5);
-        z-index: 199;
-    }
-
-    .dash-overlay.visible {
-        display: block;
     }
 }
 
