@@ -23,16 +23,16 @@
 
         <!-- ══════════════ SIDEBAR ══════════════ -->
         <aside class="dash-sidebar" id="dashSidebar" aria-label="Dashboard navigation">
-            <div class="dash-sidebar__brand">
-                <a href="../index.html">
-                    <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                        <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
-                        <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
-                        <circle cx="18" cy="18" r="5" fill="#f59e0b" />
-                    </svg>
-                </a>
+        <div class="dash-sidebar__brand">
+            <a href="../index.html" style="display:flex;align-items:center;gap:var(--sp-3);text-decoration:none;color:inherit;overflow:hidden;white-space:nowrap;flex:1">
+                <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true" style="flex-shrink:0">
+                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                </svg>
                 <span class="dash-sidebar__brand-text">Solar<span>Volt</span></span>
-            </div>
+            </a>
+        </div>
 
             <nav class="dash-nav" aria-label="Dashboard sections">
                 <div class="dash-nav-label">Overview</div>
@@ -104,6 +104,17 @@
                         aria-controls="dashSidebar" aria-expanded="false">
                         <i class='bx bx-menu'></i>
                     </button>
+                    <!-- Mobile brand (hidden on large screens where sidebar is visible) -->
+                    <a href="../index.html" class="dash-topbar-brand"
+                        style="display:none;align-items:center;gap:.5rem;text-decoration:none;color:var(--clr-text);font-family:var(--font-heading);font-weight:800;font-size:1.1rem">
+                        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+                            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z"
+                                fill="#0ea66b" />
+                            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+                        </svg>
+                        <span class="mobile-brand-text">Solar<span style="color:var(--clr-primary)">Volt</span></span>
+                    </a>
                     <div>
                         <div class="dash-page-title"><span id="dashGreeting">Good morning</span>, James! 👋</div>
                         <div style="font-size:.75rem;color:var(--clr-text-muted)" id="liveTime">--:--:--</div>
@@ -362,23 +373,7 @@
     <div id="toastContainer" role="status" aria-live="polite"></div>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboard.js"></script>
-    <script>
-        // Wire sidebar toggle to dashboard.js Sidebar module
-        document.getElementById('sidebarToggle').addEventListener('click', () => {
-            const sidebar = document.getElementById('dashSidebar');
-            const overlay = document.getElementById('dashOverlay');
-            if (window.innerWidth > 1024) {
-                sidebar.classList.toggle('collapsed');
-            } else {
-                sidebar.classList.toggle('mobile-open');
-                overlay.classList.toggle('visible');
-            }
-        });
-        document.getElementById('dashOverlay').addEventListener('click', () => {
-            document.getElementById('dashSidebar').classList.remove('mobile-open');
-            document.getElementById('dashOverlay').classList.remove('visible');
-        });
-    </script>
+
 </body>
 
 </html>

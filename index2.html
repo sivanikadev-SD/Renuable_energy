@@ -678,6 +678,13 @@
             gap: .75rem;
         }
 
+        .h2-bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
         /* show hamburger, hide desktop links on tablet & mobile */
         @media(max-width: 1024px) {
             .h2-nav-links {
@@ -690,6 +697,10 @@
 
             .h2-mobile-menu {
                 display: block;
+            }
+
+            .h2-bento-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .h2-nav-right .h2-btn-ghost,
@@ -841,6 +852,10 @@
                 font-size: 1.5rem;
             }
 
+            .h2-bento-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
             .footer__grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -983,26 +998,28 @@
             <span>★ SunPower Certified</span><span>★ Tesla Powerwall</span><span>★ Enphase Partner</span><span>★ SMA
                 Installer</span><span>★ CEC Accredited</span><span>★ Bergey Wind</span><span>★ NABCEP
                 Certified</span><span>★ Google Reviews 4.9★</span>
-            <span>★ SunPower Certified</span><span>★ Tesla Powerwall</span><span>★ Enphase Partner</span><span>★ SMA
-                Installer</span><span>★ CEC Accredited</span><span>★ Bergey Wind</span><span>★ NABCEP
-                Certified</span><span>★ Google Reviews 4.9★</span>
+            <span>★ SunPower Certified</span>
         </div>
     </div>
 
-    <!-- ══ BENTO GRID (Services) ═══════════════════════ -->
-    <section class="h2-section" aria-label="Our services">
-        <div class="container">
+    <!-- ══ BENTO GRID (Services) ═════════════════════ -->
+    <section class="h2-section" aria-label="Our services" style="position:relative;overflow:hidden">
+        <div
+            style="position:absolute;inset:0;background-image:url('assets/images/solar-commercial.png');background-size:cover;background-position:center;opacity:.06;pointer-events:none">
+        </div>
+        <div class="container" style="position:relative;z-index:1">
             <div style="margin-bottom:3rem">
                 <div class="h2-section-label"><i class='bx bx-grid-alt'></i> What We Offer</div>
                 <h2 class="h2-section-title">Everything You Need<br>In One Place</h2>
                 <p class="h2-section-sub">Comprehensive renewable energy solutions — from first consultation to ongoing
                     monitoring — all under one roof.</p>
             </div>
-            <div class="h2-bento" data-animate>
-                <div class="h2-bento-card large">
+            <div class="h2-bento-grid" data-animate>
+                <div class="h2-bento-card">
                     <div class="card-glow"></div>
                     <div class="h2-bento-num">01</div>
-                    <div class="h2-bento-icon">☀️</div>
+                    <img src="assets/images/solar-residential.png" alt="Residential Solar"
+                        style="width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:1rem;">
                     <div class="h2-bento-title">Residential Solar</div>
                     <div class="h2-bento-desc">Custom solar systems for homes of all sizes. Monocrystalline panels,
                         smart inverters, and 25-year performance warranties — installed in just 1–2 days.</div>
@@ -1012,17 +1029,25 @@
                 </div>
                 <div class="h2-bento-card">
                     <div class="h2-bento-num">02</div>
-                    <div class="h2-bento-icon">🏢</div>
+                    <img src="assets/images/solar-commercial.png" alt="Commercial Solar"
+                        style="width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:1rem;">
                     <div class="h2-bento-title">Commercial Solar</div>
                     <div class="h2-bento-desc">50kW to 10MW+ systems for businesses, warehouses, and industrial
                         properties with PPA options.</div>
+                    <a href="pages/services.html"
+                        style="display:inline-flex;align-items:center;gap:.4rem;color:#0ea66b;font-size:.85rem;font-weight:700;margin-top:1.25rem;text-decoration:none">Learn
+                        more <i class='bx bx-right-arrow-alt'></i></a>
                 </div>
                 <div class="h2-bento-card">
                     <div class="h2-bento-num">03</div>
-                    <div class="h2-bento-icon">💨</div>
+                    <img src="assets/images/wind-farm.png" alt="Wind Turbines"
+                        style="width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:1rem;">
                     <div class="h2-bento-title">Wind Turbines</div>
                     <div class="h2-bento-desc">Residential and commercial wind installations from 2kW to 250kW, with
                         hybrid solar+wind systems available.</div>
+                    <a href="pages/services.html"
+                        style="display:inline-flex;align-items:center;gap:.4rem;color:#0ea66b;font-size:.85rem;font-weight:700;margin-top:1.25rem;text-decoration:none">Learn
+                        more <i class='bx bx-right-arrow-alt'></i></a>
                 </div>
                 <div class="h2-bento-card">
                     <div class="h2-bento-num">04</div>
@@ -1060,31 +1085,48 @@
                     Steps
                 </h2>
             </div>
-            <div class="h2-process" data-animate>
-                <div class="h2-step">
+            <div class="h2-process" data-animate style="position:relative">
+                <div class="h2-step" style="position:relative;z-index:1">
                     <div class="h2-step-line"></div>
+                    <div
+                        style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0ea66b,#059c62);color:#fff;font-family:var(--font-heading);font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;box-shadow:0 0 0 6px rgba(14,166,107,.15)">
+                        01</div>
                     <div class="h2-step-title">Free Consultation</div>
                     <div class="h2-step-desc">Book a no-obligation site assessment. Our certified advisors analyse your
                         roof, usage, and goals.</div>
                 </div>
-                <div class="h2-step">
+                <div class="h2-step" style="position:relative;z-index:1">
                     <div class="h2-step-line"></div>
+                    <div
+                        style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0ea66b,#059c62);color:#fff;font-family:var(--font-heading);font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;box-shadow:0 0 0 6px rgba(14,166,107,.15)">
+                        02</div>
                     <div class="h2-step-title">Custom Design</div>
                     <div class="h2-step-desc">We create a 3D-modelled system design, detailed savings forecast, and
                         transparent price proposal.</div>
                 </div>
-                <div class="h2-step">
+                <div class="h2-step" style="position:relative;z-index:1">
                     <div class="h2-step-line"></div>
+                    <div
+                        style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0ea66b,#059c62);color:#fff;font-family:var(--font-heading);font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;box-shadow:0 0 0 6px rgba(14,166,107,.15)">
+                        03</div>
                     <div class="h2-step-title">Swift Installation</div>
                     <div class="h2-step-desc">Our NABCEP-certified team installs your system in 1–2 days. We handle all
                         permits and inspections.</div>
                 </div>
-                <div class="h2-step">
+                <div class="h2-step" style="position:relative;z-index:1">
+                    <div
+                        style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0ea66b,#059c62);color:#fff;font-family:var(--font-heading);font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;box-shadow:0 0 0 6px rgba(14,166,107,.15)">
+                        04</div>
                     <div class="h2-step-title">Monitor &amp; Enjoy</div>
                     <div class="h2-step-desc">Log in to your dashboard and watch the clean energy — and savings — flow
                         in from day one.</div>
                 </div>
             </div>
+            <style>
+                .h2-process .h2-step::before {
+                    display: none !important;
+                }
+            </style>
         </div>
     </section>
 
@@ -1098,7 +1140,8 @@
             <div class="h2-testi-grid" data-animate>
                 <div class="h2-testi-card">
                     <div class="h2-testi-stars">★★★★★</div>
-                    <div class="h2-testi-text">"SolarVolt completely transformed our energy bills. We went from
+                    <div class="h2-testi-text" style="color:rgba(255,255,255,.9)">"SolarVolt completely transformed our
+                        energy bills. We went from
                         $280/month to practically zero in six months. The team was professional, fast, and the dashboard
                         is incredible."</div>
                     <div class="h2-testi-author">
@@ -1111,7 +1154,8 @@
                 </div>
                 <div class="h2-testi-card">
                     <div class="h2-testi-stars">★★★★★</div>
-                    <div class="h2-testi-text">"We had a 200kW commercial array installed last year. Our energy costs
+                    <div class="h2-testi-text" style="color:rgba(255,255,255,.9)">"We had a 200kW commercial array
+                        installed last year. Our energy costs
                         dropped 68%. The ROI has exceeded our projections every single month since."</div>
                     <div class="h2-testi-author">
                         <div class="h2-testi-avatar">DK</div>
@@ -1124,7 +1168,8 @@
                 </div>
                 <div class="h2-testi-card">
                     <div class="h2-testi-stars">★★★★★</div>
-                    <div class="h2-testi-text">"The wind+solar hybrid system on our farm is a game changer. We've been
+                    <div class="h2-testi-text" style="color:rgba(255,255,255,.9)">"The wind+solar hybrid system on our
+                        farm is a game changer. We've been
                         grid-independent for 8 months. SolarVolt handled everything, permits included."</div>
                     <div class="h2-testi-author">
                         <div class="h2-testi-avatar">RP</div>
@@ -1144,9 +1189,9 @@
             <div class="h2-cta-section" data-animate>
                 <div class="h2-section-label" style="justify-content:center;margin-bottom:1.5rem"><i
                         class='bx bx-zap'></i> Ready to Start?</div>
-                <h2 class="h2-section-title" style="text-align:center;margin-bottom:1rem">Get Your Free
+                <h2 class="h2-section-title" style="text-align:center;margin-bottom:1rem;color:#fff">Get Your Free
                     Energy<br>Assessment Today</h2>
-                <p style="color:rgba(255,255,255,.6);margin-bottom:2.5rem;max-width:480px;margin-inline:auto">No
+                <p style="color:rgba(255,255,255,.85);margin-bottom:2.5rem;max-width:480px;margin-inline:auto">No
                     obligation. No pushy sales. Just a clear, honest analysis of your savings potential.</p>
                 <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
                     <a href="pages/contact.html" class="h2-btn-primary" style="font-size:1rem;padding:1rem 2.5rem"><i

@@ -134,6 +134,17 @@
             .blog-layout {
                 grid-template-columns: 1fr;
             }
+            .blog-sidebar-desktop {
+                display: none;
+            }
+            .blog-sidebar-mobile {
+                display: block;
+            }
+        }
+
+        .blog-sidebar-mobile {
+            display: none;
+            margin-bottom: var(--sp-5);
         }
 
         @media(max-width:640px) {
@@ -222,6 +233,28 @@
                 <button class="filter-btn" data-filter="savings">Savings</button>
                 <button class="filter-btn" data-filter="technology">Technology</button>
                 <button class="filter-btn" data-filter="incentives">Incentives</button>
+            </div>
+
+            <!-- Mobile Search (shows at top on ≤1024px) -->
+            <div class="blog-sidebar-mobile">
+                <div class="sidebar-widget">
+                    <h3>Search Articles</h3>
+                    <form role="search" aria-label="Search blog mobile">
+                        <div class="dash-search" style="min-width:unset">
+                            <i class='bx bx-search' style="color:var(--clr-text-light)"></i>
+                            <input type="search" placeholder="Search articles..." aria-label="Search blog posts" />
+                        </div>
+                    </form>
+                </div>
+                <!-- Mobile categories quick links -->
+                <div class="sidebar-widget">
+                    <h3>Categories</h3>
+                    <div class="sidebar-cat"><span>Solar Energy</span><span class="badge badge-primary">18</span></div>
+                    <div class="sidebar-cat"><span>Wind Energy</span><span class="badge badge-primary">9</span></div>
+                    <div class="sidebar-cat"><span>Technology</span><span class="badge badge-primary">12</span></div>
+                    <div class="sidebar-cat"><span>Incentives</span><span class="badge badge-primary">7</span></div>
+                    <div class="sidebar-cat"><span>Savings Guide</span><span class="badge badge-primary">11</span></div>
+                </div>
             </div>
 
             <div class="blog-layout">
@@ -352,8 +385,8 @@
                     </nav>
                 </main>
 
-                <!-- Sidebar -->
-                <aside>
+                <!-- Sidebar (desktop only) -->
+                <aside class="blog-sidebar-desktop">
                     <!-- Search -->
                     <div class="sidebar-widget">
                         <h3>Search</h3>

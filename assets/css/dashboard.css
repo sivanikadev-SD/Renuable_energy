@@ -226,13 +226,14 @@
     font-weight: 700;
 }
 
+/* sidebar toggle always reachable */
 .dash-sidebar-toggle {
     width: 38px;
     height: 38px;
     border-radius: var(--radius-md);
     background: var(--clr-bg-alt);
     border: 1px solid var(--clr-border);
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
@@ -470,6 +471,7 @@
     border: 1px solid var(--clr-border);
     border-radius: var(--radius-lg);
     padding: var(--sp-5);
+    min-width: 0;
 }
 
 .dash-card__header {
@@ -726,6 +728,11 @@
     .dash-search {
         display: none;
     }
+
+    /* Topbar brand visible on mobile */
+    .dash-topbar-brand {
+        display: flex !important;
+    }
 }
 
 @media (max-width: 640px) {
@@ -770,5 +777,19 @@
 
     .dash-topbar__left>div {
         display: none;
+    }
+
+    .mobile-brand-text {
+        display: none;
+    }
+
+    .dash-topbar__right {
+        gap: var(--sp-1);
+    }
+
+    .theme-toggle,
+    .notif-btn {
+        width: 32px;
+        height: 32px;
     }
 }

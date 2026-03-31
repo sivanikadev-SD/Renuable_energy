@@ -885,6 +885,8 @@ p {
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: all var(--dur-mid) var(--ease);
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
@@ -909,6 +911,9 @@ p {
 
 .service-card__body {
     padding: var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .service-card__price {

@@ -57,10 +57,10 @@ const Charts = (() => {
         if (!container) return;
         const max = Math.max(...data);
         container.innerHTML = '';
-        container.style.cssText = 'display:flex;align-items:flex-end;gap:8px;padding:16px;height:220px;background:var(--clr-bg-alt);border-radius:12px;';
+        container.style.cssText = 'display:flex;align-items:flex-end;gap:8px;padding:16px;height:220px;background:var(--clr-bg-alt);border-radius:12px;overflow-x:auto;';
         data.forEach((val, i) => {
             const wrap = document.createElement('div');
-            wrap.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;';
+            wrap.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;min-width:0;height:100%;';
             const bar = document.createElement('div');
             const pct = (val / max) * 85;
             bar.style.cssText = `width:100%;border-radius:4px 4px 0 0;height:${pct}%;background:linear-gradient(180deg,var(--clr-${color}),var(--clr-${color}-dark));transition:opacity .2s;`;
