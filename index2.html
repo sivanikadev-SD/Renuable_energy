@@ -871,50 +871,71 @@
 <body>
 
     <!-- ══ NAVBAR ══════════════════════════════════════ -->
-    <nav class="h2-nav" id="h2Nav" aria-label="Main navigation">
-        <div class="h2-nav-inner">
-            <a href="index2.html" class="h2-nav-logo" style="color: var(--clr-text-primary);">
-                <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-                    <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".2" />
-                    <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
-                    <circle cx="18" cy="18" r="5" fill="#f59e0b" />
-                </svg>
-                Solar<span>Volt</span>
-            </a>
-            <div class="h2-nav-links">
-                <a href="index.html">Home</a>
-                <a href="index2.html" class="active">Home 2</a>
-                <a href="pages/about.html">About</a>
-                <a href="pages/services.html">Services</a>
-                <a href="pages/blog.html">Blog</a>
-                <a href="pages/contact.html">Contact</a>
-                <a href="pages/dashboard.html">Dashboard</a>
-            </div>
-            <div class="h2-nav-right">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"
-                    style="color:#f59e0b;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)">
-                    <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
-                    <span class="theme-icon-sun" style="display:none"><i class='bx bx-sun'></i></span>
-                </button>
-                <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL"
-                    style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--clr-text-primary)">
-                    <span class="rtl-icon">RTL</span>
-                </button>
-                <a href="pages/login.html" class="h2-btn-ghost"
-                    style="padding:.6rem 1.2rem;font-size:.875rem;text-decoration:none;align-items:center;gap:.4rem">
-                    <i class='bx bx-log-in'></i> Login
-                </a>
-                <a href="pages/register.html" class="h2-btn-primary" style="padding:.6rem 1.2rem;font-size:.875rem">
-                    <i class='bx bx-user-plus'></i> Sign Up
-                </a>
-            </div>
-            <!-- Hamburger -->
-            <button class="h2-hamburger" id="h2Hamburger" aria-label="Open menu" aria-expanded="false"
-                aria-controls="h2MobileMenu">
-                <span></span><span></span><span></span>
-            </button>
+ <header>
+    <nav class="navbar" id="mainNav" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="SolarVolt Home">
+          <svg class="navbar__logo-icon brand-logo-svg" viewBox="0 0 36 36" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="18" fill="#0ea66b" opacity=".15" />
+            <path d="M18 6l3 8h-6l3-8zm0 24l-3-8h6l-3 8zM6 18l8-3v6l-8-3zm24 0l-8 3v-6l8 3z" fill="#0ea66b" />
+            <circle cx="18" cy="18" r="5" fill="#f59e0b" />
+          </svg>
+          Solar<span>Volt</span>
+        </a>
+
+        <div class="navbar__nav" aria-label="Site pages">
+          <a href="index.html" >Home</a>
+          <a href="index2.html" class="active">Home 2</a>
+          <a href="pages/about.html">About</a>
+          <a href="pages/services.html">Services</a>
+          <a href="pages/blog.html">Blog</a>
+          <a href="pages/contact.html">Contact</a>
+          <a href="pages/dashboard.html">Dashboard</a>
         </div>
+
+        <div class="navbar__actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-icon-moon"><i class='bx bx-moon'></i></span>
+            <span class="theme-icon-sun" style="display:none; color: #f59e0b;"><i class='bx bx-sun'></i></span>
+          </button>
+          <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to RTL" title="Toggle RTL layout">
+            <span class="rtl-icon">RTL</span>
+          </button>
+          <a href="pages/login.html" class="btn btn-ghost btn-sm">
+            <i class='bx bx-log-in'></i> Login
+          </a>
+          <a href="pages/register.html" class="btn btn-primary btn-sm">
+            <i class='bx bx-user-plus'></i> Sign Up
+          </a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"
+          aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="index2.html" class="active">Home 2</a>
+      <a href="pages/about.html">About</a>
+      <a href="pages/services.html">Services</a>
+      <a href="pages/blog.html">Blog</a>
+      <a href="pages/contact.html">Contact</a>
+      <a href="pages/dashboard.html">Dashboard</a>
+      <div class="mobile-menu-actions">
+        <a href="pages/login.html" class="btn btn-ghost" style="justify-content:center">
+          <i class='bx bx-log-in'></i> Login
+        </a>
+        <a href="pages/register.html" class="btn btn-primary" style="justify-content:center">
+          <i class='bx bx-user-plus'></i> Sign Up Free
+        </a>
+      </div>
+    </div>
+  </header>
+
 
     <!-- ══ MOBILE DRAWER MENU ═══════════════════════════ -->
     <div class="h2-mobile-menu" id="h2MobileMenu" role="dialog" aria-label="Mobile navigation" aria-modal="true">
