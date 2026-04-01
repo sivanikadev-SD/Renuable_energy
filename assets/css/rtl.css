@@ -131,6 +131,6 @@
 }
 
 [dir="rtl"] #scrollTop {
-    left: auto;
-    right: var(--sp-6);
+    right: auto;
+    left: var(--sp-6);
 }
